@@ -1,194 +1,125 @@
+
 <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  
   <style>
-    .bubble {
-      fill: #e9e9eb;
-    }
-    a {
-      fill: #0079ff;
-    }
-    text {
-      fill: #242424;
-      font-size: 18px;
-      font-family: 'Inter';
-      letter-spacing: -0.02em;
-    }
-    
-    .emoji {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+    .bubble{
+    fill:#e9e9eb;
     }
 
-    .typing-1 {
-      opacity: 0;
-      animation: fade-in-out 1.5s;
+    a{
+    fill:#0079ff;
     }
 
-    .msg-1 {
-      animation: wait 1.7s, msg-1 0.2s 1.7s;
+    text{
+    fill:#242424;
+    font-size:18px;
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing:-0.02em;
     }
 
-    .typing-2 {
-      opacity: 0;
-      animation: wait 2.5s, fade-in-out 1.5s 2.5s;
+    .typing-1{
+    opacity:0;
+    animation:fade-in-out 1.5s;
     }
 
-    .msg-2 {
-      animation: wait 4.2s, msg-2 0.2s 4.2s;
+    .msg-1{
+    animation:wait 1.7s,msg-1 0.2s 1.7s forwards;
     }
 
-    .typing-3 {
-      opacity: 0;
-      animation: wait 5s, fade-in-out 1.5s 5s;
+    .typing-2{
+    opacity:0;
+    animation:wait 2.5s,fade-in-out 1.5s 2.5s;
     }
 
-    .msg-3 {
-      animation: wait 6.7s, msg-3 0.2s 6.7s;
+    .msg-2{
+    animation:wait 4.2s,msg-2 0.2s 4.2s forwards;
     }
 
-    .typing-4 {
-      opacity: 0;
-      animation: wait 7.5s, fade-in-out 1.5s 7.5s;
+    .typing-3{
+    opacity:0;
+    animation:wait 5s,fade-in-out 1.5s 5s;
     }
 
-    .msg-4 {
-      animation: wait 9.2s, msg-4 0.2s 9.2s;
+    .msg-3{
+    animation:wait 6.7s,msg-3 0.2s 6.7s forwards;
     }
 
-    .msg-5 {
-      animation: wait 11.7s, msg-5 0.2s 11.7s;
+    .typing-5{
+    opacity:0;
+    animation:wait 10s,fade-in-out 1.5s 10s;
     }
 
-    .msg-6 {
-      animation: wait 14.2s, msg-6 0.2s 16.7s;
-    }    
-    
-    .typing-5 {
-      opacity: 0;
-      animation: wait 10s, fade-in-out 1.5s 10s;
-    }    
-    
-    .typing-6 {
-      opacity: 0;
-      animation: wait 12.5s, fade-in-out 1.5s 12.5s;
+    .msg-5{
+    animation:wait 11.7s,msg-5 0.2s 11.7s forwards;
     }
 
-    .typing-7 {
-      opacity: 0;
-      animation: wait 15s, fade-in-out 1.5s 15s;
+    .typing-7{
+    opacity:0;
+    animation:wait 15s,fade-in-out 1.5s 15s;
     }
 
-    .msg-7 {
-      animation: wait 16.7s, msg-6 0.2s 14.2s;
-    }    
-    
-    @keyframes wait {
-      0%,
-      100% {
-        opacity: 0;
-      }
+    .msg-7{
+    animation:wait 16.7s,msg-7 0.2s 16.7s forwards;
     }
 
-    @keyframes fade-in-out {
-      0%,
-      100% {
-        opacity: 0;
-      }
-      25%,
-      90% {
-        opacity: 1;
-      }
+    @keyframes wait{
+    0%,100%{
+    opacity:0;
+    }
     }
 
-    @keyframes msg-1 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 5px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 0);
-      }
+    @keyframes fade-in-out{
+    0%,100%{
+    opacity:0;
+    }
+    25%,90%{
+    opacity:1;
+    }
     }
 
-    @keyframes msg-2 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 53px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 48px);
-      }
+    @keyframes msg-1{
+    0%{opacity:0;transform:translate(10px,5px);}
+    100%{opacity:1;transform:translate(10px,0);}
     }
 
-    @keyframes msg-3 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 125px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 120px);
-      }
+    @keyframes msg-2{
+    0%{opacity:0;transform:translate(10px,53px);}
+    100%{opacity:1;transform:translate(10px,48px);}
     }
 
-    @keyframes msg-4 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 197px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 192px);
-      }
+    @keyframes msg-3{
+    0%{opacity:0;transform:translate(10px,125px);}
+    100%{opacity:1;transform:translate(10px,120px);}
     }
 
-    @keyframes msg-5 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 245px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 240px);
-      }
+    @keyframes msg-5{
+    0%{opacity:0;transform:translate(10px,245px);}
+    100%{opacity:1;transform:translate(10px,240px);}
     }
 
-    @keyframes msg-6 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 293px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 288px);
-      }
+    @keyframes msg-7{
+    0%{opacity:0;transform:translate(10px,341px);}
+    100%{opacity:1;transform:translate(10px,336px);}
     }
 
-    @keyframes msg-7 {
-      0% {
-        opacity: 0;
-        transform: translate(10px, 341px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(10px, 336px);
-      }
-    }    
-    
-    @media (prefers-color-scheme: dark) {
-      .bubble {
-        fill: #3b3b3d;
-      }
-      text {
-        fill: #dcdcdc;
-      }
-      a {
-        fill: #0c82f9;
-      }
+    @media (prefers-color-scheme:dark){
+
+    .bubble{
+    fill:#3b3b3d;
+    }
+
+    text{
+    fill:#dcdcdc;
+    }
+
+    a{
+    fill:#0c82f9;
+    }
+
     }
 
   </style>
-  
+
   <defs>
     <style>
       /* cyrillic-ext */
@@ -250,106 +181,163 @@
     </style>
   </defs>
 
+
   <!-- typing 1 -->
-  <g transform="translate(10, 0)" class="typing-1">
-    <rect x="8.27246" width="69.7276" height="42" rx="20.9774" class="bubble" />
-    <circle cx="13.591" cy="33.091" r="7.68185" class="bubble" />
-    <circle cx="3.54547" cy="41.9547" r="3.54547" class="bubble" />
+  <g transform="translate(10,0)" class="typing-1">
 
-    <circle cx="27.4778" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="42.8411" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="58.2054" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite" />
-    </circle>
+  <rect x="8.27" width="69.7" height="42" rx="20.97" class="bubble"/>
+  <circle cx="13.59" cy="33.09" r="7.68" class="bubble"/>
+  <circle cx="3.54" cy="41.95" r="3.54" class="bubble"/>
+
+  <circle cx="27.47" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="42.84" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="58.20" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
 
   </g>
 
-  <!-- Hi, I'm Alexandr -->
-  <g transform="translate(10, 0)" class="msg-1 bubble">
-    <rect width="170" height="42" rx="18.0355" />
-    <text x="15" y="27">Hi, I'm Alexandr </text>
+
+  <!-- msg 1 -->
+
+  <g transform="translate(10,0)" class="msg-1 bubble">
+  <rect width="170" height="42" rx="18"/>
+  <text x="15" y="27">Hi, I'm Alexandr</text>
   </g>
+
 
   <!-- typing 2 -->
-  <g transform="translate(10, 48)" class="typing-2">
-    <rect x="8.27246" width="69.7276" height="42" rx="20.9774" class="bubble" />
-    <circle cx="13.591" cy="33.091" r="7.68185" class="bubble" />
-    <circle cx="3.54547" cy="41.9547" r="3.54547" class="bubble" />
 
-    <circle cx="27.4778" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="42.8411" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="58.2054" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite" />
-    </circle>
+  <g transform="translate(10,48)" class="typing-2">
+
+  <rect x="8.27" width="69.7" height="42" rx="20.97" class="bubble"/>
+  <circle cx="13.59" cy="33.09" r="7.68" class="bubble"/>
+  <circle cx="3.54" cy="41.95" r="3.54" class="bubble"/>
+
+  <circle cx="27.47" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="42.84" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="58.20" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
 
   </g>
 
-  <!-- From Columbus... -->
-  <g transform="translate(10, 48)" class="msg-2">
-    <rect width="370" height="42" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> Actively studying software engineering </text>
+
+  <!-- msg 2 -->
+
+  <g transform="translate(10,48)" class="msg-2">
+  <rect width="370" height="42" rx="18" class="bubble"/>
+  <text x="15" y="27">Actively studying software engineering</text>
   </g>
+
 
   <!-- typing 3 -->
-  <g transform="translate(10, 120)" class="typing-3">
-  <rect x="8.27246" width="69.7276" height="42" rx="20.9774" class="bubble" />
-  <circle cx="13.591" cy="33.091" r="7.68185" class="bubble" />
-  <circle cx="3.54547" cy="41.9547" r="3.54547" class="bubble" />
-    <circle cx="27.4778" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="42.8411" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="58.2054" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite" />
-    </circle>
+
+  <g transform="translate(10,120)" class="typing-3">
+
+  <rect x="8.27" width="69.7" height="42" rx="20.97" class="bubble"/>
+  <circle cx="13.59" cy="33.09" r="7.68" class="bubble"/>
+  <circle cx="3.54" cy="41.95" r="3.54" class="bubble"/>
+
+  <circle cx="27.47" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="42.84" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="58.20" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
+
   </g>
 
-  <!-- Work ... -->
-  <g transform="translate(10, 120)" class="msg-3">
-    <rect width="360" height="66.1302" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> Focused on continuous growth </text> 
-    <text x="15" y="50"> and expanding my technical expertise </text>    
+
+  <!-- msg 3 -->
+
+  <g transform="translate(10,120)" class="msg-3">
+  <rect width="360" height="66" rx="18" class="bubble"/>
+  <text x="15" y="27">Focused on continuous growth</text>
+  <text x="15" y="50">and expanding my technical expertise</text>
   </g>
 
 
   <!-- typing 5 -->
-  <g transform="translate(10, 240)" class="typing-5">
-  <rect x="8.27246" width="69.7276" height="42" rx="20.9774" class="bubble" />
-  <circle cx="13.591" cy="33.091" r="7.68185" class="bubble" />
-  <circle cx="3.54547" cy="41.9547" r="3.54547" class="bubble" />
-    <circle cx="27.4778" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="42.8411" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite" />
-    </circle>
-    <circle cx="58.2054" cy="20.9773" r="5.02275" fill="#999999">
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite" />
-    </circle>
+
+  <g transform="translate(10,240)" class="typing-5">
+
+  <rect x="8.27" width="69.7" height="42" rx="20.97" class="bubble"/>
+  <circle cx="13.59" cy="33.09" r="7.68" class="bubble"/>
+  <circle cx="3.54" cy="41.95" r="3.54" class="bubble"/>
+
+  <circle cx="27.47" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="42.84" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="58.20" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
+
   </g>
 
-  <!-- Thanks -->
-  <g transform="translate(10, 240)" class="msg-5">
-    <rect width="430" height="42.1302" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> Entrepreneur and Avid opensource contributor </text>    
-  </g> 
 
+  <!-- msg 5 -->
 
-
-
-  <!-- Have a great... -->
-  <g transform="translate(10, 336)" class="msg-6">
-    <rect width="560" height="42" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> please reach out via <a xlink:href="https://twitter.com/deep_algo">https://twitter.com/blacknode305</a> or email</text>
+  <g transform="translate(10,240)" class="msg-5">
+  <rect width="430" height="42" rx="18" class="bubble"/>
+  <text x="15" y="27">Entrepreneur and avid open-source contributor</text>
   </g>
+
+
+  <!-- typing 7 -->
+
+  <g transform="translate(10,336)" class="typing-7">
+
+  <rect x="8.27" width="69.7" height="42" rx="20.97" class="bubble"/>
+  <circle cx="13.59" cy="33.09" r="7.68" class="bubble"/>
+  <circle cx="3.54" cy="41.95" r="3.54" class="bubble"/>
+
+  <circle cx="27.47" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="42.84" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="58.20" cy="20.97" r="5.02" fill="#999">
+  <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
+
+  </g>
+
+
+  <!-- msg 7 -->
+
+  <g transform="translate(10,336)" class="msg-7">
+  <rect width="560" height="42" rx="18" class="bubble"/>
+  <text x="15" y="27">
+  please reach out via
+  <a xlink:href="https://twitter.com/blacknode305">https://twitter.com/blacknode305</a>
+  or email
+  </text>
+  </g>
+
 </svg>
