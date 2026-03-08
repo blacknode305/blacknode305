@@ -1,5 +1,38 @@
-## Hi there 👋
+# Hi 👋 I'm Alexandr
 
+💻 Node.js Developer  
+⚡ CLI tools / APIs / Data processing  
+🌍 Kazakhstan  
+
+---
+
+## 🚀 Tech Stack
+
+- Node.js
+- JavaScript
+- Git
+- REST APIs
+- JSON / Data processing
+
+---
+
+## 📂 Projects
+
+- **vcfconverter** — CLI tool for converting VCF contacts ↔ JSON
+- FTP server experiments
+- API integrations
+
+---
+
+## 📊 GitHub Stats
+
+![Stats](https://github-readme-stats.vercel.app/api?username=blacknode305&show_icons=true)
+
+---
+
+## 📫 Contact
+
+GitHub: https://github.com/blacknode305
 <!--
 **blacknode305/blacknode305** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
