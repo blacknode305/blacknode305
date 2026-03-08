@@ -33,6 +33,10 @@
 ## 📫 Contact
 
 GitHub: https://github.com/blacknode305
+
+---
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?size=24&duration=3000&color=00F7FF&center=true&vCenter=true&lines=Twitter;Dev.to;Ko-fi;Free+Stuff)](https://git.io/typing-svg)
 <!--
 **blacknode305/blacknode305** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
