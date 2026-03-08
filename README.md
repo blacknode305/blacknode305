@@ -1,48 +1,74 @@
-# Hi 👋 I'm Alexandr
+<h1 align="center">Hi 👋, I'm Alexandr</h1>
 
-💻 Node.js Developer  
-⚡ CLI tools / APIs / Data processing  
-🌍 Kazakhstan  
+<p align="center">
+Node.js Developer • CLI Tools • APIs
+</p>
 
----
+<p align="center">
 
-## 🚀 Tech Stack
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=600&lines=Twitter;Dev.to;Ko-fi;Free+Stuff" />
 
-- Node.js
-- JavaScript
-- Git
-- REST APIs
-- JSON / Data processing
+</p>
 
 ---
 
-## 📂 Projects
+### 🚀 About me
 
-- **vcfconverter** — CLI tool for converting VCF contacts ↔ JSON
-- FTP server experiments
+- 💻 Node.js developer  
+- ⚡ Building CLI tools  
+- 📦 Working with APIs and data  
+
+---
+
+### 🔧 Tech Stack
+
+<p>
+
+<img src="https://skillicons.dev/icons?i=nodejs,js,git,github,vscode"/>
+
+</p>
+
+---
+
+### 📂 Projects
+
+- **vcfconverter** — convert VCF contacts ↔ JSON
+- Node.js CLI tools
 - API integrations
 
 ---
 
-## 📊 GitHub Stats
+### 🌐 Social
 
-![Stats](https://github-readme-stats.vercel.app/api?username=blacknode305&show_icons=true)
+<p>
+
+<a href="#">
+<img src="https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=twitter"/>
+</a>
+
+<a href="#">
+<img src="https://img.shields.io/badge/Dev.to-black?style=for-the-badge&logo=dev.to"/>
+</a>
+
+<a href="#">
+<img src="https://img.shields.io/badge/Ko--fi-black?style=for-the-badge&logo=kofi"/>
+</a>
+
+</p>
 
 ---
 
-## 📫 Contact
+### 📊 GitHub Stats
 
-GitHub: https://github.com/blacknode305
+![stats](https://github-readme-stats.vercel.app/api?username=blacknode305&show_icons=true&theme=dark)
 
----
-
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?size=24&duration=3000&color=00F7FF&center=true&vCenter=true&lines=Twitter;Dev.to;Ko-fi;Free+Stuff)](https://git.io/typing-svg)
-
+![top langs](https://github-readme-stats.vercel.app/api/top-langs/?username=blacknode305&layout=compact&theme=dark)
 
 ---
 
+### 👀 Visitors
 
-![Twitter](https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=twitter)
+![visitors](https://komarev.com/ghpvc/?username=blacknode305)
 
 <!--
 **blacknode305/blacknode305** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
