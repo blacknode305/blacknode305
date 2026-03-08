@@ -1,4 +1,4 @@
-<svg width="550" height="398" viewBox="0 0 550 398" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .bubble {
       fill: #e9e9eb;
@@ -294,9 +294,8 @@
 
   <!-- From Columbus... -->
   <g transform="translate(10, 48)" class="msg-2">
-    <rect width="420" height="66.1302" rx="18.0355" class="bubble" />
+    <rect width="370" height="42" rx="18.0355" class="bubble" />
     <text x="15" y="27"> Actively studying software engineering </text>
-    <text x="15" y="50"> Loves AI and Blockchain </text>
   </g>
 
   <!-- typing 3 -->
@@ -317,8 +316,9 @@
 
   <!-- Work ... -->
   <g transform="translate(10, 120)" class="msg-3">
-    <rect width="380" height="66.1302" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> Focused on continuous growth and expanding my technical expertise </text>    
+    <rect width="360" height="66.1302" rx="18.0355" class="bubble" />
+    <text x="15" y="27"> Focused on continuous growth </text> 
+    <text x="15" y="50"> and expanding my technical expertise </text>    
   </g>
 
 
@@ -340,7 +340,7 @@
 
   <!-- Thanks -->
   <g transform="translate(10, 240)" class="msg-5">
-    <rect width="440" height="42.1302" rx="18.0355" class="bubble" />
+    <rect width="430" height="42.1302" rx="18.0355" class="bubble" />
     <text x="15" y="27"> Entrepreneur and Avid opensource contributor </text>    
   </g> 
 
@@ -349,7 +349,7 @@
 
   <!-- Have a great... -->
   <g transform="translate(10, 336)" class="msg-6">
-    <rect width="550" height="42" rx="18.0355" class="bubble" />
+    <rect width="560" height="42" rx="18.0355" class="bubble" />
     <text x="15" y="27"> please reach out via <a xlink:href="https://twitter.com/deep_algo">https://twitter.com/blacknode305</a> or email</text>
   </g>
 </svg>
