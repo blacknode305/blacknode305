@@ -293,14 +293,14 @@
   </g>
 
   <!-- From Columbus... -->
-  <!-- <g transform="translate(10, 48)" class="msg-2">
+  <g transform="translate(10, 48)" class="msg-2">
     <rect width="420" height="66.1302" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> Ex-Software Engineer at FAANG companies </text>
+    <text x="15" y="27"> Actively studying software engineering </text>
     <text x="15" y="50"> Loves AI and Blockchain </text>
-  </g> -->
+  </g>
 
   <!-- typing 3 -->
-  <!-- <g transform="translate(10, 120)" class="typing-3">
+  <g transform="translate(10, 120)" class="typing-3">
   <rect x="8.27246" width="69.7276" height="42" rx="20.9774" class="bubble" />
   <circle cx="13.591" cy="33.091" r="7.68185" class="bubble" />
   <circle cx="3.54547" cy="41.9547" r="3.54547" class="bubble" />
@@ -313,13 +313,13 @@
     <circle cx="58.2054" cy="20.9773" r="5.02275" fill="#999999">
       <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite" />
     </circle>
-  </g> -->
+  </g>
 
   <!-- Work ... -->
-  <!-- <g transform="translate(10, 120)" class="msg-3">
+  <g transform="translate(10, 120)" class="msg-3">
     <rect width="380" height="66.1302" rx="18.0355" class="bubble" />
-    <text x="15" y="27"> Google Developers Expert for ML and GCP </text>    
-  </g> -->
+    <text x="15" y="27"> Focused on continuous growth and expanding my technical expertise </text>    
+  </g>
 
 
   <!-- typing 5 -->
@@ -339,10 +339,10 @@
   </g>
 
   <!-- Thanks -->
-  <!-- <g transform="translate(10, 240)" class="msg-5">
+  <g transform="translate(10, 240)" class="msg-5">
     <rect width="440" height="42.1302" rx="18.0355" class="bubble" />
     <text x="15" y="27"> Entrepreneur and Avid opensource contributor </text>    
-  </g>  -->
+  </g> 
 
 
 
