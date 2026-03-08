@@ -139,8 +139,8 @@ Node.js Developer • CLI Tools • Data Processing
 </p>
 
 ---
-## Languages and Tools  
-## Languages and Tools  
+ 
+## Languages and Tools I Plan to Learn
 <div align="center">  
 <a href="https://reactjs.org/" target="_blank">
   <img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React" height="25" />
