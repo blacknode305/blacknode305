@@ -407,8 +407,11 @@ Node.js Developer • CLI Tools • Data Processing
 # 📈 Contribution Graph
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light#gh-light-mode-only"/>
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark#gh-dark-mode-only"/>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark">
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light">
+</picture>
 </p>
 
 ---
