@@ -1,6 +1,8 @@
 ### Hi there 👋
 
-<img src="https://github.com/blacknode305/blacknode305/blob/main/chat.svg">
+<a href="https://twitter.com/blacknode305">
+  <img src="https://raw.githubusercontent.com/blacknode305/blacknode305/main/chat.svg">
+</a>
 
 <p align="center">
 Node.js Developer • CLI Tools • Data Processing
