@@ -1,4 +1,88 @@
-<h1 align="center">Hi 👋, I'm Alexandr</h1>
+### Hi there 👋
+
+<h3 align="center">Node.js Developer</h3>
+<h4 align="center">CLI Tools • APIs • Data Processing</h4>
+
+---
+
+<p align="center">
+<img src="https://readme-typing-svg.demolab.com/?lines=Alexandr+Astashov;Node.js+Developer;Building+CLI+tools;Working+with+APIs&font=Fira%20Code&center=true&width=440&height=45&color=f75c7e&vCenter=true&pause=1000&size=22" />
+</p>
+
+---
+
+### 🚀 About Me
+
+- 💻 Node.js developer  
+- ⚡ Building CLI utilities  
+- 📦 Working with APIs and data  
+- 🌍 Kazakhstan  
+
+---
+
+# 🌐 Social
+
+<p align="center">
+  <a href="https://github.com/blacknode305">
+    <img width="32px" src="https://i.imgur.com/0o48UoR.png"/>
+  </a>
+</p>
+
+---
+
+# 📊 GitHub Stats
+
+<p align="center">
+
+<img src="https://github-readme-stats.vercel.app/api?username=blacknode305&show_icons=true&theme=react"/>
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=blacknode305&layout=compact&theme=react"/>
+
+</p>
+
+---
+
+# 📈 Activity Graph
+
+<p align="center">
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark"/>
+</p>
+
+---
+
+# 🏆 GitHub Trophies
+
+<p align="center">
+<img src="https://github-profile-trophy.vercel.app/?username=blacknode305&theme=radical"/>
+</p>
+
+---
+
+# 🛠 Tech Stack
+
+<p align="center">
+
+<img src="https://skillicons.dev/icons?i=nodejs,js,git,github,vscode,mongodb"/>
+
+</p>
+
+---
+
+# 🐍 Contribution Snake
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg"/>
+</p>
+
+---
+
+# 👀 Visitors
+
+<p align="center">
+<img src="https://komarev.com/ghpvc/?username=blacknode305"/>
+</p>
+
+<!--<h1 align="center">Hi 👋, I'm Alexandr</h1>
 
 <p align="center">
 Node.js Developer • CLI Tools • Data Processing
@@ -80,7 +164,7 @@ Node.js Developer • CLI Tools • Data Processing
 # 🐍 Contribution Snake
 
 ![snake](https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg)
-
+--!>
 
 <!--<h1 align="center">Hi 👋, I'm Alexandr</h1>
 
