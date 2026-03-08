@@ -165,50 +165,24 @@ Node.js Developer • CLI Tools • Data Processing
 
 <p align="center">
 
-  &#8287;&#8287;&#8287;&#8287;&#8287;
   <a href="#">
     <img src="https://img.shields.io/badge/Discord-black?style=for-the-badge&logo=discord"/>
   </a>
 
-  &#8287;&#8287;&#8287;&#8287;&#8287;
   <a href="https://wa.me/77083400580?text=Hello from GitHub">
     <img src="https://img.shields.io/badge/WhatsApp-black?style=for-the-badge&logo=whatsapp"/>
   </a>
 
-  &#8287;&#8287;&#8287;&#8287;&#8287;
   <a href="https://t.me/blacknode305?text=Hello from GitHub">
     <img src="https://img.shields.io/badge/Telegram-black?style=for-the-badge&logo=telegram"/>
   </a>
 
-  &#8287;&#8287;&#8287;&#8287;&#8287;
   <a href="#">
     <img src="https://img.shields.io/badge/Dev.to-black?style=for-the-badge&logo=dev.to"/>
   </a>
 
-  &#8287;&#8287;&#8287;&#8287;&#8287;
   <a href="#">
     <img src="https://img.shields.io/badge/Ko--fi-black?style=for-the-badge&logo=kofi"/>
-  </a>
-
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://twitter.com/ishandutta2007">
-    <img width="32px" alt="Twitter" title="Twitter" src="https://i.imgur.com/OXZM1L6.png"/>
-  </a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://discord.gg/jc4xtF58Ve" alt="Discord" title="Sinularity Labs Discord Server">
-    <img width="32px" src="https://i.imgur.com/OViZO8J.png"/>
-  </a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://dev.to/ishandutta2007">
-    <img width="32px" alt="Dev.to" title="ishandutta2007 Dev.to" src="https://i.imgur.com/mVm29vK.png">
-  </a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="https://ko-fi.com/ishandutta2007">
-    <img width="32px" alt="Ko-fi" title="Buy me a coffee" src="https://i.imgur.com/PpLeD3K.png"/>
-  </a>
-  &#8287;&#8287;&#8287;&#8287;&#8287;
-  <a href="http://eyl327.mywebcommunity.org/promos/">
-    <img width="32px" alt="Free Stuff" title="Free gifts for you" src="https://i.imgur.com/0uVwkoZ.png"/>
   </a>
 
 </p>
