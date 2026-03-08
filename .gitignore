@@ -1,0 +1,8 @@
+# MacOS system files
+.DS_Store
+
+# Example Readme
+ishandutta2007-main/
+
+# Env
+.env

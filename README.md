@@ -88,7 +88,7 @@ Node.js Developer • CLI Tools • Data Processing
 </p>
 
 <p align="center">
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3500&pause=800&color=00F7FF&center=true&vCenter=true&width=600&lines=Node.js+Developer;Building+CLI+tools;Working+with+APIs;Open+Source+Projects" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3500&pause=800&color=00F7FF&center=true&vCenter=true&width=600&lines=Node.js+Developer;Building+CLI+tools;Working+with+APIs;Open+Source+Projects" />
 </p>
 
 ---
@@ -125,16 +125,24 @@ Node.js Developer • CLI Tools • Data Processing
 <p align="center">
 
 <a href="#">
-<img src="https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=twitter"/>
+<img src="https://img.shields.io/badge/Discord-black?style=for-the-badge&logo=discord"/>
 </a>
 
-<a href="#">
+<a href="https://wa.me/77083400580?text=Hello from GitHub">
+<img src="https://img.shields.io/badge/WhatsApp-black?style=for-the-badge&logo=whatsapp"/>
+</a>
+
+<a href="https://t.me/blacknode305?text=Hello from GitHub">
+<img src="https://img.shields.io/badge/Telegram-black?style=for-the-badge&logo=telegram"/>
+</a>
+
+<!-- <a href="#">
 <img src="https://img.shields.io/badge/Dev.to-black?style=for-the-badge&logo=dev.to"/>
-</a>
+</a> -->
 
-<a href="#">
+<!-- <a href="#">
 <img src="https://img.shields.io/badge/Ko--fi-black?style=for-the-badge&logo=kofi"/>
-</a>
+</a> -->
 
 </p>
 
@@ -342,9 +350,9 @@ Node.js Developer • CLI Tools • Data Processing
 
 <p align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=blacknode305&show_icons=true&theme=tokyonight" />
+<!-- <img src="https://github-readme-stats.vercel.app/api?username=blacknode305&show_icons=true&theme=tokyonight" />
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=blacknode305&layout=compact&theme=tokyonight" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=blacknode305&layout=compact&theme=tokyonight" /> -->
 
 </p>
 
@@ -353,7 +361,7 @@ Node.js Developer • CLI Tools • Data Processing
 # 👀 Visitors
 
 <p align="center">
-<img src="https://komarev.com/ghpvc/?username=blacknode305&style=for-the-badge"/>
+  <img src="https://komarev.com/ghpvc/?username=blacknode305&style=for-the-badge"/>
 </p>
 
 ---
