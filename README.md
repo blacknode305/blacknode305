@@ -163,7 +163,6 @@ Node.js Developer • CLI Tools • Data Processing
 # 🐍 Contribution Snake
 
 ![snake](https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg)
---!>
 
 <!--<h1 align="center">Hi 👋, I'm Alexandr</h1>
 
