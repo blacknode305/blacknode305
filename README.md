@@ -1,6 +1,9 @@
-<p align="center">
+### Hi there 👋
+[![](https://github.com/blacknode305/blacknode305/blob/main/chat.svg)](https://twitter.com/blacknode305)
+
+<!-- <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=800&duration=3000&pause=10000&color=F75F47&center=true&vCenter=true&multiline=true&width=500&height=100&lines=Hi+%F0%9F%91%8B%2C+I'm+Alexandr;Glad+you're+visiting+%F0%9F%98%8A;You'll+find+%F0%9F%91%80+some+information+about+me" />
-</p>
+</p> -->
 
 <p align="center">
 Node.js Developer • CLI Tools • Data Processing
@@ -401,10 +404,11 @@ Node.js Developer • CLI Tools • Data Processing
 
 ---
 
-# 📈 Activity Graph
+# 📈 Contribution Graph
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light#gh-light-mode-only"/>
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark#gh-dark-mode-only"/>
 </p>
 
 ---
