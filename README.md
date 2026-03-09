@@ -21,9 +21,7 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3AAssembly&type=repositories">
       <img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white">
     </a> -->
-    <a href="https://github.com/search?q=user%3Ablacknode305+language%3Abash&type=repositories">
-      <img alt="Bash" src="https://img.shields.io/badge/Bash-121011.svg?logo=gnu-bash&logoColor=white">
-    </a>
+    <a href="https://github.com/search?q=user%3Ablacknode305+language%3Abash&type=repositories"><img alt="Bash" src="https://img.shields.io/badge/Bash-121011.svg?logo=gnu-bash&logoColor=white"></a>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Ac&type=repositories">
       <img alt="C" src="https://custom-icon-badges.demolab.com/badge/C-03599C.svg?logo=c-in-hexagon&logoColor=white">
     </a> -->
@@ -36,9 +34,7 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Aceylon&type=repositories">
       <img alt="Ceylon" src="https://custom-icon-badges.demolab.com/badge/Ceylon-E39842.svg?logo=ceylon&logoColor=white">
     </a> -->
-    <a href="https://github.com/search?q=user%3Ablacknode305+language%3Acss&type=repositories">
-      <img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6.svg?logo=css3&logoColor=white">
-    </a>
+    <a href="https://github.com/search?q=user%3Ablacknode305+language%3Acss&type=repositories"><img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6.svg?logo=css3&logoColor=white"></a>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Ags&type=repositories">
       <img alt="Google Apps Script" src="https://custom-icon-badges.demolab.com/badge/Google%20Apps%20Script-02569B.svg?logo=gs&logoColor=white">
     </a> -->
