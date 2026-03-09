@@ -17,7 +17,7 @@
 
 ## 🔎 Exploring technologies
   
-  <h4>👨‍💻 Programming and Markup Languages ​​(links to a repo with examples)</h4>
+  <h4>👨‍💻 Programming and Markup Languages ​​(links to repositories with examples)</h4>
   
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3AAssembly&type=repositories"><img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white"></a> -->
@@ -75,7 +75,7 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Ac%23&type=repositories"><img alt="WPF (.Net)" src="https://img.shields.io/badge/WPF-5C2D91?logo=.net&logoColor=white"></a> -->
   </p>
   
-  <h4>🗄️ Databases and Cloud Hosting (links to a repo with examples)</h4>
+  <h4>🗄️ Databases and Cloud Hosting ​(links to repositories with examples)</h4>
   
   <p>
     <a href="https://github.com/search?q=user%3Ablacknode305+template&type=repositories"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-327FC7.svg?logo=github&logoColor=white"></a>
