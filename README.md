@@ -38,12 +38,7 @@ Node.js Developer • CLI Tools • Data Processing
 - 📦 Working with APIs and data  
 - 🌍 Kazakhstan  
 
-
-
-
-
-
-
+---
 
 <details> 
   <summary><h2>🛠️ My Favorite Tools</h2></summary>
@@ -164,6 +159,7 @@ Node.js Developer • CLI Tools • Data Processing
 # 🌐 Social
 
 <p align="center">
+
   <!-- GitHub -->
   <!-- <a href="https://github.com/blacknode305">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
@@ -213,6 +209,7 @@ Node.js Developer • CLI Tools • Data Processing
   <a href="https://karaganda.hh.kz/resume/2a91ba21ff102fda750039ed1f747a4561334c">
     <img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
   </a>
+
   <!-- MAX -->
   <!-- <a href="#">
     <img src="https://img.shields.io/badge/MAX-000000?style=for-the-badge"/>
@@ -438,17 +435,17 @@ Node.js Developer • CLI Tools • Data Processing
 
 ---
 
-# 📈 Contribution Graph
+<!-- # 📈 Contribution Graph -->
 
-<p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark">
-  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light">
-</picture>
-</p>
+<!-- <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=react-dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=blacknode305&theme=github-light">
+  </picture>
+</p> -->
 
----
+<!-- --- -->
 
 # 👀 Visitors
 
