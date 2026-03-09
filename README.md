@@ -15,7 +15,7 @@
   <!--  -->
 ---
 
-📚
+## 🔎 Exploring Technologies
   
   <h3>👨‍💻 Programming and Markup Languages (Links on repo with example)</h3>
   
