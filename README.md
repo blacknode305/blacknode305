@@ -219,7 +219,7 @@ Node.js Developer • CLI Tools • Data Processing
   </a> -->
 </p>
 
-<br/>
+---
 
 ## Languages and Tools I Plan to Learn
 <div align="center">  
