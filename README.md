@@ -163,44 +163,50 @@ Node.js Developer • CLI Tools • Data Processing
 
 # 🌐 Social
 
-<p align="center">
-  <p align="center">
+<table align="center">
+  <tr>
+    <td>  <!-- GitHub -->
+      <a href="https://github.com/blacknode305">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td>  <!-- LinkedIn -->
+      <a href="https://linkedin.com"> 
+        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+      </a>
+    </td> 
+    <td>  <!-- HeadHunter -->
+      <a href="https://hh.ru/resume/XXXXXX"> 
+        <img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>  <!-- Dev.to -->
+      <a href="https://dev.to">
+        <img src="https://img.shields.io/badge/DEV.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/>
+      </a>
+    </td>
+    <td>  <!-- Ko-fi -->
+      <a href="https://ko-fi.com">
+        <img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white"/>
+      </a>
+    </td>
+    <td>  <!-- Discord -->
+      <a href="#">
+        <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
+      </a>
+    </td>
+    <td>  <!-- WhatsApp -->
+      <a href="https://wa.me/77083400580?text=Hello%20from%20GitHub">
+        <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
 
-  <!-- GitHub -->
-  <a href="https://github.com/blacknode305">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
-  </a>
-
-  <!-- LinkedIn -->
-  <a href="https://linkedin.com">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-
-  <!-- HeadHunter -->
-  <a href="https://hh.ru/resume/XXXXXX">
-    <img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
-  </a>
-
-  <!-- Dev.to -->
-  <a href="https://dev.to">
-    <img src="https://img.shields.io/badge/DEV.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/>
-  </a>
-
-  <!-- Ko-fi -->
-  <a href="https://ko-fi.com">
-    <img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white"/>
-  </a>
-
-  <!-- Discord -->
-  <a href="#">
-    <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
-  </a>
-
-  <!-- WhatsApp -->
-  <a href="https://wa.me/77083400580?text=Hello%20from%20GitHub">
-    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
-  </a>
-
+  </tr>
+</table>
   <!-- Telegram -->
   <a href="https://t.me/blacknode305">
     <img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -217,11 +223,95 @@ Node.js Developer • CLI Tools • Data Processing
   </a>
 
   <!-- MAX -->
-  <a href="#">
+  <!-- <a href="#">
     <img src="https://img.shields.io/badge/MAX-000000?style=for-the-badge"/>
-  </a>
-</p>
+  </a> -->
 
+  
+</p>
+<table align="center">
+<tr>
+
+<td>
+<a href="https://github.com/blacknode305">
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="https://linkedin.com">
+<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="https://hh.ru">
+<img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="https://hh.ru/resume/XXXXXX">
+<img src="https://img.shields.io/badge/HH-Resume-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
+</a>
+</td>
+
+</tr>
+<tr>
+
+<td>
+<a href="https://dev.to">
+<img src="https://img.shields.io/badge/DEV.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="https://ko-fi.com">
+<img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="#">
+<img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="https://wa.me/77083400580">
+<img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+</a>
+</td>
+
+</tr>
+<tr>
+
+<td>
+<a href="https://t.me/blacknode305">
+<img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="https://twitter.com/blacknode305">
+<img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="mailto:youremail@gmail.com">
+<img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
+</td>
+
+<td>
+<a href="#">
+<img src="https://img.shields.io/badge/MAX-000000?style=for-the-badge"/>
+</a>
+</td>
+
+</tr>
+</table>
 <br/>
 
 ## Languages and Tools I Plan to Learn
