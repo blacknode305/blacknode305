@@ -10,7 +10,7 @@ Node.js Developer • CLI Tools • Data Processing
 
 <p align="center">
   <a href="#">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3500&pause=800&color=00F7FF&center=true&vCenter=true&width=600&lines=Node.js+Developer;Building+CLI+tools;Working+with+APIs;Open+Source+Projects" />
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3500&pause=800&color=f75c7e&center=true&vCenter=true&width=600&lines=Node.js+Developer;Building+CLI+tools;Working+with+APIs;Open+Source+Projects" />
   </a>
 </p>
 
@@ -164,27 +164,62 @@ Node.js Developer • CLI Tools • Data Processing
 # 🌐 Social
 
 <p align="center">
+  <p align="center">
 
+  <!-- GitHub -->
+  <a href="https://github.com/blacknode305">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://linkedin.com">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+
+  <!-- HeadHunter -->
+  <a href="https://hh.ru/resume/XXXXXX">
+    <img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
+  </a>
+
+  <!-- Dev.to -->
+  <a href="https://dev.to">
+    <img src="https://img.shields.io/badge/DEV.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/>
+  </a>
+
+  <!-- Ko-fi -->
+  <a href="https://ko-fi.com">
+    <img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white"/>
+  </a>
+
+  <!-- Discord -->
   <a href="#">
-    <img src="https://img.shields.io/badge/Discord-black?style=for-the-badge&logo=discord"/>
+    <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
   </a>
 
-  <a href="https://wa.me/77083400580?text=Hello from GitHub">
-    <img src="https://img.shields.io/badge/WhatsApp-black?style=for-the-badge&logo=whatsapp"/>
+  <!-- WhatsApp -->
+  <a href="https://wa.me/77083400580?text=Hello%20from%20GitHub">
+    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
   </a>
 
-  <a href="https://t.me/blacknode305?text=Hello from GitHub">
-    <img src="https://img.shields.io/badge/Telegram-black?style=for-the-badge&logo=telegram"/>
+  <!-- Telegram -->
+  <a href="https://t.me/blacknode305">
+    <img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
   </a>
 
+  <!-- Twitter / X -->
+  <a href="https://twitter.com/blacknode305">
+    <img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white"/>
+  </a>
+
+  <!-- Gmail -->
+  <a href="mailto:youremail@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
+
+  <!-- MAX -->
   <a href="#">
-    <img src="https://img.shields.io/badge/Dev.to-black?style=for-the-badge&logo=dev.to"/>
+    <img src="https://img.shields.io/badge/MAX-000000?style=for-the-badge"/>
   </a>
-
-  <a href="#">
-    <img src="https://img.shields.io/badge/Ko--fi-black?style=for-the-badge&logo=kofi"/>
-  </a>
-
 </p>
 
 <br/>
@@ -456,5 +491,12 @@ Here are some ideas to get you started:
 - 📫 Как со мной связаться: ...
 - 😄 Местоимения: ...
 - ⚡ Интересный факт: ...
+
+-->
+
+
+<!--
+
+
 
 -->
