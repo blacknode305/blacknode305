@@ -16,9 +16,7 @@
 ---
 
 ## 🔎 Exploring Technologies
-
   <h3>👨‍💻 Programming and Markup Languages (Links on repo with example)</h3>
-
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3AAssembly&type=repositories">
       <img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white">
@@ -90,9 +88,7 @@
       <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?logo=typescript&logoColor=white">
     </a> -->
   </p>
-
   <h3>🧰 Frameworks and Libraries</h3>
-  
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+arduino&type=repositories">
       <img alt="Arduino" src="https://img.shields.io/badge/-Arduino-00979D?logo=Arduino&logoColor=white">
@@ -170,9 +166,7 @@
       <img alt="WPF (.Net)" src="https://img.shields.io/badge/WPF-5C2D91?logo=.net&logoColor=white">
     </a> -->
   </p>
-
   <h3>🗄️ Databases and Cloud Hosting (Links on repo with example)</h3>
-  
   <p>
     <a href="https://github.com/search?q=user%3Ablacknode305+template&type=repositories">
       <img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-327FC7.svg?logo=github&logoColor=white">
@@ -208,9 +202,7 @@
       <img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000.svg?logo=vercel&logoColor=white">
     </a> -->
   </p>
-
-  <h3>💻 Software and Tools (Links for downloads)</h3>
-
+  <h3>💻 Software and Tools</h3>
   <p>
     <a href="https://www.adobe.com/">
       <img alt="Adobe" src="https://img.shields.io/badge/Adobe-FF0000.svg?logo=adobe&logoColor=white">
@@ -279,7 +271,6 @@
       <img alt="Visual Studio Code" src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?logo=visual-studio-code&logoColor=white">
     </a>
   </p>
-
   <!-- TODO: After GitHub indexing is complete, replace "type=repository" with "type=code" in language search links -->
 ---
 
