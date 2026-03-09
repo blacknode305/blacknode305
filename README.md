@@ -15,7 +15,7 @@
   <!--  -->
 ---
 
-## 🔎 Exploring Technologies
+📚
   
   <h3>👨‍💻 Programming and Markup Languages (Links on repo with example)</h3>
   
@@ -121,7 +121,7 @@
   <!-- TODO: After GitHub indexing is complete, replace "type=repository" with "type=code" in language search links -->
 ---
 
-## 🔎 Learning Technologies (Links on documents or introductions)
+## 📚 Learning Technologies (Links on documents or introductions)
 
   <h3>👨‍💻 Programming and Markup Languages</h3>
 
@@ -265,7 +265,7 @@
   <!-- -->
 ---
 
-## 💻 Favorite tools and technologies
+## 🛠 Favorite tools and technologies
 
   <div style="display: flex; align-items: flex-start; align: center">
     <table align="center">
