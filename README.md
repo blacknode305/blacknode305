@@ -124,9 +124,9 @@
 
 ## 📚 Learning Technologies (Links on documents or introductions)
 
-  <h3>👨‍💻 Programming and Markup Languages</h3>
+  <h3 align="right">👨‍💻 Programming and Markup Languages</h3>
 
-  <p>
+  <p align="right">
     <!-- <a href="#"><img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="Bash" src="https://img.shields.io/badge/Bash-121011.svg?logo=gnu-bash&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="C" src="https://custom-icon-badges.demolab.com/badge/C-03599C.svg?logo=c-in-hexagon&logoColor=white"></a> -->
@@ -152,9 +152,9 @@
     <!-- <a href="#"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?logo=typescript&logoColor=white"></a> -->
   </p>
 
-  <h3>🧰 Frameworks and Libraries</h3>
+  <h3 align="right">🧰 Frameworks and Libraries</h3>
   
-  <p>
+  <p align="right">
     <a href="https://docs.arduino.cc/"><img alt="Arduino" src="https://img.shields.io/badge/-Arduino-00979D?logo=Arduino&logoColor=white"></a>
     <a href="https://blissfuljs.com/docs"><img alt="BlissfulJS" src="https://custom-icon-badges.demolab.com/badge/Bliss.js-3dacc2.svg?logo=bliss&logoColor=white"></a>
     <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/"><img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-7952B3.svg?logo=bootstrap&logoColor=white"></a>
@@ -182,9 +182,9 @@
     <!-- <a href="#"><img alt="WPF (.Net)" src="https://img.shields.io/badge/WPF-5C2D91?logo=.net&logoColor=white"></a> -->
   </p>
 
-  <h3>🗄️ Databases and Cloud Hosting</h3>
+  <h3 align="right">🗄️ Databases and Cloud Hosting</h3>
   
-  <p>
+  <p align="right">
     <!-- <a href="#"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-327FC7.svg?logo=github&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="Heroku" src="https://img.shields.io/badge/Heroku-430098.svg?logo=heroku&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-4ea94b.svg?logo=mongodb&logoColor=white"></a> -->
@@ -198,9 +198,9 @@
     <!-- <a href="#"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000.svg?logo=vercel&logoColor=white"></a> -->
   </p>
 
-  <h3>💻 Software and Tools</h3>
+  <h3 align="right">💻 Software and Tools</h3>
 
-  <p>
+  <p align="right">
     <a href="https://docs.npmjs.com/"><img alt="npm" src="https://img.shields.io/badge/npm-%23CB3837.svg?logo=npm&logoColor=white"></a>
     <a href="https://git-scm.com/cheat-sheet"><img alt="Git" src="https://img.shields.io/badge/Git-F05033.svg?logo=git&logoColor=white"></a>
     <!-- <a href="#"><img alt="Adobe" src="https://img.shields.io/badge/Adobe-FF0000.svg?logo=adobe&logoColor=white"></a> -->
