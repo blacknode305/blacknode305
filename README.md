@@ -42,7 +42,7 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Asvg&type=repositories"><img alt="SVG+XML" src="https://img.shields.io/badge/SVG%2BXML-e0982c.svg?logo=svg&logoColor=white"></a> -->
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Atypescript&type=repositories"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?logo=typescript&logoColor=white"></a> -->
   </p>
-  <h3>🧰 Frameworks and Libraries</h3>
+  <!-- <h3>🧰 Frameworks and Libraries</h3> -->
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+arduino&type=repositories"><img alt="Arduino" src="https://img.shields.io/badge/-Arduino-00979D?logo=Arduino&logoColor=white"></a> -->
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+bliss&type=repositories"><img alt="BlissfulJS" src="https://custom-icon-badges.demolab.com/badge/Bliss.js-3dacc2.svg?logo=bliss&logoColor=white"></a> -->
@@ -109,6 +109,7 @@
     <a href="#"><img alt="Stack Overflow" src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?logo=stack-overflow&logoColor=white"></a>
     <a href="#"><img alt="Visual Studio Code" src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?logo=visual-studio-code&logoColor=white"></a>
   </p>
+  
   <!-- TODO: After GitHub indexing is complete, replace "type=repository" with "type=code" in language search links -->
 ---
 
