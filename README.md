@@ -227,14 +227,13 @@
   <!-- Some badges are from https://github.com/Ileriayo/markdown-badges -->
 ---
 
-## 📂 Projects
+<!-- ## 📂 Projects
 
   - **vcfconverter** — convert VCF contacts ↔ JSON  
   - CLI utilities  
   - API integrations
 
-  <!--  -->
----
+--- -->
 
 ## 🌐 Social
 
