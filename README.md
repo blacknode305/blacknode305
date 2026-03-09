@@ -16,7 +16,9 @@
 ---
 
 ## 🔎 Exploring Technologies
+  
   <h3>👨‍💻 Programming and Markup Languages (Links on repo with example)</h3>
+  
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3AAssembly&type=repositories"><img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white"></a> -->
     <a href="https://github.com/search?q=user%3Ablacknode305+language%3Abash&type=repositories"><img alt="Bash" src="https://img.shields.io/badge/Bash-121011.svg?logo=gnu-bash&logoColor=white"></a>
@@ -42,7 +44,9 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Asvg&type=repositories"><img alt="SVG+XML" src="https://img.shields.io/badge/SVG%2BXML-e0982c.svg?logo=svg&logoColor=white"></a> -->
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Atypescript&type=repositories"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?logo=typescript&logoColor=white"></a> -->
   </p>
-  <!-- <h3>🧰 Frameworks and Libraries</h3> -->
+  
+  <h3>🧰 Frameworks and Libraries</h3>
+  
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+arduino&type=repositories"><img alt="Arduino" src="https://img.shields.io/badge/-Arduino-00979D?logo=Arduino&logoColor=white"></a> -->
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+bliss&type=repositories"><img alt="BlissfulJS" src="https://custom-icon-badges.demolab.com/badge/Bliss.js-3dacc2.svg?logo=bliss&logoColor=white"></a> -->
@@ -70,7 +74,9 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Aphp&type=repositories"><img alt="Wordpress" src="https://img.shields.io/badge/Wordpress-21759B?logo=wordpress&logoColor=white"></a> -->
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Ac%23&type=repositories"><img alt="WPF (.Net)" src="https://img.shields.io/badge/WPF-5C2D91?logo=.net&logoColor=white"></a> -->
   </p>
+  
   <h3>🗄️ Databases and Cloud Hosting (Links on repo with example)</h3>
+  
   <p>
     <a href="https://github.com/search?q=user%3Ablacknode305+template&type=repositories"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-327FC7.svg?logo=github&logoColor=white"></a>
     <!-- <a href="#"><img alt="Heroku" src="https://img.shields.io/badge/Heroku-430098.svg?logo=heroku&logoColor=white"></a> -->
@@ -84,7 +90,9 @@
     <!-- <a href="#"><img alt="SQLite" src ="https://img.shields.io/badge/SQLite-07405e.svg?logo=sqlite&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000.svg?logo=vercel&logoColor=white"></a> -->
   </p>
+  
   <h3>💻 Software and Tools</h3>
+  
   <p>
     <a href="https://www.adobe.com/"><img alt="Adobe" src="https://img.shields.io/badge/Adobe-FF0000.svg?logo=adobe&logoColor=white"></a>
     <a href="https://www.android.com/"><img alt="Android" src="https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white"></a>
@@ -232,49 +240,27 @@
 
   <p align="center">
     <!-- GitHub -->
-    <!-- <a href="https://github.com/blacknode305">
-      <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
-    </a> -->
+    <!-- <a href="https://github.com/blacknode305"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a> -->
     <!-- Gmail -->
-    <a href="mailto:blacknode305@gmail.com">
-      <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
-    </a>
+    <a href="mailto:blacknode305@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/></a>
     <!-- LinkedIn -->
-    <!-- <a href="https://linkedin.com">
-      <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-    </a> -->
+    <!-- <a href="https://linkedin.com"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a> -->
     <!-- Dev.to -->
-    <!-- <a href="https://dev.to">
-      <img src="https://img.shields.io/badge/DEV.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/>
-    </a> -->
+    <!-- <a href="https://dev.to"><img src="https://img.shields.io/badge/DEV.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"/></a> -->
     <!-- Ko-fi -->
-    <!-- <a href="https://ko-fi.com">
-      <img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white"/>
-    </a> -->
+    <!-- <a href="https://ko-fi.com"><img src="https://img.shields.io/badge/Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white"/></a> -->
     <!-- Discord -->
-    <!-- <a href="#">
-      <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/>
-    </a> -->
+    <!-- <a href="#"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/></a> -->
     <!-- WhatsApp -->
-    <a href="https://wa.me/77083400580?text=Hello%20from%20GitHub">
-      <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
-    </a>
+    <a href="https://wa.me/77083400580?text=Hello%20from%20GitHub"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
     <!-- Telegram -->
-    <a href="https://t.me/blacknode305?text=Hello%20from%20GitHub">
-      <img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
-    </a>
+    <a href="https://t.me/blacknode305?text=Hello%20from%20GitHub"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/></a>
     <!-- Twitter / X -->
-    <a href="https://twitter.com/blacknode305">
-      <img src="https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white"/>
-    </a>
+    <a href="https://twitter.com/blacknode305"><img src="https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
     <!-- HeadHunter -->
-    <a href="https://karaganda.hh.kz/resume/2a91ba21ff102fda750039ed1f747a4561334c">
-      <img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/>
-    </a>
+    <a href="https://karaganda.hh.kz/resume/2a91ba21ff102fda750039ed1f747a4561334c"><img src="https://img.shields.io/badge/HeadHunter-D6001C?style=for-the-badge&logo=headhunter&logoColor=white"/></a>
     <!-- MAX -->
-    <!-- <a href="#">
-      <img src="https://img.shields.io/badge/MAX-000000?style=for-the-badge"/>
-    </a> -->
+    <!-- <a href="#"><img src="https://img.shields.io/badge/MAX-000000?style=for-the-badge"/></a> -->
   </p>
 
   <!-- -->
@@ -404,6 +390,7 @@
   </div>
 
 ---
+
 <!-- ## 📊 GitHub Stats
 
 <p align="center">
@@ -423,7 +410,7 @@
  <!--  -->
 ---
 
-## 📈 Contribution Graph
+<!-- ## 📈 Contribution Graph
 
   <p align="center">
     <picture>
@@ -433,8 +420,7 @@
     </picture>
   </p>
 
-  <!--  -->
----
+--- -->
 
 ## 👀 Visitors
 
