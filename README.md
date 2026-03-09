@@ -17,7 +17,7 @@
 
 ## 🔎 Exploring Technologies
   
-  <h3>👨‍💻 Programming and Markup Languages (Links on repo with example)</h3>
+  <h4>👨‍💻 Programming and Markup Languages (Links on repo with example)</h4>
   
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3AAssembly&type=repositories"><img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white"></a> -->
@@ -45,7 +45,7 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Atypescript&type=repositories"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?logo=typescript&logoColor=white"></a> -->
   </p>
   
-  <h3>🧰 Frameworks and Libraries</h3>
+  <h4>🧰 Frameworks and Libraries</h4>
   
   <p>
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+arduino&type=repositories"><img alt="Arduino" src="https://img.shields.io/badge/-Arduino-00979D?logo=Arduino&logoColor=white"></a> -->
@@ -75,7 +75,7 @@
     <!-- <a href="https://github.com/search?q=user%3Ablacknode305+language%3Ac%23&type=repositories"><img alt="WPF (.Net)" src="https://img.shields.io/badge/WPF-5C2D91?logo=.net&logoColor=white"></a> -->
   </p>
   
-  <h3>🗄️ Databases and Cloud Hosting (Links on repo with example)</h3>
+  <h4>🗄️ Databases and Cloud Hosting (Links on repo with example)</h4>
   
   <p>
     <a href="https://github.com/search?q=user%3Ablacknode305+template&type=repositories"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-327FC7.svg?logo=github&logoColor=white"></a>
@@ -91,7 +91,7 @@
     <!-- <a href="#"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000.svg?logo=vercel&logoColor=white"></a> -->
   </p>
   
-  <h3>💻 Software and Tools</h3>
+  <h4>💻 Software and Tools</h4>
   
   <p>
     <a href="https://www.npmjs.com/"><img alt="npm" src="https://img.shields.io/badge/npm-%23CB3837.svg?logo=npm&logoColor=white"></a>
@@ -249,7 +249,7 @@
 
 ## 📚 Learning Technologies (Links on documents or introductions)
 
-  <h3>👨‍💻 Programming and Markup Languages</h3>
+  <h4>👨‍💻 Programming and Markup Languages</h4>
 
   <p>
     <!-- <a href="#"><img alt="MIPS Assembly" src="https://custom-icon-badges.demolab.com/badge/Assembly-525252.svg?logo=asm-hex&logoColor=white"></a> -->
@@ -277,7 +277,7 @@
     <!-- <a href="#"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?logo=typescript&logoColor=white"></a> -->
   </p>
 
-  <h3>🧰 Frameworks and Libraries</h3>
+  <h4>🧰 Frameworks and Libraries</h4>
   
   <p>
     <a href="https://docs.arduino.cc/"><img alt="Arduino" src="https://img.shields.io/badge/-Arduino-00979D?logo=Arduino&logoColor=white"></a>
@@ -307,7 +307,7 @@
     <!-- <a href="#"><img alt="WPF (.Net)" src="https://img.shields.io/badge/WPF-5C2D91?logo=.net&logoColor=white"></a> -->
   </p>
 
-  <h3>🗄️ Databases and Cloud Hosting</h3>
+  <h4>🗄️ Databases and Cloud Hosting</h4>
   
   <p>
     <!-- <a href="#"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-327FC7.svg?logo=github&logoColor=white"></a> -->
@@ -323,7 +323,7 @@
     <!-- <a href="#"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000.svg?logo=vercel&logoColor=white"></a> -->
   </p>
 
-  <h3>💻 Software and Tools</h3>
+  <h4>💻 Software and Tools</h4>
 
   <p>
     <a href="https://docs.npmjs.com/"><img alt="npm" src="https://img.shields.io/badge/npm-%23CB3837.svg?logo=npm&logoColor=white"></a>
