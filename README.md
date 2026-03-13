@@ -326,19 +326,24 @@
   <h4>☁️ Cloud and DevOps</h4>
 
   <p>
-    <a href="https://docs.npmjs.com/"><img alt="npm" src="https://img.shields.io/badge/npm-CB3837.svg?logo=npm&logoColor=white"></a>
+    <a href="https://docs.docker.com/"><img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white"></a>
+  </p>
+
+  <h4>📱 Mobile Development</h4>
+
+  <p>
+    <a href="https://developer.android.com/docs"><img alt="Android" src="https://img.shields.io/badge/Android-3DDC84.svg?logo=android&logoColor=white"></a>
   </p>
 
   <h4>💻 Software and Tools</h4>
 
   <p>
     <a href="https://git-scm.com/docs"><img alt="Git" src="https://img.shields.io/badge/Git-F05033.svg?logo=git&logoColor=white"></a>
-    <a href="https://docs.docker.com/"><img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white"></a>
-    <!-- <a href="#"><img alt="Adobe" src="https://img.shields.io/badge/Adobe-FF0000.svg?logo=adobe&logoColor=white"></a> -->
-    <!-- <a href="#"><img alt="Android" src="https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white"></a> -->
-    <!-- <a href="#"><img alt="Android Studio" src="https://img.shields.io/badge/Android%20Studio-008678.svg?logo=android-studio&logoColor=white"></a> -->
-    <!-- <a href="#"><img alt="Arch Linux" src="https://img.shields.io/badge/Arch%20Linux-1793D1.svg?logo=arch-linux&logoColor=white"></a> -->
-    <!-- <a href="#"><img alt="Audacity" src="https://img.shields.io/badge/-Audacity-0000CC?logo=audacity&logoColor=white"></a> -->
+    <a href="https://docs.npmjs.com/"><img alt="npm" src="https://img.shields.io/badge/npm-CB3837.svg?logo=npm&logoColor=white"></a>
+    <a href="https://helpx.adobe.com/support.html"><img alt="Adobe" src="https://img.shields.io/badge/Adobe-FF0000.svg?logo=adobe&logoColor=white"></a>
+    <a href="https://developer.android.com/studio"><img alt="Android Studio" src="https://img.shields.io/badge/Android%20Studio-008678.svg?logo=android-studio&logoColor=white"></a>
+    <a href="https://wiki.archlinux.org/"><img alt="Arch Linux" src="https://img.shields.io/badge/Arch%20Linux-1793D1.svg?logo=arch-linux&logoColor=white"></a>
+    <a href="https://manual.audacityteam.org/"><img alt="Audacity" src="https://img.shields.io/badge/Audacity-0000CC?logo=audacity&logoColor=white"></a>
     <!-- <a href="#"><img alt="Bitwarden" src="https://img.shields.io/badge/-Bitwarden-175DDC?logo=bitwarden&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="Brave" src="https://img.shields.io/badge/-Brave-FB542B?logo=brave&logoColor=white"></a> -->
     <!-- <a href="#"><img alt="Construct 3" src="https://img.shields.io/badge/Construct%203-00b56a.svg?logo=construct-3&logoColor=white"></a> -->
