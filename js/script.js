@@ -127,12 +127,6 @@ const playlist = [
 
 let currentTrack = 0; // индекс текущей дорожки
 
-// Функция для воспроизведения дорожки по индексу
-function playTrack(index) {
-  audio.src = `src/audio/${playlist[index]}`; // устанавливаем путь к файлу
-  audio.play().catch(e => console.log('Ошибка воспроизведения', e)); // воспроизводим
-}
-
 // Событие окончания трека
 audio.addEventListener('ended', () => {
   currentTrack++; // переходим к следующей дорожке

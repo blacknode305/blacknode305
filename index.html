@@ -260,6 +260,13 @@
   <!-- ===== Фон Canvas ===== -->
   <canvas id="bg"></canvas>
   
+  <script>
+    // Функция для воспроизведения дорожки по индексу
+    function playTrack(index) {
+      audio.src = `src/audio/${playlist[index]}`; // устанавливаем путь к файлу
+      audio.play().catch(e => console.log('Ошибка воспроизведения', e)); // воспроизводим
+    }
+  </script>
   <script src="js/script.js"></script>
 </body>
 </html>
