@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ctOS :: access</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:#33ff33;
+  font-family:'Share Tech Mono', monospace;
+  overflow:hidden;
+}
+
+/* MATRIX */
+#matrix{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* Терминал */
+.terminal{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+  max-width:800px;
+
+  background:rgba(0,0,0,.88);
+  border:1px solid #33ff33;
+  padding:20px;
+
+  box-shadow:
+    0 0 25px rgba(0,255,0,.35),
+    inset 0 0 20px rgba(0,255,0,.15);
+}
+
+/* Строки */
+.line{
+  margin:6px 0;
+}
+
+/* Курсор */
+.cursor{
+  display:inline-block;
+  width:10px;
+  background:#33ff33;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+/* Ссылки */
+.links a{
+  color:#33ff33;
+  text-decoration:none;
+  border-bottom:1px dashed #33ff33;
+}
+
+.links a:hover{
+  color:#fff;
+  border-color:#fff;
+}
+
+/* Glitch эффект */
+.glitch{
+  color:#33ff33;
+  position:relative;
+  font-size:1.4em;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+}
+
+.glitch::before{
+  animation:glitch1 .8s infinite;
+  color:#0f0;
+}
+
+.glitch::after{
+  animation:glitch2 .8s infinite;
+  color:#fff;
+}
+
+@keyframes glitch1{
+  0%{transform:translate(0)}
+  50%{transform:translate(2px,-2px)}
+  100%{transform:translate(0)}
+}
+
+@keyframes glitch2{
+  0%{transform:translate(0)}
+  50%{transform:translate(-2px,2px)}
+  100%{transform:translate(0)}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="terminal">
+
+<div class="glitch" data-text="ctOS ACCESS">ctOS ACCESS</div>
+
+<div class="line">Initializing system...</div>
+<div class="line">Bypassing firewall...</div>
+<div class="line">Decrypting profile...</div>
+
+<div class="line" id="type"></div>
+
+<div class="line links">
+> <a href="https://github.com/blacknode305" target="_blank">open github</a>
+</div>
+
+<div class="line links">
+> <a href="https://t.me/blacknode305" target="_blank">contact operator</a>
+</div>
+
+<div class="line">ACCESS GRANTED<span class="cursor"></span></div>
+
+</div>
+
+<script>
+/* Matrix */
+const c=document.getElementById("matrix");
+const x=c.getContext("2d");
+
+function resize(){
+  c.width=innerWidth;
+  c.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+const letters="アァイィウヴエェオカキクケコサシスセソHELLO ALEX DEV 0101";
+const size=16;
+const cols=c.width/size;
+const drops=Array(Math.floor(cols)).fill(1);
+
+function draw(){
+  x.fillStyle="rgba(0,0,0,0.06)";
+  x.fillRect(0,0,c.width,c.height);
+
+  x.fillStyle="#0f0";
+  x.font=size+"px monospace";
+
+  for(let i=0;i<drops.length;i++){
+    const text=letters[Math.floor(Math.random()*letters.length)];
+    x.fillText(text,i*size,drops[i]*size);
+
+    if(drops[i]*size>c.height && Math.random()>0.975) drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(draw,33);
+
+/* Печатающийся текст */
+const text = "USER: blacknode305 :: NODE.JS DEVELOPER :: STATUS: ONLINE";
+let i = 0;
+function type(){
+  if(i < text.length){
+    document.getElementById("type").textContent += text[i];
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+</script>
+
+</body>
+</html>

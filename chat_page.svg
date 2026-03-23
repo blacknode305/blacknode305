@@ -1,0 +1,56 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <style>
+    /* Фон сообщений */
+    .bubble{
+      fill:#000000;
+    }
+
+    /* Текст сообщений */
+    text{
+      fill:#FFFFFF;
+      font-size:18px;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      letter-spacing:-0.02em;
+    }
+
+    a{
+      fill:#0c82f9;
+    }
+
+    /* Анимация появления */
+    .msg-1, .msg-2, .msg-3, .msg-5, .msg-7{
+      opacity:0;
+    }
+
+    .msg-1{animation:fade-in-msg 0.4s 1s forwards;}
+    .msg-2{animation:fade-in-msg 0.4s 3s forwards;}
+    .msg-3{animation:fade-in-msg 0.4s 5.5s forwards;}
+    .msg-5{animation:fade-in-msg 0.4s 8s forwards;}
+    .msg-7{animation:fade-in-msg 0.4s 11s forwards;}
+
+    @keyframes fade-in-msg{
+      0%{opacity:0; transform:translateY(10px);}
+      100%{opacity:1; transform:translateY(0);}
+    }
+
+    /* Мигающий курсор */
+    .cursor{
+      font-weight:bold;
+      animation: cursor-blink 1s infinite;
+    }
+
+    @keyframes cursor-blink{
+      0%,100%{opacity:0;}
+      50%{opacity:1;}
+    }
+  </style>
+
+  <!-- Сообщения -->
+  <text x="20" y="35" class="msg-1">Привет! 👋 Рад видеть тебя здесь!</text>
+  <text x="20" y="83" class="msg-2">Хотел бы иметь свою личную страничку с фото, видео и ссылками на соцсети? 🌐</text>
+  <text x="20" y="155" class="msg-3">Персональный QR-код для наклейки на iPhone или футболку! 🎨</text>
+  <text x="20" y="245" class="msg-5">Расскажи о своей специальности или бизнесе – просто и стильно! 🚀</text>
+  <text x="20" y="336" class="msg-7">Напиши мне прямо сейчас! Контакты: WhatsApp 📱 и Telegram 💬 <tspan class="cursor">|</tspan></text>
+
+</svg>

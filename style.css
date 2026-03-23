@@ -1,0 +1,192 @@
+body {
+  width: 100vw;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0d0d12;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+}
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 3px solid #ff7a00;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 3px solid #ff7a00;
+  object-fit: cover;
+  margin-bottom: 12px;
+  position: relative;
+  /* стартовая позиция (за экраном слева) */
+  left: -200px;
+  animation: moveAvatar 5s forwards; /* 1 секунда, двигается к конечной позиции */
+}
+
+@keyframes moveAvatar {
+  to {
+    left: 0; /* конечная позиция */
+  }
+}
+h1 {
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+.bio {
+  font-size: 1em;
+  color: #aaa;
+  margin-top: 4px;
+}
+/* Соцсети */
+.socials {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+.socials a {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1f1f2f;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all .2s ease;
+}
+.socials a:hover {
+  border-color: #ff7a00;
+  transform: scale(1.15);
+}
+.socials img {
+  width: 24px;
+  height: 24px;
+}
+.links a {
+  display: inline-block;
+  margin: 8px 6px;
+  padding: 10px 22px;
+  background: #ff7a00;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+.links a:hover {
+  background: #ff9550;
+}
+footer {
+  margin-top: 26px;
+  font-size: .85em;
+  color: #777;
+}
+/* Карусель */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 30px 0;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+.carousel-track img {
+  min-width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+/* Стрелки */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 2em;
+  padding: 0 12px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  user-select: none;
+}
+.carousel-arrow:hover {
+  background: rgba(255,122,0,0.8);
+}
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
+@media (max-width: 768px) {
+  .avatar { width: 120px; height: 120px; }
+  .links a { padding: 8px 16px; font-size: 0.9em; }
+  .carousel-arrow { font-size: 1.8em; padding: 0 10px; }
+}
+
+svg {
+  width: 32px;
+  height: 32px;
+}
+svg.github {
+  fill: #181717;
+}
+svg.linkedin {
+  fill: #0077B5; /* красная заливка */
+  /* stroke: ; */ /* синий контур */
+  /* stroke-width: 2; */  /* толщина линии */
+}
+svg.telegram {
+  fill: #0088cc;
+}
+svg.whatsapp {
+  fill: #25d366;
+}
+svg.vk {
+  fill: #4a76a8;
+}
+svg.instagram {
+  fill: #e4405f;
+}
+svg.tiktok {
+  fill: #69c9d0;
+}
+svg.twitter {
+  fill: #1da1f2;
+}
+
+svg.kofi {
+  fill: #29abe0;
+}
+svg.gmail {
+  fill: #d93025;
+}
+svg.headhunter {
+  fill: #009ee3;
+}
+svg.devto {
+  fill: #0a0a0a;
+}
+svg.discord {
+  fill: #5865f2;
+}
+svg.max {
+  fill: #3088d4;
+}
+
+
+.snake {
+  width: 100vw;                 /* ширина картинки */
+  transform: scale(0.44);        /* правильный способ масштабирования */
+  transform-origin: top left;   /* точка от которой масштабируем, можно center */
+  display: block;               /* убираем возможные пробелы inline */
+}
