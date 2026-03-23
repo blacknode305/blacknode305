@@ -120,7 +120,7 @@ draw(); // запуск анимации
 //  Функция для запуска AudioContext и музыки
 // ===============================
 const playlist = [
-  'Svdden Death - Shallow Land Burial Wooli Remix.mp3',
+  'Svdden%20Death%20-%20Shallow%20Land%20Burial%20Wooli%20Remix.mp3',
   'Greenjelin - Lo-Lo.mp3',
   'Bro Safari - Follow Zomboy Remix.mp3',
 ];
