@@ -10,6 +10,10 @@
 </head>
 <body>
   <div id="preview" class="step">
+      <!-- <img class="avatar" src="https://github.com/blacknode305.png" alt="Alexandr"> -->
+    <img class="avatar" src="src/img/photo_600x600.jpg" alt="Alexandr">
+    <h1>blacknode305</h1>
+    <div class="bio">Node.js Developer • CLI Tools • Data Processing</div>
     <div class="message">
       Привет! 
       Заинтересовался моим qr-кодом, 
@@ -26,7 +30,16 @@
   </div>
   
   <audio id="audio"></audio>
+  <!-- ===== Фон Canvas ===== -->
+  <canvas id="canvasBackground" style="display:none;"></canvas>
   
+  <script>
+    // Функция для воспроизведения дорожки по индексу
+    function playTrack(index) {
+      audio.src = `src/audio/${playlist[index]}`; // устанавливаем путь к файлу
+      audio.play().catch(e => console.log('Ошибка воспроизведения', e)); // воспроизводим
+    }
+  </script>
   <script defer src="js/main.js"></script>
 </body>
 </html>
