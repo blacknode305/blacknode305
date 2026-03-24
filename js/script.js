@@ -120,9 +120,14 @@ draw(); // запуск анимации
 //  Функция для запуска AudioContext и музыки
 // ===============================
 const playlist = [
-  '',
-  '',
-  '',
+  'Bad Legs - Repeat.mp3',
+  'Big Florida - TURN IT.mp3',
+  'GANGSTER ON WHEELS - Power.mp3',
+  'Katana Zero - All For Now.mp3',
+  'Airixis - Universe.mp3',
+  'Katana ZERO - Rain On Brick.mp3',
+  'Katana Zero - Full Confession.mp3',
+  'Afrojack,_Steve_Aoki_feat_Miss_Palmer_No_Beef_feat_Miss_Pal.mp3',
 ];
 
 let currentTrack = 0; // индекс текущей дорожки

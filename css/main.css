@@ -1,0 +1,92 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    background: #0d0d12;
+    color: #cef;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    
+    display: flex;
+    flex-direction: row;
+  }
+  .step {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+  }
+  #preview {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #message {
+    text-transform: uppercase;
+  }
+  #start {
+    
+  }
+  #content {
+    
+  }
+  .block {
+    width: 100vw;
+    /* height: 200px; */
+  }
+  .avatar {
+    /* background: yellow; */
+    position: relative;
+    left: -300px;
+    animation: moveR 4s forwards;
+  }
+  .nname {
+    /* background: blue; */
+    position: relative;
+    right: -300px;
+    animation: moveL 4s forwards;
+  }
+  .fname {
+    /* background: red; */
+    position: relative;
+    left: -300px;
+    animation: moveR 4s forwards;
+  }
+  .married {
+    /* background: blue; */
+    position: relative;
+    right: -300px;
+    animation: moveL 4s forwards;
+  }
+  .old {
+    /* background: blue; */
+    position: relative;
+    right: -300px;
+    animation: moveL 4s forwards;
+  }
+  .avatar {
+    border-radius: 50%;
+    border: 3px solid #ff7a00;
+    object-fit: cover;
+    margin-bottom: 12px;
+  }
+  @keyframes moveR {
+    to {
+      left: 0;
+    }
+  }
+  @keyframes moveL {
+    to {
+      right: 0;
+    }
+  }
+  @keyframes moveLR {
+    to {
+      left: 0;
+      width: 100vw;
+    }
+  }

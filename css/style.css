@@ -1,9 +1,15 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   
   body {
-    background: #07090d;
     overflow: hidden;
     font-family: sans-serif;
+    width: 100vw;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0d0d12;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
   }
   
   /* ===== Canvas фон ===== */
@@ -72,15 +78,9 @@
   }
   
 
-body {
-  width: 100vw;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #0d0d12;
-  color: #fff;
-  text-align: center;
-  padding: 40px 20px;
-}
+/* body {
+  
+} */
 .avatar {
   width: 140px;
   height: 140px;
@@ -98,8 +98,8 @@ body {
   margin-bottom: 12px;
   position: relative;
   /* стартовая позиция (за экраном слева) */
-  left: -200px;
-  animation: moveAvatar 5s forwards; /* 1 секунда, двигается к конечной позиции */
+  left: -300px;
+  animation: moveAvatar 4s forwards; /* 1 секунда, двигается к конечной позиции */
 }
 
 @keyframes moveAvatar {
