@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NES Emulator</title>
+
+  <style>
+    body{
+      margin:0;
+      background:#0f172a;
+      color:white;
+      font-family:Arial,sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:20px;
+    }
+
+    h1{
+      margin-bottom:20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:900px;
+      background:#111827;
+      border-radius:20px;
+      padding:20px;
+      box-sizing:border-box;
+      box-shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+
+    canvas{
+      width:100%;
+      max-width:768px;
+      image-rendering:pixelated;
+      border-radius:12px;
+      background:black;
+      border:2px solid #374151;
+    }
+
+    .buttons{
+      margin-top:20px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    button,
+    input[type=file]{
+      background:#2563eb;
+      border:none;
+      color:white;
+      padding:12px 18px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    button:hover{
+      background:#1d4ed8;
+    }
+
+    .info{
+      margin-top:20px;
+      color:#9ca3af;
+      line-height:1.6;
+    }
+
+    .controls{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      width:100%;
+      max-width:400px;
+    }
+
+    .control{
+      background:#1f2937;
+      padding:12px;
+      border-radius:12px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>NES Emulator</h1>
+
+  <div class="container">
+
+    <!-- Экран -->
+    <canvas id="emulator"></canvas>
+
+    <!-- Кнопки -->
+    <div class="buttons">
+      <input type="file" id="romInput" accept=".nes">
+      <button id="startBtn">Запустить</button>
+      <button id="fullscreenBtn">Fullscreen</button>
+    </div>
+
+    <!-- Управление -->
+    <div class="controls">
+      <div class="control">↑ ↓ ← → — D-Pad</div>
+      <div class="control">Z = A</div>
+      <div class="control">X = B</div>
+      <div class="control">Enter = Start</div>
+    </div>
+
+    <div class="info">
+      Для работы нужен NES emulator core.<br>
+      Этот пример подключает JSNES.<br><br>
+
+      Добавь библиотеку:
+      https://github.com/bfirsh/jsnes
+    </div>
+
+  </div>
+
+  <!-- JSNES -->
+  <script src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+
+  <script>
+    const canvas = document.getElementById('emulator');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 256;
+    canvas.height = 240;
+
+    const imageData = ctx.getImageData(0, 0, 256, 240);
+
+    const nes = new jsnes.NES({
+      onFrame: function(frameBuffer) {
+
+        for(let i = 0; i < frameBuffer.length; i++) {
+
+          const pixel = frameBuffer[i];
+
+          imageData.data[i * 4 + 0] = (pixel >> 16) & 0xFF;
+          imageData.data[i * 4 + 1] = (pixel >> 8) & 0xFF;
+          imageData.data[i * 4 + 2] = pixel & 0xFF;
+          imageData.data[i * 4 + 3] = 0xFF;
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+      }
+    });
+
+    let romData = null;
+
+    // Загрузка ROM
+    document.getElementById('romInput')
+      .addEventListener('change', function(e){
+
+      const file = e.target.files[0];
+
+      if(!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function() {
+        romData = reader.result;
+        alert('ROM загружен');
+      };
+
+      reader.readAsBinaryString(file);
+    });
+
+    // Запуск
+    document.getElementById('startBtn')
+      .addEventListener('click', function(){
+
+      if(!romData){
+        alert('Сначала выбери .nes ROM');
+        return;
+      }
+
+      nes.loadROM(romData);
+
+      function frame(){
+        nes.frame();
+        requestAnimationFrame(frame);
+      }
+
+      frame();
+    });
+
+    // Fullscreen
+    document.getElementById('fullscreenBtn')
+      .addEventListener('click', () => {
+        canvas.requestFullscreen();
+      });
+
+    // Клавиши
+    const keyboardMap = {
+      ArrowUp: jsnes.Controller.BUTTON_UP,
+      ArrowDown: jsnes.Controller.BUTTON_DOWN,
+      ArrowLeft: jsnes.Controller.BUTTON_LEFT,
+      ArrowRight: jsnes.Controller.BUTTON_RIGHT,
+      z: jsnes.Controller.BUTTON_A,
+      x: jsnes.Controller.BUTTON_B,
+      Enter: jsnes.Controller.BUTTON_START,
+      Shift: jsnes.Controller.BUTTON_SELECT
+    };
+
+    document.addEventListener('keydown', (e) => {
+
+      const key = keyboardMap[e.key];
+
+      if(key !== undefined){
+        nes.buttonDown(1, key);
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+
+      const key = keyboardMap[e.key];
+
+      if(key !== undefined){
+        nes.buttonUp(1, key);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income / Expense Tracker</title>
+
+<style>
+    :root {
+        --bg: #f5f5f5;
+        --card: #ffffff;
+        --text: #111;
+        --accent: #4caf50;
+        --danger: #f44336;
+        --border: #ddd;
+    }
+
+    body.dark {
+        --bg: #121212;
+        --card: #1e1e1e;
+        --text: #f5f5f5;
+        --accent: #66bb6a;
+        --danger: #ef5350;
+        --border: #333;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: 0.3s;
+        padding: 20px;
+    }
+
+    .card {
+        background: var(--card);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border);
+    }
+
+    input {
+        padding: 8px;
+        margin: 5px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        width: 150px;
+    }
+
+    button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .income-btn {
+        background: var(--accent);
+        color: white;
+    }
+
+    .expense-btn {
+        background: var(--danger);
+        color: white;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid var(--border);
+        padding: 8px;
+        text-align: center;
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle {
+        background: #888;
+        color: white;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    <h2>Income / Expense Tracker</h2>
+    <button class="toggle" onclick="toggleTheme()">Day / Night</button>
+</div>
+
+<div class="card">
+    <h3>Income</h3>
+    <input id="incomeInput" type="number" placeholder="Income amount">
+    <button class="income-btn" onclick="addIncome()">Add Income</button>
+</div>
+
+<div class="card">
+    <h3>Expense</h3>
+    <input id="expenseInput" type="number" placeholder="Expense amount">
+    <button class="expense-btn" onclick="addExpense()">Add Expense</button>
+</div>
+
+<div class="card">
+    <h3>Balance</h3>
+    <p id="balanceText">0</p>
+</div>
+
+<div class="card">
+    <h3>History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="historyTable"></tbody>
+    </table>
+</div>
+
+<script>
+    let data = JSON.parse(localStorage.getItem("finance_data")) || [];
+
+    function saveData() {
+        localStorage.setItem("finance_data", JSON.stringify(data));
+    }
+
+    function getDate() {
+        return new Date().toLocaleString();
+    }
+
+    function addIncome() {
+        const val = +document.getElementById("incomeInput").value;
+        if (!val) return;
+
+        data.push({
+            type: "income",
+            amount: val,
+            date: getDate()
+        });
+
+        document.getElementById("incomeInput").value = "";
+        update();
+    }
+
+    function addExpense() {
+        const val = +document.getElementById("expenseInput").value;
+        if (!val) return;
+
+        data.push({
+            type: "expense",
+            amount: val,
+            date: getDate()
+        });
+
+        document.getElementById("expenseInput").value = "";
+        update();
+    }
+
+    function update() {
+        saveData();
+
+        const table = document.getElementById("historyTable");
+        table.innerHTML = "";
+
+        let balance = 0;
+
+        data.forEach(item => {
+            if (item.type === "income") balance += item.amount;
+            else balance -= item.amount;
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.type}</td>
+                <td>${item.amount}</td>
+                <td>${item.date}</td>
+            `;
+            table.appendChild(row);
+        });
+
+        document.getElementById("balanceText").innerText = balance;
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    function loadTheme() {
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+        }
+    }
+
+    loadTheme();
+    update();
+</script>
+
+</body>
+</html>
