@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>blacknode305 • Tool</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --card: rgba(20, 20, 28, 0.7);
+      --card-solid: #181820;
+      --text: #e8e8f0;
+      --muted: #9aa0b4;
+
+      --accent: #8b5cf6;
+      --accent-2: #06b6d4;
+
+      --border: rgba(255,255,255,0.08);
+
+      --shadow:
+        0 10px 30px rgba(0,0,0,0.35);
+
+      --radius: 18px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card: rgba(255,255,255,0.75);
+      --card-solid: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+
+      --border: rgba(0,0,0,0.08);
+
+      --shadow:
+        0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+
+      min-height: 100vh;
+
+      padding: 32px 18px;
+
+      transition:
+        background 0.35s ease,
+        color 0.35s ease;
+
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background glow */
+
+    body::before {
+      content: '';
+
+      position: fixed;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(139,92,246,0.16),
+          transparent 45%
+        ),
+
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(6,182,212,0.16),
+          transparent 45%
+        );
+
+      z-index: -1;
+
+      animation: bgMove 14s ease infinite;
+    }
+
+    @keyframes bgMove {
+      0%,100% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      50% {
+        transform: scale(1.08) rotate(4deg);
+      }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 40px;
+
+      animation: fadeDown .7s ease;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle {
+      width: 48px;
+      height: 48px;
+
+      border-radius: 14px;
+      border: 1px solid var(--border);
+
+      background: var(--card);
+
+      backdrop-filter: blur(20px);
+
+      color: var(--text);
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      transition:
+        transform .25s ease,
+        border .25s ease,
+        background .25s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.08) rotate(12deg);
+      border-color: var(--accent);
+    }
+
+    /* HERO */
+
+    .hero {
+      margin-bottom: 40px;
+
+      animation: fadeUp .7s ease;
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 700px;
+    }
+
+    /* MAIN TOOL CARD */
+
+    .tool-card {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      backdrop-filter: blur(24px);
+
+      border-radius: var(--radius);
+
+      padding: 24px;
+
+      box-shadow: var(--shadow);
+
+      animation: fadeUp .8s ease;
+    }
+
+    /* SECTION */
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    /* INPUTS */
+
+    .input,
+    .textarea,
+    .select {
+      width: 100%;
+
+      border: 1px solid var(--border);
+
+      background: rgba(255,255,255,0.03);
+
+      color: var(--text);
+
+      border-radius: 14px;
+
+      padding: 14px 16px;
+
+      font-size: 15px;
+
+      outline: none;
+
+      transition:
+        border .25s ease,
+        background .25s ease;
+    }
+
+    .input:focus,
+    .textarea:focus,
+    .select:focus {
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      border: none;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      color: white;
+
+      border-radius: 14px;
+
+      padding: 14px 20px;
+
+      font-weight: 600;
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition:
+        transform .25s ease,
+        opacity .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: .92;
+    }
+
+    .btn-secondary {
+      background: var(--card-solid);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* FLEX */
+
+    .row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .col {
+      flex: 1 1 220px;
+    }
+
+    /* OUTPUT */
+
+    .output {
+      background: rgba(255,255,255,0.03);
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      padding: 16px;
+
+      min-height: 80px;
+
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    .footer {
+      margin-top: 40px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      animation: fadeUp .8s ease;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 768px) {
+
+      body {
+        padding: 22px 14px;
+      }
+
+      .hero-title {
+        font-size: 34px;
+      }
+
+      .tool-card {
+        padding: 18px;
+      }
+
+      .header {
+        margin-bottom: 28px;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+      <div class="logo">
+        blacknode305
+      </div>
+
+      <div class="header-right">
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle Theme"
+        >
+          ☀️
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <h1 class="hero-title">
+        Название инструмента
+      </h1>
+
+      <p class="hero-text">
+        Краткое описание инструмента или проекта.
+      </p>
+
+    </section>
+
+    <!-- TOOL -->
+
+    <main class="tool-card">
+
+      <!-- SECTION -->
+
+      <section class="section">
+
+        <h2 class="section-title">
+          Основной блок
+        </h2>
+
+        <div class="row">
+
+          <div class="col">
+
+            <input
+              type="text"
+              class="input"
+              placeholder="Введите текст"
+            >
+
+          </div>
+
+          <div class="col">
+
+            <select class="select">
+
+              <option>
+                Вариант 1
+              </option>
+
+              <option>
+                Вариант 2
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- SECTION -->
+
+      <section class="section">
+
+        <textarea
+          class="textarea"
+          placeholder="Тут может быть твоя логика..."
+        ></textarea>
+
+      </section>
+
+      <!-- SECTION -->
+
+      <section class="section">
+
+        <div class="row">
+
+          <button class="btn">
+            Выполнить
+          </button>
+
+          <button class="btn btn-secondary">
+            Очистить
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- SECTION -->
+
+      <section class="section">
+
+        <div class="output">
+          Результат...
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      © 2026 blacknode305 • Built with vanilla JS
+    </footer>
+
+  </div>
+
+  <script>
+
+    /* =========================
+       THEME
+    ========================== */
+
+    const html = document.documentElement;
+
+    const themeToggle =
+      document.getElementById('themeToggle');
+
+    const savedTheme =
+      localStorage.getItem('theme') || 'dark';
+
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+
+      const current =
+        html.getAttribute('data-theme');
+
+      const next =
+        current === 'dark'
+          ? 'light'
+          : 'dark';
+
+      setTheme(next);
+
+    });
+
+    function setTheme(theme) {
+
+      html.setAttribute('data-theme', theme);
+
+      localStorage.setItem('theme', theme);
+
+      themeToggle.textContent =
+        theme === 'dark'
+          ? '☀️'
+          : '🌙';
+
+    }
+
+    /* =========================
+       YOUR JS BELOW
+    ========================== */
+
+    // Example:
+    //
+    // const button = document.querySelector('.btn');
+    //
+    // button.addEventListener('click', () => {
+    //   alert('Hello');
+    // });
+
+  </script>
+
+</body>
+</html>

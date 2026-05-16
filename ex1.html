@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Моя история</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
+      overflow-x: hidden;
+    }
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 1s;
+    }
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<section>Ты отсканировал меня...</section>
+<section>Меня зовут Александр</section>
+<section>Я меняю свою жизнь</section>
+<section>Это только начало</section>
+
+<script>
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      sec.classList.add("active");
+    }
+  });
+});
+</script>
+.зг7 8
+</body>
+
+з
