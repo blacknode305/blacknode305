@@ -587,15 +587,6 @@ target="_blank"
 
 <div class="tools">
 
-<a class="tool" href="tools/income_expense" target="_blank">
-<div class="tool-title">
-Day Finance
-</div>
-<div class="tool-desc">
-Дневной доход и расход
-</div>
-</a>
-
 <a class="tool" href="tools/crypto_converter" target="_blank">
 <div class="tool-title">
 Crypto Widget
