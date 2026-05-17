@@ -1,438 +1,997 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Календарь смен</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <style>
-    /* ==========================================
-       ОСНОВНЫЕ СТИЛИ
-    ========================================== */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f4f4f4;
-      color: #333;
-    }
+<title>blacknode305 • Shift Calendar</title>
 
-    h1 {
-      text-align: center;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .controls,
-    .shift-controls,
-    .legend {
-      background: white;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    input,
-    select,
-    button {
-      padding: 8px;
-      margin: 5px;
-    }
+<style>
 
-    button {
-      cursor: pointer;
-      border: none;
-      background: #007bff;
-      color: white;
-      border-radius: 5px;
-    }
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
 
-    button:hover {
-      background: #0056b3;
-    }
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
 
-    /* ==========================================
-       КАЛЕНДАРЬ
-    ========================================== */
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      background: white;
-      padding: 10px;
-      border-radius: 10px;
-    }
+  --border:rgba(255,255,255,.08);
+}
 
-    .day-header {
-      font-weight: bold;
-      text-align: center;
-      padding: 10px;
-      background: #ddd;
-    }
+[data-theme="light"]{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,.82);
+  --text:#1e293b;
+  --muted:#64748b;
 
-    .day {
-      min-height: 70px;
-      border: 1px solid #ccc;
-      padding: 5px;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      position: relative;
-      background: white;
-    }
+  --border:rgba(0,0,0,.08);
+}
 
-    .day.selected {
-      outline: 3px solid black;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* ==========================================
-       ДИАГОНАЛЬНОЕ РАЗДЕЛЕНИЕ ПРИ ПЕРЕСЕЧЕНИИ
-    ========================================== */
-    .split {
-      background: linear-gradient(
-        135deg,
-        var(--color1) 50%,
-        var(--color2) 50%
-      );
-      color: white;
-    }
+body{
+  font-family:'Inter',sans-serif;
 
-    /* ==========================================
-       ЛЕГЕНДА
-    ========================================== */
-    .legend-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+  background:var(--bg);
+  color:var(--text);
 
-    .color-box {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #000;
-      margin-right: 10px;
-    }
-  </style>
+  min-height:100vh;
+
+  padding:24px 14px;
+
+  transition:.35s ease;
+
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+
+  z-index:-1;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:30px;
+}
+
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:26px;
+  font-weight:700;
+
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.theme-toggle{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  background:var(--card);
+
+  color:var(--text);
+
+  font-size:18px;
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(20px);
+
+  transition:.25s ease;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.06);
+}
+
+.hero{
+  margin-bottom:24px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:34px;
+
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.card{
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  backdrop-filter:blur(24px);
+
+  padding:18px;
+
+  margin-bottom:22px;
+}
+
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+
+  margin-bottom:18px;
+}
+
+select,
+button,
+input{
+  border:none;
+  outline:none;
+}
+
+.select{
+  flex:1;
+
+  min-width:130px;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid var(--border);
+
+  color:var(--text);
+
+  padding:12px 14px;
+
+  border-radius:14px;
+
+  font-size:14px;
+}
+
+.btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+
+  color:white;
+
+  padding:12px 18px;
+
+  border-radius:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.calendar{
+  display:grid;
+
+  grid-template-columns:
+    repeat(7,1fr);
+
+  gap:8px;
+}
+
+.day-header{
+  background:rgba(255,255,255,.05);
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:14px;
+
+  text-align:center;
+
+  font-weight:700;
+
+  color:var(--muted);
+}
+
+.day{
+  min-height:88px;
+
+  border-radius:16px;
+
+  border:1px solid var(--border);
+
+  background:rgba(255,255,255,.03);
+
+  padding:10px;
+
+  cursor:pointer;
+
+  transition:.2s ease;
+
+  position:relative;
+
+  user-select:none;
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+
+  font-weight:700;
+}
+
+.day:hover{
+  transform:translateY(-2px);
+  border-color:var(--accent);
+}
+
+.day.selected{
+  outline:2px solid var(--accent2);
+}
+
+.day.empty{
+  background:transparent;
+  border:none;
+  cursor:default;
+}
+
+.split{
+  background:
+    linear-gradient(
+      135deg,
+      var(--color1) 50%,
+      var(--color2) 50%
+    );
+
+  color:white;
+}
+
+.legend{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+  gap:12px;
+}
+
+.legend-item{
+  background:rgba(255,255,255,.03);
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:12px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.color-box{
+  width:20px;
+  height:20px;
+
+  border-radius:6px;
+
+  border:1px solid rgba(255,255,255,.2);
+}
+
+.footer{
+  margin-top:34px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:900px){
+
+  .calendar{
+    grid-template-columns:
+      repeat(7,1fr);
+
+    gap:6px;
+  }
+
+  .day{
+    min-height:72px;
+    font-size:13px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .calendar{
+    gap:5px;
+  }
+
+  .day-header{
+    padding:10px;
+    font-size:12px;
+  }
+
+  .day{
+    min-height:58px;
+    font-size:12px;
+    padding:6px;
+  }
+
+}
+
+</style>
 </head>
 <body>
 
-  <h1>Календарь смен</h1>
+<div class="container">
 
-  <!-- ==========================================
-       ВЫБОР МЕСЯЦА И ГОДА
-  ========================================== -->
-  <div class="controls">
-    <label>Месяц:</label>
-    <select id="month">
-      <option value="0">Январь</option>
-      <option value="1">Февраль</option>
-      <option value="2">Март</option>
-      <option value="3">Апрель</option>
-      <option value="4">Май</option>
-      <option value="5">Июнь</option>
-      <option value="6">Июль</option>
-      <option value="7">Август</option>
-      <option value="8">Сентябрь</option>
-      <option value="9">Октябрь</option>
-      <option value="10">Ноябрь</option>
-      <option value="11">Декабрь</option>
-    </select>
+<header class="header">
 
-    <label>Год:</label>
-    <input type="number" id="year" value="2026">
+<div class="logo">
+blacknode305
+</div>
 
-    <button onclick="generateCalendar()">Продолжить</button>
-  </div>
+<button
+  class="theme-toggle"
+  id="themeToggle"
+>
+☀️
+</button>
 
-  <!-- ==========================================
-       КАЛЕНДАРЬ
-  ========================================== -->
-  <div id="calendar" class="calendar"></div>
+</header>
 
-  <!-- ==========================================
-       УПРАВЛЕНИЕ СМЕНАМИ
-  ========================================== -->
-  <div class="shift-controls">
-    <label>Выбранные дни:</label>
-    <input type="text" id="selectedDays" readonly>
+<section class="hero">
 
-    <label>Тип смены:</label>
-    <input type="text" id="shiftType" placeholder="Например: Ночные">
+<h1>
+Shift Calendar
+</h1>
 
-    <label>HEX цвет:</label>
-    <input type="text" id="shiftColor" placeholder="#ff0000">
+<p>
+Календарь смен с сохранением и экспортом
+</p>
 
-    <button onclick="assignShift()">Сохранить смену</button>
+</section>
 
-    <button onclick="exportData()">Экспорт</button>
+<div class="card">
 
-    <input type="file" id="importFile" onchange="importData(event)">
-  </div>
+<div class="controls">
 
-  <!-- ==========================================
-       ЛЕГЕНДА
-  ========================================== -->
-  <div class="legend" id="legend"></div>
+<select id="month" class="select">
 
-  <script>
-    /* ==========================================
-       ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-    ========================================== */
+<option value="0">Январь</option>
+<option value="1">Февраль</option>
+<option value="2">Март</option>
+<option value="3">Апрель</option>
+<option value="4">Май</option>
+<option value="5">Июнь</option>
+<option value="6">Июль</option>
+<option value="7">Август</option>
+<option value="8">Сентябрь</option>
+<option value="9">Октябрь</option>
+<option value="10">Ноябрь</option>
+<option value="11">Декабрь</option>
 
-    let selectedDays = [];
+</select>
 
-    /*
-      Структура localStorage:
-      {
-        shifts: {
-          "2026-4-1": ["Ночные"],
-          "2026-4-5": ["Ночные", "Дневные"]
-        },
-        colors: {
-          "Ночные": "#ff0000",
-          "Дневные": "#00ff00"
-        }
-      }
-    */
-    let savedData = JSON.parse(localStorage.getItem("calendarData")) || {
-      shifts: {},
-      colors: {}
-    };
+<input
+  type="number"
+  id="year"
+  class="select"
+  value="2026"
+/>
 
-    let shifts = savedData.shifts;
-    let shiftColors = savedData.colors;
+<button
+  class="btn"
+  onclick="generateCalendar()"
+>
+Открыть
+</button>
 
-    /* ==========================================
-       СОХРАНЕНИЕ В localStorage
-    ========================================== */
-    function saveData() {
-      localStorage.setItem("calendarData", JSON.stringify({
-        shifts,
-        colors: shiftColors
-      }));
+</div>
+
+<div
+  id="calendar"
+  class="calendar"
+></div>
+
+</div>
+
+<div class="card">
+
+<div class="controls">
+
+<input
+  type="text"
+  id="selectedDays"
+  class="select"
+  readonly
+  placeholder="Выбранные дни"
+/>
+
+<input
+  type="text"
+  id="shiftType"
+  class="select"
+  placeholder="Тип смены"
+/>
+
+<input
+  type="text"
+  id="shiftColor"
+  class="select"
+  placeholder="#ff0000"
+/>
+
+</div>
+
+<div class="controls">
+
+<button
+  class="btn"
+  onclick="assignShift()"
+>
+Сохранить смену
+</button>
+
+<button
+  class="btn"
+  onclick="exportData()"
+>
+Экспорт
+</button>
+
+<label class="btn">
+Импорт
+<input
+  type="file"
+  id="importFile"
+  hidden
+  onchange="importData(event)"
+>
+</label>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2
+  style="
+    margin-bottom:16px;
+    font-family:'Space Grotesk',sans-serif;
+  "
+>
+Типы смен
+</h2>
+
+<div
+  class="legend"
+  id="legend"
+></div>
+
+</div>
+
+<footer class="footer">
+© 2026 blacknode305 • Shift Calendar
+</footer>
+
+</div>
+
+<script>
+
+const html =
+  document.documentElement;
+
+const themeToggle =
+  document.getElementById('themeToggle');
+
+const savedTheme =
+  localStorage.getItem('theme') || 'dark';
+
+setTheme(savedTheme);
+
+themeToggle.addEventListener('click',()=>{
+
+  const current =
+    html.getAttribute('data-theme');
+
+  const next =
+    current === 'dark'
+      ? 'light'
+      : 'dark';
+
+  setTheme(next);
+
+});
+
+function setTheme(theme){
+
+  html.setAttribute(
+    'data-theme',
+    theme
+  );
+
+  localStorage.setItem(
+    'theme',
+    theme
+  );
+
+  themeToggle.textContent =
+    theme === 'dark'
+      ? '☀️'
+      : '🌙';
+
+}
+
+let selectedDays = [];
+
+let savedData =
+  JSON.parse(
+    localStorage.getItem(
+      'calendarData'
+    )
+  ) || {
+    shifts:{},
+    colors:{}
+  };
+
+let shifts =
+  savedData.shifts;
+
+let shiftColors =
+  savedData.colors;
+
+function saveData(){
+
+  localStorage.setItem(
+    'calendarData',
+    JSON.stringify({
+      shifts,
+      colors:shiftColors
+    })
+  );
+
+}
+
+function isValidHex(color){
+
+  return /^#([0-9A-F]{3}){1,2}$/i
+    .test(color);
+
+}
+
+function generateCalendar(){
+
+  const month =
+    parseInt(
+      document.getElementById('month').value
+    );
+
+  const year =
+    parseInt(
+      document.getElementById('year').value
+    );
+
+  const calendar =
+    document.getElementById('calendar');
+
+  calendar.innerHTML =
+    '';
+
+  const daysOfWeek = [
+    'Пн',
+    'Вт',
+    'Ср',
+    'Чт',
+    'Пт',
+    'Сб',
+    'Вс'
+  ];
+
+  daysOfWeek.forEach(day=>{
+
+    const header =
+      document.createElement('div');
+
+    header.className =
+      'day-header';
+
+    header.textContent =
+      day;
+
+    calendar.appendChild(header);
+
+  });
+
+  const firstDay =
+    new Date(year,month,1);
+
+  let startDay =
+    firstDay.getDay();
+
+  if(startDay === 0)
+    startDay = 7;
+
+  const daysInMonth =
+    new Date(
+      year,
+      month + 1,
+      0
+    ).getDate();
+
+  for(let i = 1; i < startDay; i++){
+
+    const empty =
+      document.createElement('div');
+
+    empty.className =
+      'day empty';
+
+    calendar.appendChild(empty);
+
+  }
+
+  for(let day = 1; day <= daysInMonth; day++){
+
+    const dayDiv =
+      document.createElement('div');
+
+    dayDiv.className =
+      'day';
+
+    dayDiv.textContent =
+      day;
+
+    dayDiv.onclick =
+      ()=>toggleDay(day,dayDiv);
+
+    const key =
+      `${year}-${month}-${day}`;
+
+    if(shifts[key]){
+
+      applyShiftColor(
+        dayDiv,
+        shifts[key]
+      );
+
     }
 
-    /* ==========================================
-       ПРОВЕРКА HEX ЦВЕТА
-    ========================================== */
-    function isValidHex(color) {
-      return /^#([0-9A-F]{3}){1,2}$/i.test(color);
+    calendar.appendChild(dayDiv);
+
+  }
+
+  updateLegend();
+
+}
+
+function toggleDay(day,element){
+
+  const index =
+    selectedDays.indexOf(day);
+
+  if(index > -1){
+
+    selectedDays.splice(index,1);
+
+    element.classList.remove(
+      'selected'
+    );
+
+  }else{
+
+    selectedDays.push(day);
+
+    element.classList.add(
+      'selected'
+    );
+
+  }
+
+  document.getElementById(
+    'selectedDays'
+  ).value =
+    selectedDays.join(', ');
+
+}
+
+function assignShift(){
+
+  const shiftType =
+    document.getElementById(
+      'shiftType'
+    ).value.trim();
+
+  const shiftColor =
+    document.getElementById(
+      'shiftColor'
+    ).value.trim();
+
+  const month =
+    parseInt(
+      document.getElementById(
+        'month'
+      ).value
+    );
+
+  const year =
+    parseInt(
+      document.getElementById(
+        'year'
+      ).value
+    );
+
+  if(
+    !shiftType ||
+    selectedDays.length === 0
+  ){
+
+    alert(
+      'Выберите дни и тип смены'
+    );
+
+    return;
+
+  }
+
+  if(!isValidHex(shiftColor)){
+
+    alert(
+      'Введите HEX цвет'
+    );
+
+    return;
+
+  }
+
+  shiftColors[shiftType] =
+    shiftColor;
+
+  selectedDays.forEach(day=>{
+
+    const key =
+      `${year}-${month}-${day}`;
+
+    if(!shifts[key]){
+
+      shifts[key] = [];
+
     }
 
-    /* ==========================================
-       СОЗДАНИЕ КАЛЕНДАРЯ
-    ========================================== */
-    function generateCalendar() {
-      const month = parseInt(document.getElementById("month").value);
-      const year = parseInt(document.getElementById("year").value);
-      const calendar = document.getElementById("calendar");
+    if(
+      !shifts[key].includes(
+        shiftType
+      )
+    ){
 
-      calendar.innerHTML = "";
+      shifts[key].push(
+        shiftType
+      );
 
-      const daysOfWeek = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
-
-      // Заголовки дней недели
-      daysOfWeek.forEach(day => {
-        const header = document.createElement("div");
-        header.className = "day-header";
-        header.textContent = day;
-        calendar.appendChild(header);
-      });
-
-      const firstDay = new Date(year, month, 1);
-      let startDay = firstDay.getDay();
-
-      // JS считает воскресенье = 0
-      if (startDay === 0) startDay = 7;
-
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      // Пустые клетки до первого дня
-      for (let i = 1; i < startDay; i++) {
-        calendar.appendChild(document.createElement("div"));
-      }
-
-      // Создание дней месяца
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dayDiv = document.createElement("div");
-        dayDiv.className = "day";
-        dayDiv.textContent = day;
-
-        // Выбор дня
-        dayDiv.onclick = () => toggleDay(day, dayDiv);
-
-        // Проверка сохраненных смен
-        const key = `${year}-${month}-${day}`;
-        if (shifts[key]) {
-          applyShiftColor(dayDiv, shifts[key]);
-        }
-
-        calendar.appendChild(dayDiv);
-      }
-
-      updateLegend();
     }
 
-    /* ==========================================
-       ВЫБОР ДНЕЙ
-    ========================================== */
-    function toggleDay(day, element) {
-      const index = selectedDays.indexOf(day);
+  });
 
-      if (index > -1) {
-        selectedDays.splice(index, 1);
-        element.classList.remove("selected");
-      } else {
-        selectedDays.push(day);
-        element.classList.add("selected");
-      }
+  saveData();
 
-      document.getElementById("selectedDays").value = selectedDays.join(", ");
-    }
+  selectedDays = [];
 
-    /* ==========================================
-       НАЗНАЧЕНИЕ СМЕН
-    ========================================== */
-    function assignShift() {
-      const shiftType = document.getElementById("shiftType").value.trim();
-      const shiftColor = document.getElementById("shiftColor").value.trim();
+  document.getElementById(
+    'selectedDays'
+  ).value = '';
 
-      const month = parseInt(document.getElementById("month").value);
-      const year = parseInt(document.getElementById("year").value);
+  document.getElementById(
+    'shiftType'
+  ).value = '';
 
-      if (!shiftType || selectedDays.length === 0) {
-        alert("Выберите дни и введите тип смены");
-        return;
-      }
+  document.getElementById(
+    'shiftColor'
+  ).value = '';
 
-      if (!isValidHex(shiftColor)) {
-        alert("Введите корректный HEX цвет, например #ff0000");
-        return;
-      }
+  generateCalendar();
 
-      // Сохраняем цвет типа смены
-      shiftColors[shiftType] = shiftColor;
+}
 
-      // Сохраняем дни
-      selectedDays.forEach(day => {
-        const key = `${year}-${month}-${day}`;
+function applyShiftColor(
+  element,
+  shiftList
+){
 
-        if (!shifts[key]) {
-          shifts[key] = [];
-        }
+  if(shiftList.length === 1){
 
-        if (!shifts[key].includes(shiftType)) {
-          shifts[key].push(shiftType);
-        }
-      });
+    const shift =
+      shiftList[0];
+
+    element.style.background =
+      shiftColors[shift] || '#666';
+
+    element.style.color =
+      'white';
+
+  }
+
+  else if(shiftList.length >= 2){
+
+    const shift1 =
+      shiftList[0];
+
+    const shift2 =
+      shiftList[1];
+
+    element.classList.add(
+      'split'
+    );
+
+    element.style.setProperty(
+      '--color1',
+      shiftColors[shift1] || '#666'
+    );
+
+    element.style.setProperty(
+      '--color2',
+      shiftColors[shift2] || '#333'
+    );
+
+  }
+
+}
+
+function updateLegend(){
+
+  const legend =
+    document.getElementById(
+      'legend'
+    );
+
+  legend.innerHTML =
+    '';
+
+  Object.keys(shiftColors)
+    .forEach(type=>{
+
+    const item =
+      document.createElement('div');
+
+    item.className =
+      'legend-item';
+
+    const colorBox =
+      document.createElement('div');
+
+    colorBox.className =
+      'color-box';
+
+    colorBox.style.background =
+      shiftColors[type];
+
+    const text =
+      document.createElement('div');
+
+    text.innerHTML =
+      `
+        <strong>
+          ${type}
+        </strong>
+        <br>
+        <span style="color:var(--muted);font-size:12px;">
+          ${shiftColors[type]}
+        </span>
+      `;
+
+    item.appendChild(colorBox);
+
+    item.appendChild(text);
+
+    legend.appendChild(item);
+
+  });
+
+}
+
+function exportData(){
+
+  const data =
+    JSON.stringify({
+      shifts,
+      colors:shiftColors
+    },null,2);
+
+  const blob =
+    new Blob([data],{
+      type:'application/json'
+    });
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement('a');
+
+  a.href =
+    url;
+
+  a.download =
+    'calendar_shifts.json';
+
+  a.click();
+
+}
+
+function importData(event){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+  const reader =
+    new FileReader();
+
+  reader.onload =
+    function(e){
+
+      const imported =
+        JSON.parse(
+          e.target.result
+        );
+
+      shifts =
+        imported.shifts || {};
+
+      shiftColors =
+        imported.colors || {};
 
       saveData();
 
-      // Очистка
-      selectedDays = [];
-      document.getElementById("selectedDays").value = "";
-      document.getElementById("shiftType").value = "";
-      document.getElementById("shiftColor").value = "";
-
       generateCalendar();
-    }
 
-    /* ==========================================
-       ОКРАСКА ДНЕЙ
-    ========================================== */
-    function applyShiftColor(element, shiftList) {
+    };
 
-      // Одна смена
-      if (shiftList.length === 1) {
-        const shift = shiftList[0];
+  reader.readAsText(file);
 
-        element.style.background = shiftColors[shift] || "#999";
-        element.style.color = "white";
-      }
+}
 
-      // Две смены — диагональ
-      else if (shiftList.length >= 2) {
-        const shift1 = shiftList[0];
-        const shift2 = shiftList[1];
+generateCalendar();
 
-        element.classList.add("split");
-        element.style.setProperty("--color1", shiftColors[shift1] || "#999");
-        element.style.setProperty("--color2", shiftColors[shift2] || "#555");
-      }
-    }
-
-    /* ==========================================
-       ЛЕГЕНДА СМЕН
-    ========================================== */
-    function updateLegend() {
-      const legend = document.getElementById("legend");
-      legend.innerHTML = "<h3>Типы смен:</h3>";
-
-      Object.keys(shiftColors).forEach(type => {
-        const item = document.createElement("div");
-        item.className = "legend-item";
-
-        const colorBox = document.createElement("div");
-        colorBox.className = "color-box";
-        colorBox.style.background = shiftColors[type];
-
-        const text = document.createElement("span");
-        text.textContent = `${type} (${shiftColors[type]})`;
-
-        item.appendChild(colorBox);
-        item.appendChild(text);
-
-        legend.appendChild(item);
-      });
-    }
-
-    /* ==========================================
-       ЭКСПОРТ JSON
-    ========================================== */
-    function exportData() {
-      const data = JSON.stringify({
-        shifts,
-        colors: shiftColors
-      }, null, 2);
-
-      const blob = new Blob([data], {
-        type: "application/json"
-      });
-
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "calendar_shifts.json";
-      a.click();
-    }
-
-    /* ==========================================
-       ИМПОРТ JSON
-    ========================================== */
-    function importData(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = function(e) {
-        const imported = JSON.parse(e.target.result);
-
-        shifts = imported.shifts || {};
-        shiftColors = imported.colors || {};
-
-        saveData();
-        generateCalendar();
-      };
-
-      reader.readAsText(file);
-    }
-
-    /* ==========================================
-       ПЕРВИЧНАЯ ЗАГРУЗКА
-    ========================================== */
-    generateCalendar();
-
-  </script>
+</script>
 
 </body>
 </html>
