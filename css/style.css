@@ -261,6 +261,6 @@ svg.max {
 .snake {
   width: 100vw;                 /* ширина картинки */
   transform: scale(0.44);        /* правильный способ масштабирования */
-  transform-origin: top left;   /* точка от которой масштабируем, можно center */
+  transform-origin: top center;   /* точка от которой масштабируем, можно center */
   display: block;               /* убираем возможные пробелы inline */
 }
