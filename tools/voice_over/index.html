@@ -1,186 +1,730 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TTS Озвучка + Скачивание</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    .container {
-      width: 100%;
-      max-width: 700px;
-      background: rgba(255,255,255,0.08);
-      padding: 25px;
-      border-radius: 16px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
+<title>blacknode305 • TTS Voice</title>
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    textarea {
-      width: 100%;
-      height: 180px;
-      border: none;
-      border-radius: 12px;
-      padding: 15px;
-      resize: none;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    select, input[type="range"] {
-      width: 100%;
-      margin-top: 12px;
-    }
+<style>
 
-    .controls {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 20px;
-    }
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
 
-    button {
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
 
-    .play { background: #4caf50; color: white; }
-    .stop { background: #f44336; color: white; }
-    .download { background: #2196f3; color: white; }
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
 
-    button:hover { opacity: 0.9; }
+  --border:rgba(255,255,255,.08);
+}
 
-    .note {
-      margin-top: 18px;
-      font-size: 14px;
-      opacity: 0.8;
-      line-height: 1.5;
-    }
+[data-theme="light"]{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,.82);
 
-    audio {
-      width: 100%;
-      margin-top: 15px;
-    }
-  </style>
+  --text:#1e293b;
+  --muted:#64748b;
+
+  --border:rgba(0,0,0,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+
+  background:var(--bg);
+  color:var(--text);
+
+  min-height:100vh;
+
+  padding:24px 14px;
+
+  transition:.35s ease;
+
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+
+  z-index:-1;
+}
+
+.container{
+  max-width:950px;
+  margin:0 auto;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:30px;
+}
+
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+
+  font-size:26px;
+  font-weight:700;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent2)
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.theme-toggle{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  background:var(--card);
+
+  color:var(--text);
+
+  font-size:18px;
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(20px);
+
+  transition:.25s ease;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.06);
+}
+
+.hero{
+  margin-bottom:24px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+
+  font-size:34px;
+
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+
+  line-height:1.6;
+}
+
+.card{
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:24px;
+
+  backdrop-filter:blur(24px);
+
+  padding:20px;
+}
+
+.section-title{
+  margin-bottom:16px;
+
+  font-family:'Space Grotesk',sans-serif;
+}
+
+textarea{
+  width:100%;
+  min-height:220px;
+
+  resize:none;
+
+  border:none;
+  outline:none;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:1px solid var(--border);
+
+  color:var(--text);
+
+  font-size:15px;
+
+  font-family:'Inter',sans-serif;
+
+  line-height:1.6;
+}
+
+.controls{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+  gap:14px;
+
+  margin-top:18px;
+}
+
+.control-box{
+  background:
+    rgba(255,255,255,.03);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:16px;
+}
+
+.control-box label{
+  display:block;
+
+  margin-bottom:10px;
+
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+select,
+input[type="range"]{
+  width:100%;
+}
+
+select{
+  border:none;
+  outline:none;
+
+  padding:12px 14px;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:1px solid var(--border);
+
+  color:var(--text);
+
+  font-size:14px;
+}
+
+.range-wrap{
+  margin-top:10px;
+}
+
+.range-value{
+  margin-top:8px;
+
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+.buttons{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+  gap:14px;
+
+  margin-top:20px;
+}
+
+.btn{
+  border:none;
+  outline:none;
+
+  cursor:pointer;
+
+  padding:15px 18px;
+
+  border-radius:16px;
+
+  color:white;
+
+  font-weight:700;
+
+  font-size:15px;
+
+  transition:.25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.play{
+  background:
+    linear-gradient(
+      135deg,
+      #10b981,
+      #06b6d4
+    );
+}
+
+.stop{
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #f97316
+    );
+}
+
+.download{
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent2)
+    );
+}
+
+.info-card{
+  margin-top:22px;
+
+  background:
+    rgba(255,255,255,.03);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  color:var(--muted);
+
+  line-height:1.7;
+
+  font-size:14px;
+}
+
+.footer{
+  margin-top:34px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+@media(max-width:700px){
+
+  .hero h1{
+    font-size:28px;
+  }
+
+}
+
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>🎤 Озвучка текста</h1>
 
-    <textarea id="text" placeholder="Введите текст..."></textarea>
+<div class="container">
 
-    <select id="voiceSelect"></select>
+<header class="header">
 
-    <label>Скорость речи: <span id="speedValue">1</span>x</label>
-    <input type="range" id="speed" min="0.5" max="2" step="0.1" value="1">
+<div class="logo">
+blacknode305
+</div>
 
-    <div class="controls">
-      <button class="play" onclick="speakText()">▶ Воспроизвести</button>
-      <button class="stop" onclick="stopSpeech()">■ Остановить</button>
-      <button class="download" onclick="downloadText()">⬇ Скачать текст</button>
-    </div>
+<button
+  class="theme-toggle"
+  id="themeToggle"
+>
+☀️
+</button>
 
-    <audio id="audioPlayer" controls style="display:none;"></audio>
+</header>
 
-    <div class="note">
-      ⚠ Браузерный SpeechSynthesis API не позволяет надежно сохранить системный голос как MP3 напрямую во всех браузерах.
-      Эта версия сохраняет введённый текст в файл для дальнейшего использования в TTS-сервисах или офлайн-конвертерах.
-      Для полноценного сохранения аудио потребуется сторонний TTS API (Google Cloud, ElevenLabs, Azure и др.).
-    </div>
-  </div>
+<section class="hero">
 
-  <script>
-    const textInput = document.getElementById('text');
-    const voiceSelect = document.getElementById('voiceSelect');
-    const speedControl = document.getElementById('speed');
-    const speedValue = document.getElementById('speedValue');
+<h1>
+TTS Voice Generator
+</h1>
 
-    let voices = [];
+<p>
+Озвучка текста через SpeechSynthesis API
+</p>
 
-    function loadVoices() {
-      voices = speechSynthesis.getVoices();
-      voiceSelect.innerHTML = '';
+</section>
 
-      voices.forEach((voice, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = `${voice.name} (${voice.lang})`;
-        voiceSelect.appendChild(option);
-      });
-    }
+<div class="card">
 
-    speechSynthesis.onvoiceschanged = loadVoices;
+<h2 class="section-title">
+Введите текст
+</h2>
 
-    speedControl.addEventListener('input', () => {
-      speedValue.textContent = speedControl.value;
-    });
+<textarea
+  id="text"
+  placeholder="Введите текст для озвучки..."
+></textarea>
 
-    function speakText() {
-      const text = textInput.value.trim();
-      if (!text) {
-        alert('Введите текст.');
-        return;
+<div class="controls">
+
+<div class="control-box">
+
+<label>
+Выбор голоса
+</label>
+
+<select id="voiceSelect"></select>
+
+</div>
+
+<div class="control-box">
+
+<label>
+Скорость речи
+</label>
+
+<div class="range-wrap">
+
+<input
+  type="range"
+  id="speed"
+  min="0.5"
+  max="2"
+  step="0.1"
+  value="1"
+/>
+
+<div
+  class="range-value"
+  id="speedValue"
+>
+1x
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button
+  class="btn play"
+  onclick="speakText()"
+>
+▶ Воспроизвести
+</button>
+
+<button
+  class="btn stop"
+  onclick="stopSpeech()"
+>
+■ Остановить
+</button>
+
+<button
+  class="btn download"
+  onclick="downloadText()"
+>
+⬇ Скачать TXT
+</button>
+
+</div>
+
+<div class="info-card">
+
+⚠ Browser SpeechSynthesis API не позволяет стабильно сохранять системный голос как MP3 напрямую во всех браузерах.<br><br>
+
+Этот инструмент озвучивает текст через встроенные голоса устройства и позволяет скачать текст в TXT для дальнейшего использования в сторонних TTS API или офлайн-конвертерах.
+
+</div>
+
+</div>
+
+<footer class="footer">
+© 2026 blacknode305 • Voice Tools
+</footer>
+
+</div>
+
+<script>
+
+/* =========================
+   THEME
+========================= */
+
+const html =
+  document.documentElement;
+
+const themeToggle =
+  document.getElementById(
+    'themeToggle'
+  );
+
+const savedTheme =
+  localStorage.getItem(
+    'tts_theme'
+  ) || 'dark';
+
+setTheme(savedTheme);
+
+themeToggle.addEventListener(
+  'click',
+  ()=>{
+
+  const current =
+    html.getAttribute(
+      'data-theme'
+    );
+
+  const next =
+    current === 'dark'
+      ? 'light'
+      : 'dark';
+
+  setTheme(next);
+
+});
+
+function setTheme(theme){
+
+  html.setAttribute(
+    'data-theme',
+    theme
+  );
+
+  localStorage.setItem(
+    'tts_theme',
+    theme
+  );
+
+  themeToggle.textContent =
+    theme === 'dark'
+      ? '☀️'
+      : '🌙';
+
+}
+
+/* =========================
+   TTS
+========================= */
+
+const textInput =
+  document.getElementById(
+    'text'
+  );
+
+const voiceSelect =
+  document.getElementById(
+    'voiceSelect'
+  );
+
+const speedControl =
+  document.getElementById(
+    'speed'
+  );
+
+const speedValue =
+  document.getElementById(
+    'speedValue'
+  );
+
+let voices = [];
+
+function loadVoices(){
+
+  voices =
+    speechSynthesis.getVoices();
+
+  voiceSelect.innerHTML =
+    '';
+
+  voices.forEach(
+    (voice,index)=>{
+
+    const option =
+      document.createElement(
+        'option'
+      );
+
+    option.value = index;
+
+    option.textContent =
+      `${voice.name} (${voice.lang})`;
+
+    voiceSelect.appendChild(
+      option
+    );
+
+  });
+
+}
+
+speechSynthesis.onvoiceschanged =
+  loadVoices;
+
+loadVoices();
+
+/* =========================
+   SPEED
+========================= */
+
+speedControl.addEventListener(
+  'input',
+  ()=>{
+
+  speedValue.textContent =
+    `${speedControl.value}x`;
+
+});
+
+/* =========================
+   PLAY
+========================= */
+
+function speakText(){
+
+  const text =
+    textInput.value.trim();
+
+  if(!text){
+
+    alert(
+      'Введите текст.'
+    );
+
+    return;
+
+  }
+
+  speechSynthesis.cancel();
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      text
+    );
+
+  const selectedVoice =
+    voices[
+      voiceSelect.value
+    ];
+
+  if(selectedVoice){
+
+    utterance.voice =
+      selectedVoice;
+
+  }
+
+  utterance.rate =
+    parseFloat(
+      speedControl.value
+    );
+
+  speechSynthesis.speak(
+    utterance
+  );
+
+}
+
+/* =========================
+   STOP
+========================= */
+
+function stopSpeech(){
+
+  speechSynthesis.cancel();
+
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+function downloadText(){
+
+  const text =
+    textInput.value.trim();
+
+  if(!text){
+
+    alert(
+      'Введите текст.'
+    );
+
+    return;
+
+  }
+
+  const blob =
+    new Blob(
+      [text],
+      {
+        type:'text/plain'
       }
+    );
 
-      speechSynthesis.cancel();
+  const url =
+    URL.createObjectURL(
+      blob
+    );
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      const selectedVoice = voices[voiceSelect.value];
+  const a =
+    document.createElement(
+      'a'
+    );
 
-      if (selectedVoice) utterance.voice = selectedVoice;
-      utterance.rate = parseFloat(speedControl.value);
+  a.href = url;
 
-      speechSynthesis.speak(utterance);
-    }
+  a.download =
+    'tts_text.txt';
 
-    function stopSpeech() {
-      speechSynthesis.cancel();
-    }
+  document.body.appendChild(a);
 
-    // Скачивание текста как TXT
-    function downloadText() {
-      const text = textInput.value.trim();
+  a.click();
 
-      if (!text) {
-        alert('Введите текст для сохранения.');
-        return;
-      }
+  document.body.removeChild(a);
 
-      const blob = new Blob([text], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
+  URL.revokeObjectURL(url);
 
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'tts_text.txt';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+}
 
-      URL.revokeObjectURL(url);
-    }
+</script>
 
-    loadVoices();
-  </script>
 </body>
 </html>

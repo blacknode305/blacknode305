@@ -4,16 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>blacknode305 - Проигрыватель</title>
+<title>blacknode305 • Audio Player</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
   margin:0;
@@ -22,34 +19,27 @@
 }
 
 :root{
-  --bg:#070b14;
+  --bg:#0f0f13;
 
-  --accent:#ff7a00;
-  --accent2:#ff3d81;
-  --accent3:#00d4ff;
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
 
-  --glass:rgba(255,255,255,.05);
-  --border:rgba(255,255,255,.08);
+  --card:rgba(20,20,28,.72);
 
   --text:#ffffff;
-  --muted:#9ca3af;
-}
+  --muted:#9aa0b4;
 
-/* =========================
-   BODY
-========================= */
+  --border:rgba(255,255,255,.08);
+}
 
 body{
   min-height:100vh;
+
   overflow:hidden;
 
   font-family:'Inter',sans-serif;
 
-  background:
-    radial-gradient(circle at top left, rgba(255,122,0,.12), transparent 30%),
-    radial-gradient(circle at top right, rgba(0,212,255,.10), transparent 30%),
-    radial-gradient(circle at bottom, rgba(255,61,129,.10), transparent 35%),
-    var(--bg);
+  background:var(--bg);
 
   color:var(--text);
 
@@ -57,104 +47,118 @@ body{
   justify-content:center;
   align-items:center;
 
+  padding:20px;
+
   position:relative;
 }
 
-/* =========================
-   CANVAS
-========================= */
+body::before{
+  content:'';
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.16), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.16), transparent 40%);
+
+  z-index:-2;
+}
 
 #bg{
   position:fixed;
   inset:0;
-  z-index:-2;
+
+  z-index:-1;
 }
 
-/* =========================
-   GLASS CARD
-========================= */
-
 .player{
-  width:min(92vw, 500px);
+  width:min(94vw,520px);
 
-  padding:34px 28px;
+  background:var(--card);
 
-  border-radius:30px;
+  border:1px solid var(--border);
 
-  background:rgba(10,15,25,.55);
+  border-radius:32px;
 
-  border:1px solid rgba(255,255,255,.08);
+  padding:30px 24px;
 
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(24px);
 
   box-shadow:
     0 10px 40px rgba(0,0,0,.45),
-    0 0 50px rgba(255,122,0,.08);
+    0 0 40px rgba(139,92,246,.12);
 
   text-align:center;
-
-  animation:show 1s ease forwards;
 }
 
-/* =========================
-   AVATAR
-========================= */
+.logo{
+  font-family:'Space Grotesk',sans-serif;
 
-.avatar{
-  width:130px;
-  height:130px;
+  font-size:28px;
+  font-weight:700;
 
-  margin:auto;
-
-  border-radius:50%;
-
-  padding:4px;
+  margin-bottom:18px;
 
   background:
     linear-gradient(
       135deg,
       var(--accent),
-      var(--accent2),
-      var(--accent3)
-    );
-
-  box-shadow:
-    0 0 40px rgba(255,122,0,.28);
-
-  animation:float 5s ease-in-out infinite;
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-
-  border-radius:50%;
-
-  object-fit:cover;
-}
-
-/* =========================
-   TEXT
-========================= */
-
-h1{
-  margin-top:18px;
-
-  font-size:2.5rem;
-  font-weight:800;
-
-  letter-spacing:-1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #fff,
-      #ffb067,
-      #ffffff
+      var(--accent2)
     );
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+/* =========================
+   CIRCLE VISUALIZER
+========================= */
+
+.visual-circle-wrap{
+
+  width:240px;
+  height:240px;
+
+  margin:auto;
+
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(139,92,246,.18),
+      rgba(6,182,212,.08),
+      transparent
+    );
+
+  box-shadow:
+    0 0 50px rgba(139,92,246,.22);
+
+  animation:float 5s ease-in-out infinite;
+}
+
+#circleVisualizer{
+
+  width:100%;
+  height:100%;
+
+  border-radius:50%;
+}
+
+h1{
+  margin-top:22px;
+
+  font-size:2.2rem;
+  font-weight:800;
+
+  letter-spacing:-1px;
 }
 
 .bio{
@@ -162,50 +166,84 @@ h1{
 
   color:var(--muted);
 
-  font-size:.95rem;
-  font-weight:500;
+  line-height:1.6;
 }
 
-/* =========================
-   NOW PLAYING
-========================= */
-
-.track-name{
+.track-box{
   margin-top:24px;
 
-  padding:16px 18px;
+  padding:18px;
 
-  border-radius:20px;
+  border-radius:22px;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255,255,255,.06),
+      rgba(255,255,255,.05),
       rgba(255,255,255,.03)
     );
 
   border:1px solid rgba(255,255,255,.06);
-
-  font-weight:700;
-
-  box-shadow:
-    inset 0 0 20px rgba(255,255,255,.02);
 }
 
-.track-name span{
+.track-box span{
   display:block;
 
   margin-bottom:6px;
 
   font-size:.72rem;
+
   letter-spacing:2px;
 
-  color:#ffb067;
+  color:#b69cff;
 }
 
-/* =========================
-   CONTROLS
-========================= */
+.track-name{
+  font-size:1rem;
+  font-weight:700;
+
+  word-break:break-word;
+}
+
+.progress-wrap{
+  margin-top:20px;
+}
+
+.progress{
+  width:100%;
+  height:8px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.08);
+
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--accent),
+      var(--accent2)
+    );
+
+  border-radius:999px;
+}
+
+.time{
+  margin-top:8px;
+
+  display:flex;
+  justify-content:space-between;
+
+  font-size:.82rem;
+
+  color:var(--muted);
+}
 
 .controls{
   margin-top:24px;
@@ -223,10 +261,10 @@ h1{
 
   cursor:pointer;
 
-  width:58px;
-  height:58px;
+  width:60px;
+  height:60px;
 
-  border-radius:18px;
+  border-radius:20px;
 
   background:
     linear-gradient(
@@ -241,23 +279,20 @@ h1{
 
   font-size:1.2rem;
 
-  transition:.25s ease;
-
-  backdrop-filter:blur(12px);
+  transition:.2s ease;
 }
 
 .btn:hover{
-  transform:translateY(-4px) scale(1.06);
-
-  box-shadow:
-    0 10px 25px rgba(255,122,0,.25);
-
-  border-color:rgba(255,122,0,.4);
+  transform:translateY(-4px);
 }
 
-.btn.play{
-  width:72px;
-  height:72px;
+.btn:active{
+  transform:scale(.92);
+}
+
+.play{
+  width:74px;
+  height:74px;
 
   border-radius:24px;
 
@@ -268,15 +303,48 @@ h1{
       var(--accent2)
     );
 
-  font-size:1.4rem;
+  font-size:1.5rem;
 
   box-shadow:
-    0 12px 30px rgba(255,122,0,.35);
+    0 10px 30px rgba(139,92,246,.35);
 }
 
-/* =========================
-   FOOTER
-========================= */
+.upload{
+  margin-top:24px;
+}
+
+.file-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:14px 20px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent2)
+    );
+
+  color:white;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.file-label:hover{
+  transform:translateY(-3px);
+}
+
+.file-label input{
+  display:none;
+}
 
 .footer{
   margin-top:24px;
@@ -286,23 +354,8 @@ h1{
   font-size:.82rem;
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
-
-@keyframes show{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
 @keyframes float{
+
   0%,100%{
     transform:translateY(0px);
   }
@@ -310,25 +363,22 @@ h1{
   50%{
     transform:translateY(-8px);
   }
-}
 
-/* =========================
-   MOBILE
-========================= */
+}
 
 @media(max-width:700px){
 
   .player{
-    padding:28px 18px;
+    padding:24px 18px;
   }
 
   h1{
-    font-size:2rem;
+    font-size:1.9rem;
   }
 
-  .avatar{
-    width:110px;
-    height:110px;
+  .visual-circle-wrap{
+    width:210px;
+    height:210px;
   }
 
 }
@@ -342,34 +392,103 @@ h1{
 
 <div class="player">
 
-  <div class="avatar">
-    <img src="https://github.com/blacknode305.png" alt="">
+  <div class="logo">
+    blacknode305
   </div>
 
-  <h1>blacknode305</h1>
+  <div class="visual-circle-wrap">
+
+    <canvas id="circleVisualizer"></canvas>
+
+  </div>
+
+  <h1>
+    Audio Player
+  </h1>
 
   <div class="bio">
-    Cyber Audio Visualizer • Dubstep UI • Web Audio API
+    Cyber Visualizer • Web Audio API • Local Files
   </div>
 
-  <div class="track-name" id="trackName">
-    <span>NOW PLAYING</span>
-    Loading...
+  <div class="track-box">
+
+    <span>
+      NOW PLAYING
+    </span>
+
+    <div
+      class="track-name"
+      id="trackName"
+    >
+      Нет выбранного трека
+    </div>
+
+  </div>
+
+  <div class="progress-wrap">
+
+    <div class="progress">
+
+      <div
+        class="progress-bar"
+        id="progressBar"
+      ></div>
+
+    </div>
+
+    <div class="time">
+
+      <div id="currentTime">
+        0:00
+      </div>
+
+      <div id="duration">
+        0:00
+      </div>
+
+    </div>
+
   </div>
 
   <div class="controls">
 
-    <button class="btn" id="prevBtn">
+    <button
+      class="btn"
+      id="prevBtn"
+    >
       ⏮
     </button>
 
-    <button class="btn play" id="playBtn">
+    <button
+      class="btn play"
+      id="playBtn"
+    >
       ▶
     </button>
 
-    <button class="btn" id="nextBtn">
+    <button
+      class="btn"
+      id="nextBtn"
+    >
       ⏭
     </button>
+
+  </div>
+
+  <div class="upload">
+
+    <label class="file-label">
+
+      Выбрать музыку
+
+      <input
+        type="file"
+        id="fileInput"
+        accept="audio/*"
+        multiple
+      >
+
+    </label>
 
   </div>
 
@@ -379,443 +498,367 @@ h1{
 
 </div>
 
-<audio id="music"></audio>
+<audio id="audio"></audio>
 
 <script>
 
-// ===============================
-// CANVAS
-// ===============================
+/* =========================
+   BACKGROUND
+========================= */
 
-const canvas = document.getElementById('bg');
-const ctx = canvas.getContext('2d');
+const canvas =
+  document.getElementById('bg');
+
+const ctx =
+  canvas.getContext('2d');
 
 function resizeCanvas(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+
+  canvas.width =
+    window.innerWidth;
+
+  canvas.height =
+    window.innerHeight;
+
 }
 
 resizeCanvas();
 
-window.addEventListener('resize', resizeCanvas);
+window.addEventListener(
+  'resize',
+  resizeCanvas
+);
 
-// ===============================
-// AUDIO
-// ===============================
+/* =========================
+   AUDIO
+========================= */
 
-const audio = document.getElementById('music');
+const audio =
+  document.getElementById(
+    'audio'
+  );
 
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const audioCtx =
+  new (
+    window.AudioContext ||
+    window.webkitAudioContext
+  )();
 
-const analyser = audioCtx.createAnalyser();
+const analyser =
+  audioCtx.createAnalyser();
 
-analyser.fftSize = 512;
+analyser.fftSize = 256;
 
-const source = audioCtx.createMediaElementSource(audio);
+const source =
+  audioCtx.createMediaElementSource(
+    audio
+  );
 
 source.connect(analyser);
-analyser.connect(audioCtx.destination);
 
-const bufferLength = analyser.frequencyBinCount;
+analyser.connect(
+  audioCtx.destination
+);
 
-const dataArray = new Uint8Array(bufferLength);
+const bufferLength =
+  analyser.frequencyBinCount;
 
-// ===============================
-// PLAYLIST
-// ===============================
+const dataArray =
+  new Uint8Array(bufferLength);
 
-const playlist = [
+/* =========================
+   PLAYLIST
+========================= */
 
-  './../../src/audio/Bad Legs - Repeat.mp3',
-
-  './../../src/audio/Big Florida - TURN IT.mp3',
-
-  './../../src/audio/GANGSTER ON WHEELS - Power.mp3',
-
-  './../../src/audio/Katana Zero - All For Now.mp3',
-
-  './../../src/audio/Airixis - Universe.mp3',
-
-  './../../src/audio/Katana ZERO - Rain On Brick.mp3',
-
-  './../../src/audio/Katana Zero - Full Confession.mp3'
-
-];
+let playlist = [];
 
 let currentTrack = 0;
 
-// ===============================
-// ELEMENTS
-// ===============================
+/* =========================
+   ELEMENTS
+========================= */
 
-const trackName = document.getElementById('trackName');
+const trackName =
+  document.getElementById(
+    'trackName'
+  );
 
-const playBtn = document.getElementById('playBtn');
+const playBtn =
+  document.getElementById(
+    'playBtn'
+  );
 
-const nextBtn = document.getElementById('nextBtn');
+const nextBtn =
+  document.getElementById(
+    'nextBtn'
+  );
 
-const prevBtn = document.getElementById('prevBtn');
+const prevBtn =
+  document.getElementById(
+    'prevBtn'
+  );
 
-// ===============================
-// TRACK NAME
-// ===============================
+const progressBar =
+  document.getElementById(
+    'progressBar'
+  );
 
-function updateTrackName(){
+const currentTimeText =
+  document.getElementById(
+    'currentTime'
+  );
 
-  const name = playlist[currentTrack]
-    .split('/')
-    .pop()
-    .replace('.mp3','');
+const durationText =
+  document.getElementById(
+    'duration'
+  );
 
-  trackName.innerHTML = `
-    <span>NOW PLAYING</span>
-    ${name}
-  `;
+/* =========================
+   FILE INPUT
+========================= */
+
+document.getElementById(
+  'fileInput'
+).addEventListener(
+  'change',
+  function(e){
+
+  const files =
+    [...e.target.files];
+
+  if(!files.length)
+    return;
+
+  playlist = files;
+
+  currentTrack = 0;
+
+  loadTrack(currentTrack);
+
+});
+
+/* =========================
+   LOAD TRACK
+========================= */
+
+function loadTrack(index){
+
+  const file =
+    playlist[index];
+
+  if(!file)
+    return;
+
+  const url =
+    URL.createObjectURL(file);
+
+  audio.src = url;
+
+  trackName.innerText =
+    file.name;
+
+  playTrack();
 
 }
 
-// ===============================
-// PLAY TRACK
-// ===============================
+/* =========================
+   PLAY
+========================= */
 
-function playTrack(index){
+async function playTrack(){
 
-  audio.src = playlist[index];
+  if(
+    audioCtx.state === 'suspended'
+  ){
 
-  updateTrackName();
+    await audioCtx.resume();
 
-  audio.play()
-    .then(() => {
-      playBtn.innerHTML = '❚❚';
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  }
+
+  audio.play();
+
+  playBtn.innerHTML = '❚❚';
 
 }
 
-// ===============================
-// PLAY / PAUSE
-// ===============================
+/* =========================
+   PAUSE
+========================= */
 
-function togglePlay(){
+function pauseTrack(){
+
+  audio.pause();
+
+  playBtn.innerHTML = '▶';
+
+}
+
+/* =========================
+   TOGGLE
+========================= */
+
+playBtn.addEventListener(
+  'click',
+  ()=>{
 
   if(audio.paused){
 
-    audio.play();
-
-    playBtn.innerHTML = '❚❚';
+    playTrack();
 
   }else{
 
-    audio.pause();
-
-    playBtn.innerHTML = '▶';
+    pauseTrack();
 
   }
 
-}
+});
 
-// ===============================
-// NEXT
-// ===============================
+/* =========================
+   NEXT
+========================= */
 
-function nextTrack(){
+nextBtn.addEventListener(
+  'click',
+  ()=>{
+
+  if(!playlist.length)
+    return;
 
   currentTrack++;
 
-  if(currentTrack >= playlist.length){
+  if(
+    currentTrack >= playlist.length
+  ){
+
     currentTrack = 0;
+
   }
 
-  playTrack(currentTrack);
+  loadTrack(currentTrack);
 
-}
+});
 
-// ===============================
-// PREV
-// ===============================
+/* =========================
+   PREV
+========================= */
 
-function prevTrack(){
+prevBtn.addEventListener(
+  'click',
+  ()=>{
+
+  if(!playlist.length)
+    return;
 
   currentTrack--;
 
   if(currentTrack < 0){
-    currentTrack = playlist.length - 1;
+
+    currentTrack =
+      playlist.length - 1;
+
   }
 
-  playTrack(currentTrack);
-
-}
-
-// ===============================
-// EVENTS
-// ===============================
-
-playBtn.addEventListener('click', async () => {
-
-  if(audioCtx.state === 'suspended'){
-    await audioCtx.resume();
-  }
-
-  togglePlay();
+  loadTrack(currentTrack);
 
 });
 
-nextBtn.addEventListener('click', nextTrack);
+/* =========================
+   AUTO NEXT
+========================= */
 
-prevBtn.addEventListener('click', prevTrack);
+audio.addEventListener(
+  'ended',
+  ()=>{
 
-audio.addEventListener('ended', nextTrack);
+  nextBtn.click();
 
-// ===============================
-// PARTICLES
-// ===============================
+});
+
+/* =========================
+   TIME
+========================= */
+
+function formatTime(sec){
+
+  if(isNaN(sec))
+    return '0:00';
+
+  const minutes =
+    Math.floor(sec / 60);
+
+  const seconds =
+    Math.floor(sec % 60)
+      .toString()
+      .padStart(2,'0');
+
+  return `${minutes}:${seconds}`;
+
+}
+
+audio.addEventListener(
+  'timeupdate',
+  ()=>{
+
+  const progress =
+    (
+      audio.currentTime /
+      audio.duration
+    ) * 100;
+
+  progressBar.style.width =
+    `${progress || 0}%`;
+
+  currentTimeText.innerText =
+    formatTime(
+      audio.currentTime
+    );
+
+  durationText.innerText =
+    formatTime(
+      audio.duration
+    );
+
+});
+
+/* =========================
+   PARTICLES
+========================= */
 
 const particles = [];
 
-for(let i = 0; i < 100; i++){
+for(let i = 0; i < 120; i++){
 
   particles.push({
 
-    x: Math.random() * window.innerWidth,
+    x:
+      Math.random() *
+      window.innerWidth,
 
-    y: Math.random() * window.innerHeight,
+    y:
+      Math.random() *
+      window.innerHeight,
 
-    size: Math.random() * 3 + 1,
+    size:
+      Math.random() * 3 + 1,
 
-    speed: Math.random() * 0.8 + 0.2,
+    speed:
+      Math.random() * .7 + .2,
 
-    alpha: Math.random()
-
-  });
-
-}
-
-// ===============================
-// PARTICLES DRAW
-// ===============================
-
-function drawParticles(){
-
-  particles.forEach(p => {
-
-    p.y -= p.speed;
-
-    if(p.y < -10){
-
-      p.y = canvas.height + 10;
-
-      p.x = Math.random() * canvas.width;
-
-    }
-
-    ctx.beginPath();
-
-    ctx.fillStyle = `rgba(0,212,255,${p.alpha * 0.35})`;
-
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-
-    ctx.fill();
+    alpha:
+      Math.random()
 
   });
 
 }
 
-// ===============================
-// GRID
-// ===============================
+function drawBackground(){
 
-function drawGrid(){
-
-  ctx.strokeStyle = 'rgba(255,255,255,.03)';
-  ctx.lineWidth = 1;
-
-  for(let x = 0; x < canvas.width; x += 40){
-
-    ctx.beginPath();
-
-    ctx.moveTo(x,0);
-
-    ctx.lineTo(x,canvas.height);
-
-    ctx.stroke();
-
-  }
-
-  for(let y = 0; y < canvas.height; y += 40){
-
-    ctx.beginPath();
-
-    ctx.moveTo(0,y);
-
-    ctx.lineTo(canvas.width,y);
-
-    ctx.stroke();
-
-  }
-
-}
-
-// ===============================
-// WAVES
-// ===============================
-
-function drawWaves(){
-
-  const time = Date.now() * 0.0015;
-
-  for(let layer = 0; layer < 4; layer++){
-
-    ctx.beginPath();
-
-    for(let x = 0; x < canvas.width; x += 6){
-
-      const y =
-        canvas.height / 2 +
-        Math.sin(x * 0.012 + time + layer) *
-        (16 + layer * 8);
-
-      if(x === 0){
-        ctx.moveTo(x,y);
-      }else{
-        ctx.lineTo(x,y);
-      }
-
-    }
-
-    ctx.strokeStyle =
-      `rgba(0,212,255,${0.04 + layer * 0.03})`;
-
-    ctx.lineWidth = 2;
-
-    ctx.stroke();
-
-  }
-
-}
-
-// ===============================
-// CENTER GLOW
-// ===============================
-
-function drawCenterGlow(avg){
-
-  const gradient = ctx.createRadialGradient(
-    canvas.width/2,
-    canvas.height/2,
-    20,
-    canvas.width/2,
-    canvas.height/2,
-    280
+  requestAnimationFrame(
+    drawBackground
   );
 
-  gradient.addColorStop(
-    0,
-    `rgba(255,122,0,${0.15 + avg * 0.002})`
-  );
-
-  gradient.addColorStop(
-    0.5,
-    `rgba(255,61,129,${0.08 + avg * 0.001})`
-  );
-
-  gradient.addColorStop(
-    1,
-    `rgba(0,0,0,0)`
-  );
-
-  ctx.fillStyle = gradient;
-
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-}
-
-// ===============================
-// BARS
-// ===============================
-
-function drawBars(){
-
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-
-  const visibleBars = 90;
-
-  const barWidth = 6;
-
-  const gap = 3;
-
-  let avg = 0;
-
-  for(let i = 0; i < visibleBars; i++){
-
-    const value = dataArray[i];
-
-    avg += value;
-
-    const percent = value / 255;
-
-    const barHeight = percent * 150;
-
-    const xLeft =
-      centerX - (i * (barWidth + gap));
-
-    const xRight =
-      centerX + (i * (barWidth + gap));
-
-    const gradient = ctx.createLinearGradient(
-      0,
-      centerY - barHeight,
-      0,
-      centerY + barHeight
-    );
-
-    gradient.addColorStop(0,'#00d4ff');
-    gradient.addColorStop(.5,'#ff3d81');
-    gradient.addColorStop(1,'#ff7a00');
-
-    ctx.shadowBlur = 25;
-
-    ctx.shadowColor = '#ff3d81';
-
-    ctx.fillStyle = gradient;
-
-    ctx.fillRect(
-      xLeft,
-      centerY - barHeight / 2,
-      barWidth,
-      barHeight
-    );
-
-    ctx.fillRect(
-      xRight,
-      centerY - barHeight / 2,
-      barWidth,
-      barHeight
-    );
-
-  }
-
-  avg /= visibleBars;
-
-  drawCenterGlow(avg);
-
-  ctx.shadowBlur = 0;
-
-}
-
-// ===============================
-// DRAW LOOP
-// ===============================
-
-function draw(){
-
-  requestAnimationFrame(draw);
-
-  analyser.getByteFrequencyData(dataArray);
-
-  ctx.fillStyle = 'rgba(7,10,16,.22)';
+  ctx.fillStyle =
+    'rgba(7,10,16,.20)';
 
   ctx.fillRect(
     0,
@@ -824,23 +867,200 @@ function draw(){
     canvas.height
   );
 
-  drawGrid();
+  particles.forEach(p=>{
 
-  drawParticles();
+    p.y -= p.speed;
 
-  drawWaves();
+    if(p.y < -10){
 
-  drawBars();
+      p.y =
+        canvas.height + 10;
+
+      p.x =
+        Math.random() *
+        canvas.width;
+
+    }
+
+    ctx.beginPath();
+
+    ctx.fillStyle =
+      `rgba(6,182,212,${
+        p.alpha * .35
+      })`;
+
+    ctx.arc(
+      p.x,
+      p.y,
+      p.size,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  });
 
 }
 
-draw();
+drawBackground();
 
-// ===============================
-// START
-// ===============================
+/* =========================
+   CIRCLE VISUALIZER
+========================= */
 
-playTrack(currentTrack);
+const circleCanvas =
+  document.getElementById(
+    'circleVisualizer'
+  );
+
+const circleCtx =
+  circleCanvas.getContext('2d');
+
+function resizeCircle(){
+
+  circleCanvas.width = 240;
+  circleCanvas.height = 240;
+
+}
+
+resizeCircle();
+
+function drawCircleVisualizer(){
+
+  requestAnimationFrame(
+    drawCircleVisualizer
+  );
+
+  analyser.getByteFrequencyData(
+    dataArray
+  );
+
+  circleCtx.clearRect(
+    0,
+    0,
+    circleCanvas.width,
+    circleCanvas.height
+  );
+
+  const cx =
+    circleCanvas.width / 2;
+
+  const cy =
+    circleCanvas.height / 2;
+
+  const radius = 65;
+
+  const bars = 120;
+
+  for(let i = 0; i < bars; i++){
+
+    const value =
+      dataArray[i];
+
+    const percent =
+      value / 255;
+
+    const barHeight =
+      20 + percent * 50;
+
+    const angle =
+      (Math.PI * 2 / bars) * i;
+
+    const x1 =
+      cx + Math.cos(angle) * radius;
+
+    const y1 =
+      cy + Math.sin(angle) * radius;
+
+    const x2 =
+      cx + Math.cos(angle) *
+      (radius + barHeight);
+
+    const y2 =
+      cy + Math.sin(angle) *
+      (radius + barHeight);
+
+    const gradient =
+      circleCtx.createLinearGradient(
+        x1,
+        y1,
+        x2,
+        y2
+      );
+
+    gradient.addColorStop(
+      0,
+      '#8b5cf6'
+    );
+
+    gradient.addColorStop(
+      1,
+      '#06b6d4'
+    );
+
+    circleCtx.strokeStyle =
+      gradient;
+
+    circleCtx.lineWidth = 4;
+
+    circleCtx.lineCap =
+      'round';
+
+    circleCtx.beginPath();
+
+    circleCtx.moveTo(
+      x1,
+      y1
+    );
+
+    circleCtx.lineTo(
+      x2,
+      y2
+    );
+
+    circleCtx.stroke();
+
+  }
+
+  const glow =
+    circleCtx.createRadialGradient(
+      cx,
+      cy,
+      10,
+      cx,
+      cy,
+      70
+    );
+
+  glow.addColorStop(
+    0,
+    'rgba(139,92,246,.35)'
+  );
+
+  glow.addColorStop(
+    1,
+    'rgba(0,0,0,0)'
+  );
+
+  circleCtx.fillStyle =
+    glow;
+
+  circleCtx.beginPath();
+
+  circleCtx.arc(
+    cx,
+    cy,
+    70,
+    0,
+    Math.PI * 2
+  );
+
+  circleCtx.fill();
+
+}
+
+drawCircleVisualizer();
 
 </script>
 

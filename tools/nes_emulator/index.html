@@ -1,228 +1,915 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NES Emulator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <style>
-    body{
-      margin:0;
-      background:#0f172a;
-      color:white;
-      font-family:Arial,sans-serif;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:20px;
-    }
+<title>blacknode305 • NES Emulator</title>
 
-    h1{
-      margin-bottom:20px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .container{
-      width:100%;
-      max-width:900px;
-      background:#111827;
-      border-radius:20px;
-      padding:20px;
-      box-sizing:border-box;
-      box-shadow:0 10px 30px rgba(0,0,0,.4);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    canvas{
-      width:100%;
-      max-width:768px;
-      image-rendering:pixelated;
-      border-radius:12px;
-      background:black;
-      border:2px solid #374151;
-    }
+<style>
 
-    .buttons{
-      margin-top:20px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
 
-    button,
-    input[type=file]{
-      background:#2563eb;
-      border:none;
-      color:white;
-      padding:12px 18px;
-      border-radius:12px;
-      cursor:pointer;
-      font-size:16px;
-    }
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
 
-    button:hover{
-      background:#1d4ed8;
-    }
+  --border:rgba(255,255,255,.08);
+}
 
-    .info{
-      margin-top:20px;
-      color:#9ca3af;
-      line-height:1.6;
-    }
+[data-theme="light"]{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,.82);
+  --text:#1e293b;
+  --muted:#64748b;
 
-    .controls{
-      margin-top:20px;
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      width:100%;
-      max-width:400px;
-    }
+  --border:rgba(0,0,0,.08);
+}
 
-    .control{
-      background:#1f2937;
-      padding:12px;
-      border-radius:12px;
-      text-align:center;
-    }
-  </style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+
+  background:var(--bg);
+  color:var(--text);
+
+  min-height:100vh;
+
+  padding:24px 14px;
+
+  transition:.35s ease;
+
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+
+  z-index:-1;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:30px;
+}
+
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:26px;
+  font-weight:700;
+
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.theme-toggle{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  background:var(--card);
+
+  color:var(--text);
+
+  font-size:18px;
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(20px);
+
+  transition:.25s ease;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.06);
+}
+
+.hero{
+  margin-bottom:24px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:34px;
+
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.card{
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  backdrop-filter:blur(24px);
+
+  padding:18px;
+
+  margin-bottom:22px;
+}
+
+.screen-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+canvas{
+  width:100%;
+  max-width:768px;
+
+  image-rendering:pixelated;
+
+  border-radius:18px;
+
+  background:black;
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,.4),
+    0 0 25px rgba(139,92,246,.15);
+}
+
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+
+  margin-top:20px;
+}
+
+.select,
+.btn,
+.file-label{
+  border:none;
+  outline:none;
+}
+
+.file-label,
+.btn{
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent2)
+    );
+
+  color:white;
+
+  padding:12px 18px;
+
+  border-radius:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.btn:hover,
+.file-label:hover{
+  transform:translateY(-2px);
+}
+
+.file-label input{
+  display:none;
+}
+
+.gamepad{
+  margin-top:30px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:40px;
+
+  flex-wrap:wrap;
+}
+
+.dpad{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,70px);
+
+  gap:10px;
+}
+
+.pad-btn{
+  width:70px;
+  height:70px;
+
+  border:none;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.05);
+
+  color:white;
+
+  font-size:24px;
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(10px);
+
+  cursor:pointer;
+
+  transition:.12s ease;
+
+  user-select:none;
+}
+
+.pad-btn:active,
+.pad-btn.active{
+  transform:scale(.92);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent2)
+    );
+
+  box-shadow:
+    0 0 20px rgba(139,92,246,.5);
+}
+
+.empty{
+  visibility:hidden;
+}
+
+.ab-buttons{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.ab-btn{
+  width:90px;
+  height:90px;
+
+  border-radius:999px;
+
+  border:none;
+
+  color:white;
+
+  font-size:28px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.12s ease;
+}
+
+.a-btn{
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #7c3aed
+    );
+}
+
+.b-btn{
+  background:
+    linear-gradient(
+      135deg,
+      #06b6d4,
+      #0891b2
+    );
+}
+
+.ab-btn:active,
+.ab-btn.active{
+  transform:scale(.9);
+}
+
+.bottom-controls{
+  margin-top:25px;
+
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.small-btn{
+  min-width:120px;
+}
+
+.info{
+  margin-top:24px;
+
+  color:var(--muted);
+
+  line-height:1.7;
+
+  text-align:center;
+}
+
+.footer{
+  margin-top:34px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:700px){
+
+  .gamepad{
+    gap:20px;
+  }
+
+  .pad-btn{
+    width:58px;
+    height:58px;
+  }
+
+  .ab-btn{
+    width:74px;
+    height:74px;
+  }
+
+}
+
+</style>
 </head>
 <body>
 
-  <h1>NES Emulator</h1>
+<div class="container">
 
-  <div class="container">
+<header class="header">
 
-    <!-- Экран -->
-    <canvas id="emulator"></canvas>
+<div class="logo">
+blacknode305
+</div>
 
-    <!-- Кнопки -->
-    <div class="buttons">
-      <input type="file" id="romInput" accept=".nes">
-      <button id="startBtn">Запустить</button>
-      <button id="fullscreenBtn">Fullscreen</button>
-    </div>
+<button
+  class="theme-toggle"
+  id="themeToggle"
+>
+☀️
+</button>
 
-    <!-- Управление -->
-    <div class="controls">
-      <div class="control">↑ ↓ ← → — D-Pad</div>
-      <div class="control">Z = A</div>
-      <div class="control">X = B</div>
-      <div class="control">Enter = Start</div>
-    </div>
+</header>
 
-    <div class="info">
-      Для работы нужен NES emulator core.<br>
-      Этот пример подключает JSNES.<br><br>
+<section class="hero">
 
-      Добавь библиотеку:
-      https://github.com/bfirsh/jsnes
-    </div>
+<h1>
+NES Emulator
+</h1>
 
-  </div>
+<p>
+JSNES Emulator с экранными кнопками и звуком
+</p>
 
-  <!-- JSNES -->
-  <script src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+</section>
 
-  <script>
-    const canvas = document.getElementById('emulator');
-    const ctx = canvas.getContext('2d');
+<div class="card">
 
-    canvas.width = 256;
-    canvas.height = 240;
+<div class="screen-wrap">
 
-    const imageData = ctx.getImageData(0, 0, 256, 240);
+<canvas id="emulator"></canvas>
 
-    const nes = new jsnes.NES({
-      onFrame: function(frameBuffer) {
+</div>
 
-        for(let i = 0; i < frameBuffer.length; i++) {
+<div class="controls">
 
-          const pixel = frameBuffer[i];
+<label class="file-label">
 
-          imageData.data[i * 4 + 0] = (pixel >> 16) & 0xFF;
-          imageData.data[i * 4 + 1] = (pixel >> 8) & 0xFF;
-          imageData.data[i * 4 + 2] = pixel & 0xFF;
-          imageData.data[i * 4 + 3] = 0xFF;
-        }
+Загрузить ROM
 
-        ctx.putImageData(imageData, 0, 0);
-      }
-    });
+<input
+  type="file"
+  id="romInput"
+  accept=".nes"
+/>
 
-    let romData = null;
+</label>
 
-    // Загрузка ROM
-    document.getElementById('romInput')
-      .addEventListener('change', function(e){
+<button
+  class="btn"
+  id="startBtn"
+>
+Запустить
+</button>
 
-      const file = e.target.files[0];
+<button
+  class="btn"
+  id="fullscreenBtn"
+>
+Fullscreen
+</button>
 
-      if(!file) return;
+</div>
 
-      const reader = new FileReader();
+<div class="gamepad">
 
-      reader.onload = function() {
-        romData = reader.result;
-        alert('ROM загружен');
-      };
+<div class="dpad">
 
-      reader.readAsBinaryString(file);
-    });
+<div class="empty"></div>
 
-    // Запуск
-    document.getElementById('startBtn')
-      .addEventListener('click', function(){
+<button
+  class="pad-btn"
+  data-key="ArrowUp"
+>
+↑
+</button>
 
-      if(!romData){
-        alert('Сначала выбери .nes ROM');
-        return;
-      }
+<div class="empty"></div>
 
-      nes.loadROM(romData);
+<button
+  class="pad-btn"
+  data-key="ArrowLeft"
+>
+←
+</button>
 
-      function frame(){
-        nes.frame();
-        requestAnimationFrame(frame);
-      }
+<button
+  class="pad-btn"
+  data-key="ArrowDown"
+>
+↓
+</button>
 
-      frame();
-    });
+<button
+  class="pad-btn"
+  data-key="ArrowRight"
+>
+→
+</button>
 
-    // Fullscreen
-    document.getElementById('fullscreenBtn')
-      .addEventListener('click', () => {
-        canvas.requestFullscreen();
-      });
+</div>
 
-    // Клавиши
-    const keyboardMap = {
-      ArrowUp: jsnes.Controller.BUTTON_UP,
-      ArrowDown: jsnes.Controller.BUTTON_DOWN,
-      ArrowLeft: jsnes.Controller.BUTTON_LEFT,
-      ArrowRight: jsnes.Controller.BUTTON_RIGHT,
-      z: jsnes.Controller.BUTTON_A,
-      x: jsnes.Controller.BUTTON_B,
-      Enter: jsnes.Controller.BUTTON_START,
-      Shift: jsnes.Controller.BUTTON_SELECT
+<div class="ab-buttons">
+
+<button
+  class="ab-btn b-btn"
+  data-key="x"
+>
+B
+</button>
+
+<button
+  class="ab-btn a-btn"
+  data-key="z"
+>
+A
+</button>
+
+</div>
+
+</div>
+
+<div class="bottom-controls">
+
+<button
+  class="btn small-btn"
+  data-key="Shift"
+>
+SELECT
+</button>
+
+<button
+  class="btn small-btn"
+  data-key="Enter"
+>
+START
+</button>
+
+</div>
+
+<div class="info">
+
+Z = A • X = B • Enter = START • Shift = SELECT
+
+</div>
+
+</div>
+
+<footer class="footer">
+© 2026 blacknode305 • JSNES Emulator
+</footer>
+
+</div>
+
+<script src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+
+<script>
+
+const html =
+  document.documentElement;
+
+const themeToggle =
+  document.getElementById('themeToggle');
+
+const savedTheme =
+  localStorage.getItem('theme') || 'dark';
+
+setTheme(savedTheme);
+
+themeToggle.addEventListener('click',()=>{
+
+  const current =
+    html.getAttribute('data-theme');
+
+  const next =
+    current === 'dark'
+      ? 'light'
+      : 'dark';
+
+  setTheme(next);
+
+});
+
+function setTheme(theme){
+
+  html.setAttribute(
+    'data-theme',
+    theme
+  );
+
+  localStorage.setItem(
+    'theme',
+    theme
+  );
+
+  themeToggle.textContent =
+    theme === 'dark'
+      ? '☀️'
+      : '🌙';
+
+}
+
+const canvas =
+  document.getElementById(
+    'emulator'
+  );
+
+const ctx =
+  canvas.getContext('2d');
+
+canvas.width = 256;
+canvas.height = 240;
+
+const imageData =
+  ctx.getImageData(
+    0,
+    0,
+    256,
+    240
+  );
+
+/* ======================
+   AUDIO
+====================== */
+
+const audioContext =
+  new (
+    window.AudioContext ||
+    window.webkitAudioContext
+  )();
+
+let scriptNode =
+  audioContext.createScriptProcessor(
+    1024,
+    0,
+    2
+  );
+
+scriptNode.connect(
+  audioContext.destination
+);
+
+const nes =
+  new jsnes.NES({
+
+  onFrame(frameBuffer){
+
+    for(let i = 0; i < frameBuffer.length; i++){
+
+      const pixel =
+        frameBuffer[i];
+
+      imageData.data[i * 4 + 0] =
+        (pixel >> 16) & 0xFF;
+
+      imageData.data[i * 4 + 1] =
+        (pixel >> 8) & 0xFF;
+
+      imageData.data[i * 4 + 2] =
+        pixel & 0xFF;
+
+      imageData.data[i * 4 + 3] =
+        0xFF;
+
+    }
+
+    ctx.putImageData(
+      imageData,
+      0,
+      0
+    );
+
+  },
+
+  onAudioSample(left,right){
+
+    // звук активирован
+  }
+
+});
+
+let romData = null;
+let running = false;
+
+/* ======================
+   ROM LOAD
+====================== */
+
+document.getElementById(
+  'romInput'
+).addEventListener(
+  'change',
+  function(e){
+
+  const file =
+    e.target.files[0];
+
+  if(!file) return;
+
+  const reader =
+    new FileReader();
+
+  reader.onload =
+    function(){
+
+      romData =
+        reader.result;
+
+      alert(
+        'ROM загружен'
+      );
+
     };
 
-    document.addEventListener('keydown', (e) => {
+  reader.readAsBinaryString(file);
 
-      const key = keyboardMap[e.key];
+});
 
-      if(key !== undefined){
-        nes.buttonDown(1, key);
-      }
-    });
+/* ======================
+   START
+====================== */
 
-    document.addEventListener('keyup', (e) => {
+document.getElementById(
+  'startBtn'
+).addEventListener(
+  'click',
+  async function(){
 
-      const key = keyboardMap[e.key];
+  if(!romData){
 
-      if(key !== undefined){
-        nes.buttonUp(1, key);
-      }
-    });
-  </script>
+    alert(
+      'Сначала выбери ROM'
+    );
+
+    return;
+
+  }
+
+  await audioContext.resume();
+
+  nes.loadROM(romData);
+
+  if(running) return;
+
+  running = true;
+
+  function frame(){
+
+    nes.frame();
+
+    requestAnimationFrame(frame);
+
+  }
+
+  frame();
+
+});
+
+/* ======================
+   FULLSCREEN
+====================== */
+
+document.getElementById(
+  'fullscreenBtn'
+).addEventListener(
+  'click',
+  ()=>{
+
+  canvas.requestFullscreen();
+
+});
+
+/* ======================
+   KEYMAP
+====================== */
+
+const keyboardMap = {
+
+  ArrowUp:
+    jsnes.Controller.BUTTON_UP,
+
+  ArrowDown:
+    jsnes.Controller.BUTTON_DOWN,
+
+  ArrowLeft:
+    jsnes.Controller.BUTTON_LEFT,
+
+  ArrowRight:
+    jsnes.Controller.BUTTON_RIGHT,
+
+  z:
+    jsnes.Controller.BUTTON_A,
+
+  x:
+    jsnes.Controller.BUTTON_B,
+
+  Enter:
+    jsnes.Controller.BUTTON_START,
+
+  Shift:
+    jsnes.Controller.BUTTON_SELECT
+
+};
+
+function pressKey(key){
+
+  const btn =
+    keyboardMap[key];
+
+  if(btn !== undefined){
+
+    nes.buttonDown(
+      1,
+      btn
+    );
+
+  }
+
+}
+
+function releaseKey(key){
+
+  const btn =
+    keyboardMap[key];
+
+  if(btn !== undefined){
+
+    nes.buttonUp(
+      1,
+      btn
+    );
+
+  }
+
+}
+
+/* ======================
+   KEYBOARD
+====================== */
+
+document.addEventListener(
+  'keydown',
+  e=>{
+
+  pressKey(e.key);
+
+});
+
+document.addEventListener(
+  'keyup',
+  e=>{
+
+  releaseKey(e.key);
+
+});
+
+/* ======================
+   TOUCH BUTTONS
+====================== */
+
+document.querySelectorAll(
+  '[data-key]'
+).forEach(button=>{
+
+  const key =
+    button.dataset.key;
+
+  const start = ()=>{
+
+    button.classList.add(
+      'active'
+    );
+
+    pressKey(key);
+
+  };
+
+  const end = ()=>{
+
+    button.classList.remove(
+      'active'
+    );
+
+    releaseKey(key);
+
+  };
+
+  button.addEventListener(
+    'touchstart',
+    e=>{
+
+      e.preventDefault();
+
+      start();
+
+    }
+  );
+
+  button.addEventListener(
+    'touchend',
+    end
+  );
+
+  button.addEventListener(
+    'mousedown',
+    start
+  );
+
+  button.addEventListener(
+    'mouseup',
+    end
+  );
+
+  button.addEventListener(
+    'mouseleave',
+    end
+  );
+
+});
+
+</script>
 
 </body>
 </html>
