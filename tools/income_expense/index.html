@@ -394,6 +394,19 @@ function date(){
 
 }
 
+function money(value){
+
+  return new Intl.NumberFormat(
+    'ru-RU',
+    {
+      style:'currency',
+      currency:'KZT',
+      maximumFractionDigits:0
+    }
+  ).format(value);
+
+}
+
 function addIncome(){
 
   const val = +incomeInput.value;
@@ -472,7 +485,7 @@ function update(){
   data.forEach((item,i)=>{
 
     balance +=
-      item.type==='income'
+      item.type === 'income'
         ? item.amount
         : -item.amount;
 
@@ -490,7 +503,7 @@ function update(){
     }
 
     const icon =
-      item.type==='income'
+      item.type === 'income'
         ? '🟢'
         : '🔴';
 
@@ -503,9 +516,10 @@ function update(){
       <td>
         ${
           item.type === 'income'
-            ? '+'
-            : '-'
-        }${item.amount}
+            ? '+ '
+            : '- '
+        }
+        ${money(item.amount)}
       </td>
 
       <td>
@@ -533,7 +547,8 @@ function update(){
   const bal =
     document.getElementById('balanceText');
 
-  bal.textContent = balance;
+  bal.textContent =
+    money(balance);
 
   bal.className =
     'balance-value ' +
@@ -546,12 +561,12 @@ function update(){
   document.getElementById(
     'monthIncome'
   ).textContent =
-    '+' + monthIncome;
+    money(monthIncome);
 
   document.getElementById(
     'monthExpense'
   ).textContent =
-    '-' + monthExpense;
+    money(monthExpense);
 
 }
 
