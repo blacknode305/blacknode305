@@ -216,6 +216,40 @@ th{
   color:var(--muted);
 }
 
+.month-card{
+  margin-bottom:20px;
+}
+
+.month-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.month-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  text-align:center;
+}
+
+.mini-label{
+  color:var(--muted);
+  margin-bottom:8px;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+
+  .month-stats{
+    grid-template-columns:1fr;
+  }
+
+}
+
 .delete-btn{
   background:transparent;
   border:none;
@@ -274,6 +308,44 @@ th{
   <div id="balanceText" class="balance-value">0</div>
 </div>
 
+<div class="card month-card">
+
+  <div class="month-header">
+    <h2 class="section-title">Статистика месяца</h2>
+
+    <select id="monthSelect" class="select" onchange="update()">
+      <option value="0">Январь</option>
+      <option value="1">Февраль</option>
+      <option value="2">Март</option>
+      <option value="3">Апрель</option>
+      <option value="4">Май</option>
+      <option value="5">Июнь</option>
+      <option value="6">Июль</option>
+      <option value="7">Август</option>
+      <option value="8">Сентябрь</option>
+      <option value="9">Октябрь</option>
+      <option value="10">Ноябрь</option>
+      <option value="11">Декабрь</option>
+    </select>
+
+  </div>
+
+  <div class="month-stats">
+
+    <div>
+      <div class="mini-label">Доход</div>
+      <div id="monthIncome" class="balance-value balance-positive">0</div>
+    </div>
+
+    <div>
+      <div class="mini-label">Расход</div>
+      <div id="monthExpense" class="balance-value balance-negative">0</div>
+    </div>
+
+  </div>
+
+</div>
+
 <div class="card">
 
   <h2 class="section-title">История</h2>
@@ -302,7 +374,10 @@ let data =
   JSON.parse(localStorage.getItem('finance_data')) || [];
 
 function save(){
-  localStorage.setItem('finance_data',JSON.stringify(data));
+  localStorage.setItem(
+    'finance_data',
+    JSON.stringify(data)
+  );
 }
 
 function date(){
@@ -310,7 +385,9 @@ function date(){
 }
 
 function addIncome(){
+
   const val = +incomeInput.value;
+
   if(!val) return;
 
   data.unshift({
@@ -322,11 +399,14 @@ function addIncome(){
 
   incomeInput.value='';
   incomeComment.value='';
+
   update();
 }
 
 function addExpense(){
+
   const val = +expenseInput.value;
+
   if(!val) return;
 
   data.unshift({
@@ -338,11 +418,14 @@ function addExpense(){
 
   expenseInput.value='';
   expenseComment.value='';
+
   update();
 }
 
 function removeItem(index){
+
   data.splice(index,1);
+
   update();
 }
 
@@ -352,29 +435,79 @@ function update(){
 
   let balance = 0;
 
-  const table = document.getElementById('historyTable');
+  let monthIncome = 0;
+  let monthExpense = 0;
+
+  const now = new Date();
+
+  const selectedMonth =
+    +document.getElementById('monthSelect').value;
+
+  const currentYear =
+    now.getFullYear();
+
+  const table =
+    document.getElementById('historyTable');
+
   table.innerHTML = '';
 
   data.forEach((item,i)=>{
 
-    balance += item.type==='income'
-      ? item.amount
-      : -item.amount;
+    balance +=
+      item.type==='income'
+        ? item.amount
+        : -item.amount;
+
+    const itemDate =
+      new Date(item.date);
+
+    if(
+      itemDate.getMonth() === selectedMonth &&
+      itemDate.getFullYear() === currentYear
+    ){
+
+      if(item.type === 'income'){
+        monthIncome += item.amount;
+      }else{
+        monthExpense += item.amount;
+      }
+
+    }
 
     const icon =
       item.type==='income'
         ? '🟢'
         : '🔴';
 
-    const row = document.createElement('tr');
+    const row =
+      document.createElement('tr');
 
     row.innerHTML = `
       <td>${icon}</td>
-      <td>${item.amount}</td>
-      <td>${item.comment || '-'}</td>
-      <td>${item.date}</td>
+
       <td>
-        <button class="delete-btn" onclick="removeItem(${i})">🗑</button>
+        ${
+          item.type === 'income'
+            ? '+'
+            : '-'
+        }${item.amount}
+      </td>
+
+      <td>
+        ${item.comment || '-'}
+      </td>
+
+      <td>
+        ${item.date}
+      </td>
+
+      <td>
+        <button
+          class="delete-btn"
+          onclick="removeItem(${i})"
+        >
+          🗑
+        </button>
       </td>
     `;
 
@@ -382,25 +515,46 @@ function update(){
 
   });
 
-  const bal = document.getElementById('balanceText');
+  const bal =
+    document.getElementById('balanceText');
 
   bal.textContent = balance;
 
   bal.className =
     'balance-value ' +
-    (balance>=0?'balance-positive':'balance-negative');
+    (
+      balance >= 0
+        ? 'balance-positive'
+        : 'balance-negative'
+    );
+
+  document.getElementById(
+    'monthIncome'
+  ).textContent =
+    '+' + monthIncome;
+
+  document.getElementById(
+    'monthExpense'
+  ).textContent =
+    '-' + monthExpense;
 
 }
 
 function toggleTheme(){
+
   document.documentElement.dataset.theme =
-    document.documentElement.dataset.theme==='dark'
+    document.documentElement.dataset.theme === 'dark'
       ? 'light'
       : 'dark';
+
 }
 
-update();
+document.getElementById(
+  'monthSelect'
+).value =
+  new Date().getMonth();
 
+update();
 </script>
 
 </body>
