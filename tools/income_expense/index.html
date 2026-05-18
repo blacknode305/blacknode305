@@ -374,14 +374,24 @@ let data =
   JSON.parse(localStorage.getItem('finance_data')) || [];
 
 function save(){
+
   localStorage.setItem(
     'finance_data',
     JSON.stringify(data)
   );
+
 }
 
 function date(){
-  return new Date().toLocaleString();
+
+  const now = new Date();
+
+  return {
+    text: now.toLocaleString(),
+    month: now.getMonth(),
+    year: now.getFullYear()
+  };
+
 }
 
 function addIncome(){
@@ -390,11 +400,15 @@ function addIncome(){
 
   if(!val) return;
 
+  const d = date();
+
   data.unshift({
     type:'income',
     amount:val,
     comment:incomeComment.value || '',
-    date:date()
+    date:d.text,
+    month:d.month,
+    year:d.year
   });
 
   incomeInput.value='';
@@ -409,11 +423,15 @@ function addExpense(){
 
   if(!val) return;
 
+  const d = date();
+
   data.unshift({
     type:'expense',
     amount:val,
     comment:expenseComment.value || '',
-    date:date()
+    date:d.text,
+    month:d.month,
+    year:d.year
   });
 
   expenseInput.value='';
@@ -458,12 +476,9 @@ function update(){
         ? item.amount
         : -item.amount;
 
-    const itemDate =
-      new Date(item.date);
-
     if(
-      itemDate.getMonth() === selectedMonth &&
-      itemDate.getFullYear() === currentYear
+      item.month === selectedMonth &&
+      item.year === currentYear
     ){
 
       if(item.type === 'income'){
@@ -555,6 +570,7 @@ document.getElementById(
   new Date().getMonth();
 
 update();
+
 </script>
 
 </body>
