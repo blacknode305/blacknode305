@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Telegram Client Bot</title>
+
+<style>
+body{
+  background:#0f0f13;
+  color:white;
+  font-family:Arial;
+  padding:20px;
+}
+
+input, textarea, button{
+  width:100%;
+  margin-top:10px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+}
+
+button{
+  background:#5865f2;
+  color:white;
+  font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<h2>Telegram Bot Client</h2>
+
+<input id="token" placeholder="Bot Token">
+<input id="chatid" placeholder="Chat ID">
+
+<textarea id="message"
+placeholder="Сообщение"></textarea>
+
+<button onclick="sendMessage()">
+Отправить
+</button>
+
+<script>
+async function sendMessage(){
+
+  const token =
+    document.getElementById("token").value;
+
+  const chatid =
+    document.getElementById("chatid").value;
+
+  const message =
+    document.getElementById("message").value;
+
+  try{
+
+    const req = await fetch(
+      `https://api.telegram.org/bot${token}/sendMessage`,
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          chat_id:chatid,
+          text:message
+        })
+      }
+    );
+
+    const data = await req.json();
+
+    console.log(data);
+
+    if(data.ok){
+      alert("Сообщение отправлено");
+    }else{
+      alert("Ошибка: " + data.description);
+    }
+
+  }catch(err){
+    console.error(err);
+    alert("Ошибка сети");
+  }
+}
+</script>
+
+</body>
+</html>
