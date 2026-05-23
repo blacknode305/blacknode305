@@ -1,91 +1,924 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>blacknode305 • Telegram Bot Panel</title>
 
-<title>Telegram Client Bot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
+
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
+
+  --green:#22c55e;
+  --red:#ef4444;
+
+  --border:rgba(255,255,255,.08);
+}
+
+[data-theme="light"]{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,.82);
+  --text:#1e293b;
+  --muted:#64748b;
+  --border:rgba(0,0,0,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body{
-  background:#0f0f13;
-  color:white;
-  font-family:Arial;
-  padding:20px;
-}
-
-input, textarea, button{
-  width:100%;
-  margin-top:10px;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
   padding:14px;
-  border:none;
-  border-radius:12px;
+  transition:.35s ease;
 }
 
-button{
-  background:#5865f2;
-  color:white;
-  font-size:16px;
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+  z-index:-1;
 }
+
+.container{
+  max-width:1500px;
+  margin:auto;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:22px;
+  font-weight:700;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-decoration:none;
+}
+
+.theme-toggle{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.hero{
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:28px;
+  margin-bottom:6px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:280px 1fr 320px;
+  gap:14px;
+}
+
+.right-side{
+  display:grid;
+  gap:14px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:16px;
+  backdrop-filter:blur(18px);
+}
+
+.section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:17px;
+  margin-bottom:14px;
+}
+
+.input,
+.textarea,
+.select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  margin-bottom:10px;
+  outline:none;
+  font-size:13px;
+}
+
+.textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.btn{
+  border:none;
+  cursor:pointer;
+  border-radius:14px;
+  padding:11px 14px;
+  font-weight:600;
+  color:#fff;
+  font-size:13px;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.primary-btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+}
+
+.green-btn{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.red-btn{
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.chat-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height:700px;
+  overflow:auto;
+}
+
+.chat-item{
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.chat-item:hover{
+  border-color:rgba(139,92,246,.5);
+}
+
+.chat-item.active{
+  border-color:var(--accent);
+  background:rgba(139,92,246,.12);
+}
+
+.chat-name{
+  font-weight:600;
+  margin-bottom:4px;
+}
+
+.chat-id{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.chat-window{
+  height:700px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding-right:4px;
+}
+
+.message{
+  max-width:80%;
+  padding:12px 14px;
+  border-radius:18px;
+  line-height:1.45;
+  word-break:break-word;
+  position:relative;
+}
+
+.message.bot{
+  background:rgba(139,92,246,.18);
+  border:1px solid rgba(139,92,246,.35);
+  align-self:flex-start;
+}
+
+.message.user{
+  background:rgba(6,182,212,.15);
+  border:1px solid rgba(6,182,212,.35);
+  align-self:flex-end;
+}
+
+.message-date{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.chat-controls{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:10px;
+  margin-top:14px;
+}
+
+.template-item,
+.command-item{
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  margin-bottom:10px;
+}
+
+.template-top,
+.command-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.template-id{
+  font-size:11px;
+  color:var(--accent2);
+}
+
+.template-text{
+  color:var(--muted);
+  font-size:12px;
+  white-space:pre-wrap;
+}
+
+.command-link{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.small-btn{
+  background:transparent;
+  border:none;
+  color:var(--red);
+  cursor:pointer;
+  font-size:14px;
+}
+
+.empty{
+  color:var(--muted);
+  text-align:center;
+  padding:30px 10px;
+}
+
+@media(max-width:1200px){
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .chat-window{
+    height:500px;
+  }
+
+}
+
 </style>
 </head>
+
 <body>
 
-<h2>Telegram Bot Client</h2>
+<div class="container">
 
-<input id="token" placeholder="Bot Token">
-<input id="chatid" placeholder="Chat ID">
+  <div class="header">
+    <a class="logo" href="#">blacknode305</a>
 
-<textarea id="message"
-placeholder="Сообщение"></textarea>
+    <button class="theme-toggle" onclick="toggleTheme()">
+      ☀️
+    </button>
+  </div>
 
-<button onclick="sendMessage()">
-Отправить
-</button>
+  <div class="hero">
+    <h1>Telegram Bot Panel</h1>
+    <p>Чаты, шаблоны ответов и привязка команд</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- LEFT -->
+
+    <div class="card">
+
+      <h2 class="section-title">
+        Чаты
+      </h2>
+
+      <input
+        id="chatName"
+        class="input"
+        placeholder="Название чата"
+      >
+
+      <input
+        id="chatId"
+        class="input"
+        placeholder="Telegram Chat ID"
+      >
+
+      <button
+        class="btn primary-btn"
+        style="width:100%;margin-bottom:14px;"
+        onclick="createChat()"
+      >
+        Добавить чат
+      </button>
+
+      <div id="chatList" class="chat-list"></div>
+
+    </div>
+
+    <!-- CENTER -->
+
+    <div class="card">
+
+      <h2 class="section-title">
+        Сообщения
+      </h2>
+
+      <div id="chatWindow" class="chat-window">
+
+        <div class="empty">
+          Выберите чат
+        </div>
+
+      </div>
+
+      <div class="chat-controls">
+
+        <input
+          id="messageInput"
+          class="input"
+          placeholder="Сообщение..."
+          style="margin:0;"
+        >
+
+        <button
+          class="btn green-btn"
+          onclick="sendMessage('user')"
+        >
+          USER
+        </button>
+
+        <button
+          class="btn primary-btn"
+          onclick="sendMessage('bot')"
+        >
+          BOT
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right-side">
+
+      <!-- TEMPLATES -->
+
+      <div class="card">
+
+        <h2 class="section-title">
+          Шаблоны
+        </h2>
+
+        <input
+          id="templateName"
+          class="input"
+          placeholder="Название шаблона"
+        >
+
+        <textarea
+          id="templateText"
+          class="textarea"
+          placeholder="Текст шаблона..."
+        ></textarea>
+
+        <button
+          class="btn primary-btn"
+          style="width:100%;margin-bottom:14px;"
+          onclick="createTemplate()"
+        >
+          Создать шаблон
+        </button>
+
+        <div id="templateList"></div>
+
+      </div>
+
+      <!-- COMMANDS -->
+
+      <div class="card">
+
+        <h2 class="section-title">
+          Команды
+        </h2>
+
+        <input
+          id="commandInput"
+          class="input"
+          placeholder="/start"
+        >
+
+        <select
+          id="templateSelect"
+          class="select"
+        ></select>
+
+        <button
+          class="btn green-btn"
+          style="width:100%;margin-bottom:14px;"
+          onclick="bindCommand()"
+        >
+          Привязать
+        </button>
+
+        <div id="commandList"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 <script>
-async function sendMessage(){
 
-  const token =
-    document.getElementById("token").value;
+let chats =
+  JSON.parse(localStorage.getItem('tg_chats')) || [];
 
-  const chatid =
-    document.getElementById("chatid").value;
+let templates =
+  JSON.parse(localStorage.getItem('tg_templates')) || [];
 
-  const message =
-    document.getElementById("message").value;
+let commands =
+  JSON.parse(localStorage.getItem('tg_commands')) || [];
 
-  try{
+let currentChat = null;
 
-    const req = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          chat_id:chatid,
-          text:message
-        })
-      }
-    );
+function save(){
 
-    const data = await req.json();
+  localStorage.setItem(
+    'tg_chats',
+    JSON.stringify(chats)
+  );
 
-    console.log(data);
+  localStorage.setItem(
+    'tg_templates',
+    JSON.stringify(templates)
+  );
 
-    if(data.ok){
-      alert("Сообщение отправлено");
-    }else{
-      alert("Ошибка: " + data.description);
-    }
+  localStorage.setItem(
+    'tg_commands',
+    JSON.stringify(commands)
+  );
 
-  }catch(err){
-    console.error(err);
-    alert("Ошибка сети");
-  }
 }
+
+function toggleTheme(){
+
+  document.documentElement.dataset.theme =
+    document.documentElement.dataset.theme === 'dark'
+      ? 'light'
+      : 'dark';
+
+}
+
+function createChat(){
+
+  const name =
+    document.getElementById('chatName').value.trim();
+
+  const id =
+    document.getElementById('chatId').value.trim();
+
+  if(!name || !id) return;
+
+  chats.unshift({
+    id,
+    name,
+    messages:[]
+  });
+
+  document.getElementById('chatName').value='';
+  document.getElementById('chatId').value='';
+
+  save();
+  renderChats();
+
+}
+
+function renderChats(){
+
+  const el =
+    document.getElementById('chatList');
+
+  el.innerHTML='';
+
+  if(!chats.length){
+
+    el.innerHTML =
+      `<div class="empty">Нет чатов</div>`;
+
+    return;
+
+  }
+
+  chats.forEach(chat=>{
+
+    const div =
+      document.createElement('div');
+
+    div.className =
+      'chat-item ' +
+      (
+        currentChat &&
+        currentChat.id === chat.id
+          ? 'active'
+          : ''
+      );
+
+    div.innerHTML = `
+      <div class="chat-name">
+        ${chat.name}
+      </div>
+
+      <div class="chat-id">
+        ID: ${chat.id}
+      </div>
+    `;
+
+    div.onclick = ()=>{
+
+      currentChat = chat;
+
+      renderChats();
+      renderMessages();
+
+    };
+
+    el.appendChild(div);
+
+  });
+
+}
+
+function renderMessages(){
+
+  const windowEl =
+    document.getElementById('chatWindow');
+
+  if(!currentChat){
+
+    windowEl.innerHTML =
+      `<div class="empty">Выберите чат</div>`;
+
+    return;
+
+  }
+
+  windowEl.innerHTML='';
+
+  if(!currentChat.messages.length){
+
+    windowEl.innerHTML =
+      `<div class="empty">Сообщений нет</div>`;
+
+    return;
+
+  }
+
+  currentChat.messages.forEach(msg=>{
+
+    const div =
+      document.createElement('div');
+
+    div.className =
+      `message ${msg.type}`;
+
+    div.innerHTML = `
+      <div>${msg.text}</div>
+
+      <div class="message-date">
+        ${msg.date}
+      </div>
+    `;
+
+    windowEl.appendChild(div);
+
+  });
+
+  windowEl.scrollTop =
+    windowEl.scrollHeight;
+
+}
+
+function sendMessage(type){
+
+  if(!currentChat) return;
+
+  const input =
+    document.getElementById('messageInput');
+
+  const text =
+    input.value.trim();
+
+  if(!text) return;
+
+  currentChat.messages.push({
+
+    type,
+    text,
+
+    date:new Date()
+      .toLocaleString()
+
+  });
+
+  input.value='';
+
+  save();
+  renderMessages();
+
+}
+
+function createTemplate(){
+
+  const name =
+    document.getElementById('templateName')
+      .value.trim();
+
+  const text =
+    document.getElementById('templateText')
+      .value.trim();
+
+  if(!name || !text) return;
+
+  const id =
+    'TPL-' +
+    Math.floor(Math.random()*99999);
+
+  templates.unshift({
+
+    id,
+    name,
+    text
+
+  });
+
+  document.getElementById('templateName').value='';
+  document.getElementById('templateText').value='';
+
+  save();
+
+  renderTemplates();
+  renderTemplateSelect();
+
+}
+
+function renderTemplates(){
+
+  const el =
+    document.getElementById('templateList');
+
+  el.innerHTML='';
+
+  if(!templates.length){
+
+    el.innerHTML =
+      `<div class="empty">Нет шаблонов</div>`;
+
+    return;
+
+  }
+
+  templates.forEach((tpl,index)=>{
+
+    const div =
+      document.createElement('div');
+
+    div.className =
+      'template-item';
+
+    div.innerHTML = `
+      <div class="template-top">
+
+        <div>
+          <div>
+            ${tpl.name}
+          </div>
+
+          <div class="template-id">
+            ${tpl.id}
+          </div>
+        </div>
+
+        <button
+          class="small-btn"
+          onclick="deleteTemplate(${index})"
+        >
+          🗑
+        </button>
+
+      </div>
+
+      <div class="template-text">
+        ${tpl.text}
+      </div>
+    `;
+
+    el.appendChild(div);
+
+  });
+
+}
+
+function deleteTemplate(index){
+
+  templates.splice(index,1);
+
+  save();
+
+  renderTemplates();
+  renderTemplateSelect();
+
+}
+
+function renderTemplateSelect(){
+
+  const select =
+    document.getElementById('templateSelect');
+
+  select.innerHTML='';
+
+  templates.forEach(tpl=>{
+
+    const option =
+      document.createElement('option');
+
+    option.value = tpl.id;
+
+    option.textContent =
+      `${tpl.name} (${tpl.id})`;
+
+    select.appendChild(option);
+
+  });
+
+}
+
+function bindCommand(){
+
+  const cmd =
+    document.getElementById('commandInput')
+      .value.trim();
+
+  const tplId =
+    document.getElementById('templateSelect')
+      .value;
+
+  if(!cmd || !tplId) return;
+
+  commands.unshift({
+
+    command:cmd,
+    templateId:tplId
+
+  });
+
+  document.getElementById('commandInput').value='';
+
+  save();
+
+  renderCommands();
+
+}
+
+function renderCommands(){
+
+  const el =
+    document.getElementById('commandList');
+
+  el.innerHTML='';
+
+  if(!commands.length){
+
+    el.innerHTML =
+      `<div class="empty">Нет команд</div>`;
+
+    return;
+
+  }
+
+  commands.forEach((cmd,index)=>{
+
+    const tpl =
+      templates.find(
+        t => t.id === cmd.templateId
+      );
+
+    const div =
+      document.createElement('div');
+
+    div.className =
+      'command-item';
+
+    div.innerHTML = `
+      <div class="command-top">
+
+        <strong>
+          ${cmd.command}
+        </strong>
+
+        <button
+          class="small-btn"
+          onclick="deleteCommand(${index})"
+        >
+          🗑
+        </button>
+
+      </div>
+
+      <div class="command-link">
+        Шаблон:
+        ${cmd.templateId}
+      </div>
+
+      <div class="template-text">
+        ${
+          tpl
+            ? tpl.text
+            : 'Шаблон удалён'
+        }
+      </div>
+    `;
+
+    el.appendChild(div);
+
+  });
+
+}
+
+function deleteCommand(index){
+
+  commands.splice(index,1);
+
+  save();
+
+  renderCommands();
+
+}
+
+renderChats();
+renderTemplates();
+renderTemplateSelect();
+renderCommands();
+
 </script>
 
 </body>

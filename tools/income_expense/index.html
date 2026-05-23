@@ -4,285 +4,288 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>blacknode305 • Финансовый трекер</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --bg:#0f0f13;
-    --card:rgba(20,20,28,.72);
-    --text:#e8e8f0;
-    --muted:#9aa0b4;
-  
-    --accent:#8b5cf6;
-    --accent2:#06b6d4;
-  
-    --income:#22c55e;
-    --expense:#ef4444;
-  
-    --border:rgba(255,255,255,.08);
-  }
-  
-  [data-theme="light"]{
-    --bg:#f8fafc;
-    --card:rgba(255,255,255,.82);
-    --text:#1e293b;
-    --muted:#64748b;
-    --border:rgba(0,0,0,.08);
-  }
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-  }
-  body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    padding:14px 10px;
-    transition:.35s ease;
-    font-size:13px;
-  }
-  
-  body::before{
-    content:'';
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
-    z-index:-1;
-  }
-  
-  .container{
-    max-width:980px;
-    margin:0 auto;
-  }
-  
-  .header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-  }
-  
-  .logo{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:20px;
-    font-weight:700;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-  
-  .theme-toggle{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    background:var(--card);
-    color:var(--text);
-    border:1px solid var(--border);
-    font-size:13px;
-  }
-  
-  .hero{
-    margin-bottom:16px;
-  }
-  
-  .hero h1{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:24px;
-    margin-bottom:4px;
-  }
-  
-  .hero p{
-    color:var(--muted);
-    font-size:12px;
-  }
-  
+
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
+
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
+
+  --income:#22c55e;
+  --expense:#ef4444;
+
+  --border:rgba(255,255,255,.08);
+}
+
+[data-theme="light"]{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,.82);
+  --text:#1e293b;
+  --muted:#64748b;
+  --border:rgba(0,0,0,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding:14px 10px;
+  transition:.35s ease;
+  font-size:13px;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+  z-index:-1;
+}
+
+.container{
+  max-width:980px;
+  margin:0 auto;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:20px;
+  font-weight:700;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-decoration:none;
+}
+
+.theme-toggle{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+  font-size:13px;
+}
+
+.hero{
+  margin-bottom:16px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:24px;
+  margin-bottom:4px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:14px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px;
+  backdrop-filter:blur(20px);
+  overflow:hidden;
+}
+
+.section-title{
+  margin-bottom:10px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:16px;
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.select{
+  flex:1;
+  min-width:100px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:12px;
+}
+
+.btn{
+  padding:10px 12px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  color:#fff;
+  font-weight:600;
+  font-size:12px;
+}
+
+.income-btn{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.expense-btn{
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.balance-card{
+  margin-bottom:14px;
+}
+
+#balanceText{
+  text-align:center;
+}
+
+.balance-value{
+  font-size:26px;
+  font-weight:700;
+  margin-top:6px;
+  word-break:break-word;
+}
+
+.balance-positive{
+  color:var(--income);
+}
+
+.balance-negative{
+  color:var(--expense);
+}
+
+.month-card{
+  margin-bottom:14px;
+}
+
+.month-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+
+.month-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  text-align:center;
+}
+
+.mini-label{
+  color:var(--muted);
+  margin-bottom:6px;
+  font-size:11px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:8px;
+  table-layout:fixed;
+}
+
+th,
+td{
+  border:1px solid var(--border);
+  padding:6px;
+  text-align:center;
+  font-size:10px;
+  word-break:break-word;
+}
+
+th{
+  color:var(--muted);
+  background:rgba(255,255,255,.03);
+}
+
+.comment{
+  font-size:9px;
+  margin-top:4px;
+  color:var(--muted);
+}
+
+.delete-btn{
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-size:12px;
+  color:var(--expense);
+}
+
+.receipt-link{
+  text-decoration:none;
+  font-size:14px;
+}
+
+@media(max-width:800px){
+
   .grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-    margin-bottom:14px;
+    grid-template-columns:1fr;
   }
-  
-  .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:14px;
-    backdrop-filter:blur(20px);
-    overflow:hidden;
-  }
-  
-  .section-title{
-    margin-bottom:10px;
-    font-family:'Space Grotesk',sans-serif;
-    font-size:16px;
-  }
-  
-  .controls{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-  
-  .select{
-    flex:1;
-    min-width:100px;
-    padding:10px 12px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:var(--text);
-    font-size:12px;
-  }
-  
-  .btn{
-    padding:10px 12px;
-    border-radius:12px;
-    border:none;
-    cursor:pointer;
-    color:#fff;
-    font-weight:600;
-    font-size:12px;
-  }
-  
-  .income-btn{
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-  }
-  
-  .expense-btn{
-    background:linear-gradient(135deg,#ef4444,#dc2626);
-  }
-  
-  .balance-card{
-    margin-bottom:14px;
-  }
-  
-  #balanceText{
-    text-align:center;
-  }
-  
-  .balance-value{
-    font-size:26px;
-    font-weight:700;
-    margin-top:6px;
-    word-break:break-word;
-  }
-  
-  .balance-positive{
-    color:var(--income);
-  }
-  
-  .balance-negative{
-    color:var(--expense);
-  }
-  
-  .month-card{
-    margin-bottom:14px;
-  }
-  
-  .month-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-    flex-wrap:wrap;
-  }
-  
+
   .month-stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    text-align:center;
+    grid-template-columns:1fr;
   }
-  
-  .mini-label{
-    color:var(--muted);
-    margin-bottom:6px;
-    font-size:11px;
+
+  body{
+    padding:10px 8px;
   }
-  
-  table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:8px;
-    table-layout:fixed;
+
+  .hero h1{
+    font-size:20px;
   }
-  
+
+  .balance-value{
+    font-size:22px;
+  }
+
   th,
   td{
-    border:1px solid var(--border);
-    padding:6px;
-    text-align:center;
-    font-size:10px;
-    word-break:break-word;
-  }
-  
-  th{
-    color:var(--muted);
-    background:rgba(255,255,255,.03);
-  }
-  
-  .badge{
-    padding:4px 8px;
-    border-radius:999px;
     font-size:9px;
-    font-weight:700;
+    padding:5px;
   }
-  
-  .badge-income{
-    color:#22c55e;
-    background:rgba(34,197,94,.15);
-  }
-  
-  .badge-expense{
-    color:#ef4444;
-    background:rgba(239,68,68,.15);
-  }
-  
-  .comment{
-    font-size:9px;
-    margin-top:4px;
-    color:var(--muted);
-  }
-  
-  .delete-btn {
-    background:transparent;
-    border:none;
-    cursor:pointer;
-    font-size:12px;
-    color:var(--expense);
-  }
-  
-  @media(max-width:800px) {
-    .grid{
-      grid-template-columns:1fr;
-    }
-    .month-stats{
-      grid-template-columns:1fr;
-    }
-    body{
-      padding:10px 8px;
-    }
-    .hero h1{
-      font-size:20px;
-    }
-    .balance-value{
-      font-size:22px;
-    }
-    th,
-    td{
-      font-size:9px;
-      padding:5px;
-    }
-  }
+
+}
+
 </style>
 </head>
 
@@ -291,98 +294,244 @@
 <div class="container">
 
 <div class="header">
-  <a href="https://blacknode305.github.io/blacknode305/" class="logo">blacknode305</a>
-  <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+
+  <a
+    href="https://blacknode305.github.io/blacknode305/"
+    class="logo"
+  >
+    blacknode305
+  </a>
+
+  <button
+    class="theme-toggle"
+    onclick="toggleTheme()"
+  >
+    ☀️
+  </button>
+
 </div>
 
 <div class="hero">
-  <h1>Финансовый трекер</h1>
-  <p>Доходы, расходы + комментарии</p>
+
+  <h1>
+    Финансовый трекер
+  </h1>
+
+  <p>
+    Доходы, расходы + комментарии + квитанции
+  </p>
+
 </div>
 
 <div class="grid">
 
+  <!-- ДОХОДЫ -->
+
   <div class="card">
-    <h2 class="section-title">Доходы</h2>
+
+    <h2 class="section-title">
+      Доходы
+    </h2>
 
     <div class="controls">
-      <input id="incomeInput" class="select" type="number" placeholder="Сумма">
-      <input id="incomeComment" class="select" type="text" placeholder="Комментарий">
-      <button class="btn income-btn" onclick="addIncome()">Добавить</button>
+
+      <input
+        id="incomeInput"
+        class="select"
+        type="number"
+        placeholder="Сумма"
+      >
+
+      <input
+        id="incomeComment"
+        class="select"
+        type="text"
+        placeholder="Комментарий"
+      >
+
+      <input
+        id="incomeReceipt"
+        class="select"
+        type="url"
+        placeholder="Ссылка на квитанцию"
+      >
+
+      <button
+        class="btn income-btn"
+        onclick="addIncome()"
+      >
+        Добавить
+      </button>
+
     </div>
+
   </div>
 
+  <!-- РАСХОДЫ -->
+
   <div class="card">
-    <h2 class="section-title">Расходы</h2>
+
+    <h2 class="section-title">
+      Расходы
+    </h2>
 
     <div class="controls">
-      <input id="expenseInput" class="select" type="number" placeholder="Сумма">
-      <input id="expenseComment" class="select" type="text" placeholder="Комментарий">
-      <button class="btn expense-btn" onclick="addExpense()">Добавить</button>
+
+      <input
+        id="expenseInput"
+        class="select"
+        type="number"
+        placeholder="Сумма"
+      >
+
+      <input
+        id="expenseComment"
+        class="select"
+        type="text"
+        placeholder="Комментарий"
+      >
+
+      <input
+        id="expenseReceipt"
+        class="select"
+        type="url"
+        placeholder="Ссылка на квитанцию"
+      >
+
+      <button
+        class="btn expense-btn"
+        onclick="addExpense()"
+      >
+        Добавить
+      </button>
+
     </div>
+
   </div>
 
 </div>
+
+<!-- БАЛАНС -->
 
 <div class="card balance-card">
-  <h2 class="section-title">Остаток</h2>
-  <div id="balanceText" class="balance-value">0</div>
+
+  <h2 class="section-title">
+    Остаток
+  </h2>
+
+  <div
+    id="balanceText"
+    class="balance-value"
+  >
+    0
+  </div>
+
 </div>
+
+<!-- СТАТИСТИКА -->
 
 <div class="card month-card">
 
   <div class="month-header">
-    <h2 class="section-title">Статистика месяца</h2>
 
-    <select id="monthSelect" class="select" onchange="update()">
-      <option value="0">Январь</option>
-      <option value="1">Февраль</option>
-      <option value="2">Март</option>
-      <option value="3">Апрель</option>
-      <option value="4">Май</option>
-      <option value="5">Июнь</option>
-      <option value="6">Июль</option>
-      <option value="7">Август</option>
-      <option value="8">Сентябрь</option>
-      <option value="9">Октябрь</option>
-      <option value="10">Ноябрь</option>
-      <option value="11">Декабрь</option>
-    </select>
+    <h2 class="section-title">
+      Статистика
+    </h2>
+
+    <div class="controls">
+
+      <select
+        id="monthSelect"
+        class="select"
+        onchange="update()"
+      >
+
+        <option value="0">Январь</option>
+        <option value="1">Февраль</option>
+        <option value="2">Март</option>
+        <option value="3">Апрель</option>
+        <option value="4">Май</option>
+        <option value="5">Июнь</option>
+        <option value="6">Июль</option>
+        <option value="7">Август</option>
+        <option value="8">Сентябрь</option>
+        <option value="9">Октябрь</option>
+        <option value="10">Ноябрь</option>
+        <option value="11">Декабрь</option>
+
+      </select>
+
+      <select
+        id="yearSelect"
+        class="select"
+        onchange="update()"
+      ></select>
+
+    </div>
 
   </div>
 
   <div class="month-stats">
 
     <div>
-      <div class="mini-label">Доход</div>
-      <div id="monthIncome" class="balance-value balance-positive">0</div>
+
+      <div class="mini-label">
+        Доход
+      </div>
+
+      <div
+        id="monthIncome"
+        class="balance-value balance-positive"
+      >
+        0
+      </div>
+
     </div>
 
     <div>
-      <div class="mini-label">Расход</div>
-      <div id="monthExpense" class="balance-value balance-negative">0</div>
+
+      <div class="mini-label">
+        Расход
+      </div>
+
+      <div
+        id="monthExpense"
+        class="balance-value balance-negative"
+      >
+        0
+      </div>
+
     </div>
 
   </div>
 
 </div>
 
+<!-- ИСТОРИЯ -->
+
 <div class="card">
 
-  <h2 class="section-title">История</h2>
+  <h2 class="section-title">
+    История
+  </h2>
 
   <table>
+
     <thead>
+
       <tr>
         <th></th>
         <th>Сумма</th>
         <th>Комментарий</th>
         <th>Дата</th>
         <th></th>
+        <th></th>
       </tr>
+
     </thead>
 
     <tbody id="historyTable"></tbody>
+
   </table>
 
 </div>
@@ -391,14 +540,32 @@
 
 <script>
 
-let data = JSON.parse(localStorage.getItem('finance_data')) || [];
-function save() {
-  localStorage.setItem('finance_data', JSON.stringify(data));
+let data =
+  JSON.parse(
+    localStorage.getItem('finance_data')
+  ) || [];
+
+function save(){
+
+  localStorage.setItem(
+    'finance_data',
+    JSON.stringify(data)
+  );
+
 }
+
 function date(){
+
   const now = new Date();
-  return { text: now.toLocaleString(), month: now.getMonth(), year: now.getFullYear() };
+
+  return {
+    text: now.toLocaleString(),
+    month: now.getMonth(),
+    year: now.getFullYear()
+  };
+
 }
+
 function money(value){
 
   return new Intl.NumberFormat(
@@ -414,48 +581,72 @@ function money(value){
 
 function addIncome(){
 
-  const val = +incomeInput.value;
+  const val =
+    +incomeInput.value;
 
   if(!val) return;
 
   const d = date();
 
   data.unshift({
+
     type:'income',
+
     amount:val,
-    comment:incomeComment.value || '',
+
+    comment:
+      incomeComment.value || '',
+
+    receipt:
+      incomeReceipt.value || '',
+
     date:d.text,
     month:d.month,
     year:d.year
+
   });
 
   incomeInput.value='';
   incomeComment.value='';
+  incomeReceipt.value='';
 
   update();
+
 }
 
 function addExpense(){
 
-  const val = +expenseInput.value;
+  const val =
+    +expenseInput.value;
 
   if(!val) return;
 
   const d = date();
 
   data.unshift({
+
     type:'expense',
+
     amount:val,
-    comment:expenseComment.value || '',
+
+    comment:
+      expenseComment.value || '',
+
+    receipt:
+      expenseReceipt.value || '',
+
     date:d.text,
     month:d.month,
     year:d.year
+
   });
 
   expenseInput.value='';
   expenseComment.value='';
+  expenseReceipt.value='';
 
   update();
+
 }
 
 function removeItem(index){
@@ -463,6 +654,7 @@ function removeItem(index){
   data.splice(index,1);
 
   update();
+
 }
 
 function update(){
@@ -474,16 +666,20 @@ function update(){
   let monthIncome = 0;
   let monthExpense = 0;
 
-  const now = new Date();
-
   const selectedMonth =
-    +document.getElementById('monthSelect').value;
+    +document.getElementById(
+      'monthSelect'
+    ).value;
 
-  const currentYear =
-    now.getFullYear();
+  const selectedYear =
+    +document.getElementById(
+      'yearSelect'
+    ).value;
 
   const table =
-    document.getElementById('historyTable');
+    document.getElementById(
+      'historyTable'
+    );
 
   table.innerHTML = '';
 
@@ -496,13 +692,17 @@ function update(){
 
     if(
       item.month === selectedMonth &&
-      item.year === currentYear
+      item.year === selectedYear
     ){
 
       if(item.type === 'income'){
+
         monthIncome += item.amount;
+
       }else{
+
         monthExpense += item.amount;
+
       }
 
     }
@@ -516,7 +716,10 @@ function update(){
       document.createElement('tr');
 
     row.innerHTML = `
-      <td>${icon}</td>
+
+      <td>
+        ${icon}
+      </td>
 
       <td>
         ${money(item.amount)}
@@ -531,13 +734,34 @@ function update(){
       </td>
 
       <td>
+
+        ${
+          item.receipt
+            ? `
+              <a
+                href="${item.receipt}"
+                target="_blank"
+                class="receipt-link"
+              >
+                🖼
+              </a>
+            `
+            : '-'
+        }
+
+      </td>
+
+      <td>
+
         <button
           class="delete-btn"
           onclick="removeItem(${i})"
         >
           🗑
         </button>
+
       </td>
+
     `;
 
     table.appendChild(row);
@@ -545,7 +769,9 @@ function update(){
   });
 
   const bal =
-    document.getElementById('balanceText');
+    document.getElementById(
+      'balanceText'
+    );
 
   bal.textContent =
     money(balance);
@@ -569,11 +795,53 @@ function update(){
     money(monthExpense);
 
 }
-  function toggleTheme() {
-    document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+
+function toggleTheme(){
+
+  document.documentElement.dataset.theme =
+    document.documentElement.dataset.theme === 'dark'
+      ? 'light'
+      : 'dark';
+
+}
+
+document.getElementById(
+  'monthSelect'
+).value =
+  new Date().getMonth();
+
+const yearSelect =
+  document.getElementById(
+    'yearSelect'
+  );
+
+const currentYear =
+  new Date().getFullYear();
+
+for(
+  let y = currentYear - 5;
+  y <= currentYear + 5;
+  y++
+){
+
+  const option =
+    document.createElement('option');
+
+  option.value = y;
+  option.textContent = y;
+
+  if(y === currentYear){
+
+    option.selected = true;
+
   }
-  document.getElementById('monthSelect').value = new Date().getMonth();
-  update();
+
+  yearSelect.appendChild(option);
+
+}
+
+update();
+
 </script>
 
 </body>
