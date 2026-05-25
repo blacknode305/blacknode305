@@ -284,7 +284,6 @@
           <h2 class="section-title">Статистика</h2>
           <div class="controls">
             <select id="monthSelect" class="select" onchange="update()">
-              <option value="all">Весь год</option>
               <option value="0">Январь</option>
               <option value="1">Февраль</option>
               <option value="2">Март</option>
@@ -396,14 +395,13 @@
         let balance = 0;
         let monthIncome = 0;
         let monthExpense = 0;
-        const selectedMonth = document.getElementById('monthSelect').value;
+        const selectedMonth = +document.getElementById('monthSelect').value;
         const selectedYear = +document.getElementById('yearSelect').value;
         const table = document.getElementById('historyTable');
         table.innerHTML = '';
         data.forEach((item,i) => {
           balance += item.type === 'income' ? item.amount : -item.amount;
-          if (item.year === selectedYear && (monthValue === 'all' || item.month === +monthValue)) 
-          {
+          if (item.month === selectedMonth && item.year === selectedYear) {
             if (item.type === 'income') { monthIncome += item.amount; }
             else { monthExpense += item.amount; }
           }
