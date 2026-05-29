@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>blacknode305 • Settings Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0f0f13;--card:rgba(20,20,28,.72);--text:#e8e8f0;--muted:#9aa0b4;
+--accent:#8b5cf6;--accent2:#06b6d4;--border:rgba(255,255,255,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:14px;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
+.container{max-width:1200px;margin:auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;margin-bottom:14px}
+.logo{font-family:"Space Grotesk";font-size:24px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+input,textarea,button{
+width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);
+background:#1b1b24;color:#fff;margin-top:6px
+}
+textarea{min-height:120px}
+button{cursor:pointer}
+.storage-item{margin-top:12px;padding:12px;border:1px solid var(--border);border-radius:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row button{flex:1}
+.small{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+<div class="logo">⚙ blacknode305 Settings Dashboard</div>
+<div class="small">Управление localStorage, импорт и экспорт настроек.</div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Telegram</h3>
+<input id="telegramToken" placeholder="Bot Token">
+<input id="telegramChatId" placeholder="Chat ID">
+<button onclick="saveTelegram()">Сохранить</button>
+</div>
+
+<div class="card">
+<h3>Binance</h3>
+<input id="binanceApiKey" placeholder="API Key">
+<input id="binanceSecretKey" placeholder="Secret Key">
+<button onclick="saveBinance()">Сохранить</button>
+</div>
+
+<div class="card">
+<h3>GitHub</h3>
+<input id="githubToken" placeholder="GitHub Token">
+<button onclick="saveGithub()">Сохранить</button>
+</div>
+
+</div>
+
+<div class="card">
+<h3>Новый ключ</h3>
+<input id="newKey" placeholder="Ключ">
+<textarea id="newValue" placeholder="Значение"></textarea>
+<button onclick="addKey()">Создать</button>
+</div>
+
+<div class="card">
+<h3>LocalStorage</h3>
+<div id="storageList"></div>
+</div>
+
+<div class="card">
+<h3>Импорт / Экспорт</h3>
+<div class="row">
+<button onclick="exportSettings()">Экспорт JSON</button>
+<input type="file" id="importFile">
+<button onclick="importSettings()">Импорт JSON</button>
+</div>
+</div>
+
+</div>
+
+<script>
+function saveTelegram(){
+localStorage.setItem('telegram',JSON.stringify({
+token:telegramToken.value,
+chatId:telegramChatId.value
+}));
+renderStorage();
+}
+
+function saveBinance(){
+localStorage.setItem('binance',JSON.stringify({
+apiKey:binanceApiKey.value,
+secretKey:binanceSecretKey.value
+}));
+renderStorage();
+}
+
+function saveGithub(){
+localStorage.setItem('github',JSON.stringify({
+token:githubToken.value
+}));
+renderStorage();
+}
+
+function addKey(){
+const k=newKey.value.trim();
+if(!k)return;
+localStorage.setItem(k,newValue.value);
+newKey.value='';
+newValue.value='';
+renderStorage();
+}
+
+function deleteKey(key){
+if(confirm('Удалить '+key+' ?')){
+localStorage.removeItem(key);
+renderStorage();
+}
+}
+
+function saveKey(key,id){
+localStorage.setItem(key,document.getElementById(id).value);
+renderStorage();
+}
+
+function renderStorage(){
+const box=document.getElementById('storageList');
+box.innerHTML='';
+
+for(let i=0;i<localStorage.length;i++){
+const key=localStorage.key(i);
+const value=localStorage.getItem(key);
+
+const div=document.createElement('div');
+div.className='storage-item';
+
+const areaId='val_'+i;
+
+div.innerHTML=`
+<b>${key}</b>
+<div class="small">Тип: ${typeof value}</div>
+<textarea id="${areaId}">${value}</textarea>
+<div class="row">
+<button onclick="saveKey('${key}','${areaId}')">Сохранить</button>
+<button onclick="deleteKey('${key}')">Удалить</button>
+</div>
+`;
+
+box.appendChild(div);
+}
+
+try{
+const t=JSON.parse(localStorage.getItem('telegram')||'{}');
+telegramToken.value=t.token||'';
+telegramChatId.value=t.chatId||'';
+}catch(e){}
+
+try{
+const b=JSON.parse(localStorage.getItem('binance')||'{}');
+binanceApiKey.value=b.apiKey||'';
+binanceSecretKey.value=b.secretKey||'';
+}catch(e){}
+
+try{
+const g=JSON.parse(localStorage.getItem('github')||'{}');
+githubToken.value=g.token||'';
+}catch(e){}
+}
+
+function exportSettings(){
+const data={};
+for(let i=0;i<localStorage.length;i++){
+const key=localStorage.key(i);
+data[key]=localStorage.getItem(key);
+}
+
+const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='settings.json';
+a.click();
+}
+
+function importSettings(){
+const file=document.getElementById('importFile').files[0];
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=e=>{
+const data=JSON.parse(e.target.result);
+
+for(const key in data){
+localStorage.setItem(key,data[key]);
+}
+
+renderStorage();
+alert('Импорт завершён');
+};
+
+reader.readAsText(file);
+}
+
+renderStorage();
+</script>
+</body>
+</html>
