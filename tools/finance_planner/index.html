@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>blacknode305 • Финансовый планировщик</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#0f0f13;
+ --card:rgba(20,20,28,.72);
+ --text:#e8e8f0;
+ --muted:#9aa0b4;
+ --accent:#8b5cf6;
+ --accent2:#06b6d4;
+ --success:#22c55e;
+ --border:rgba(255,255,255,.08);
+}
+
+[data-theme="light"]{
+ --bg:#f8fafc;
+ --card:rgba(255,255,255,.82);
+ --text:#1e293b;
+ --muted:#64748b;
+ --border:rgba(0,0,0,.08);
+}
+
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+}
+
+body{
+ font-family:'Inter',sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ min-height:100vh;
+ padding:14px;
+ transition:.3s;
+}
+
+body::before{
+ content:'';
+ position:fixed;
+ inset:0;
+ background:
+ radial-gradient(circle at 20% 20%,rgba(139,92,246,.15),transparent 40%),
+ radial-gradient(circle at 80% 80%,rgba(6,182,212,.15),transparent 40%);
+ z-index:-1;
+}
+
+.container{
+ max-width:1000px;
+ margin:auto;
+}
+
+.header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:20px;
+}
+
+.logo{
+ font-family:'Space Grotesk',sans-serif;
+ font-size:22px;
+ font-weight:700;
+ background:linear-gradient(135deg,var(--accent),var(--accent2));
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+
+.theme-btn{
+ width:42px;
+ height:42px;
+ border:none;
+ border-radius:12px;
+ cursor:pointer;
+ background:var(--card);
+ color:var(--text);
+ border:1px solid var(--border);
+}
+
+.hero{
+ margin-bottom:20px;
+}
+
+.hero h1{
+ font-family:'Space Grotesk',sans-serif;
+ margin-bottom:6px;
+}
+
+.hero p{
+ color:var(--muted);
+}
+
+.card{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:16px;
+ backdrop-filter:blur(20px);
+ margin-bottom:14px;
+}
+
+.section-title{
+ margin-bottom:12px;
+ font-family:'Space Grotesk',sans-serif;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px;
+ margin-bottom:14px;
+}
+
+.input{
+ width:100%;
+ padding:12px;
+ border-radius:12px;
+ border:1px solid var(--border);
+ background:rgba(255,255,255,.04);
+ color:var(--text);
+ margin-bottom:10px;
+}
+
+.btn{
+ width:100%;
+ padding:12px;
+ border:none;
+ border-radius:12px;
+ cursor:pointer;
+ font-weight:600;
+ color:white;
+ background:linear-gradient(135deg,var(--accent),var(--accent2));
+}
+
+.progress-box{
+ margin-top:10px;
+}
+
+.progress{
+ width:100%;
+ height:18px;
+ background:rgba(255,255,255,.08);
+ border-radius:999px;
+ overflow:hidden;
+}
+
+.progress-fill{
+ height:100%;
+ width:0%;
+ background:linear-gradient(135deg,#22c55e,#16a34a);
+ transition:.4s;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+ margin-top:14px;
+}
+
+.stat{
+ background:rgba(255,255,255,.03);
+ border-radius:14px;
+ padding:12px;
+ text-align:center;
+}
+
+.label{
+ color:var(--muted);
+ font-size:12px;
+ margin-bottom:4px;
+}
+
+.value{
+ font-size:18px;
+ font-weight:700;
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+}
+
+th,td{
+ border:1px solid var(--border);
+ padding:8px;
+ text-align:center;
+ font-size:12px;
+}
+
+th{
+ color:var(--muted);
+}
+
+.delete-btn{
+ background:none;
+ border:none;
+ cursor:pointer;
+ color:#ef4444;
+}
+
+@media(max-width:768px){
+ .grid{
+  grid-template-columns:1fr;
+ }
+
+ .stats{
+  grid-template-columns:1fr;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<div class="logo">blacknode305</div>
+<button class="theme-btn" onclick="toggleTheme()">☀️</button>
+</div>
+
+<div class="hero">
+<h1>План накопления</h1>
+<p>Создавай цели, добавляй накопления и отслеживай прогресс.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h2 class="section-title">План</h2>
+
+<input id="planName" class="input" placeholder="Название плана">
+
+<input id="startDate" class="input" type="date">
+
+<input id="endDate" class="input" type="date">
+
+<input id="targetAmount" class="input" type="number" placeholder="Целевая сумма">
+
+<button class="btn" onclick="savePlan()">
+Сохранить план
+</button>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">Пополнение</h2>
+
+<input id="incomeDate" class="input" type="date">
+
+<input id="incomeAmount" class="input" type="number" placeholder="Сумма">
+
+<button class="btn" onclick="addIncome()">
+Добавить
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">Прогресс</h2>
+
+<div class="stats">
+
+<div class="stat">
+<div class="label">План</div>
+<div class="value" id="showPlan">-</div>
+</div>
+
+<div class="stat">
+<div class="label">Цель</div>
+<div class="value" id="showTarget">0 ₸</div>
+</div>
+
+<div class="stat">
+<div class="label">Накоплено</div>
+<div class="value" id="showSaved">0 ₸</div>
+</div>
+
+<div class="stat">
+<div class="label">Осталось</div>
+<div class="value" id="showRemain">0 ₸</div>
+</div>
+
+<div class="stat">
+<div class="label">Дней осталось</div>
+<div class="value" id="showDays">0</div>
+</div>
+
+<div class="stat">
+<div class="label">Выполнено</div>
+<div class="value" id="showPercent">0%</div>
+</div>
+
+</div>
+
+<div class="progress-box">
+<div class="progress">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">История</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Дата</th>
+<th>Сумма</th>
+<th>Удалить</th>
+</tr>
+</thead>
+
+<tbody id="historyTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let plan =
+JSON.parse(localStorage.getItem('goal_plan'))
+||
+{
+ name:'',
+ start:'',
+ end:'',
+ target:0
+};
+
+let incomes =
+JSON.parse(localStorage.getItem('goal_incomes'))
+||
+[];
+
+function money(v){
+ return new Intl.NumberFormat(
+ 'ru-RU',
+ {
+  style:'currency',
+  currency:'KZT',
+  maximumFractionDigits:0
+ }).format(v);
+}
+function saveData(){
+ localStorage.setItem(
+  'goal_plan',
+  JSON.stringify(plan)
+ );
+
+ localStorage.setItem(
+  'goal_incomes',
+  JSON.stringify(incomes)
+ );
+}
+
+function savePlan(){
+
+ plan.name =
+ document.getElementById('planName').value;
+
+ plan.start =
+ document.getElementById('startDate').value;
+
+ plan.end =
+ document.getElementById('endDate').value;
+
+ plan.target =
+ Number(
+  document.getElementById('targetAmount').value
+ );
+
+ saveData();
+ update();
+}
+
+function addIncome(){
+
+ const date =
+ document.getElementById('incomeDate').value;
+
+ const amount =
+ Number(
+  document.getElementById('incomeAmount').value
+ );
+
+ if(!date || !amount) return;
+
+ incomes.unshift({
+  date,
+  amount
+ });
+
+ document.getElementById(
+ 'incomeAmount'
+ ).value='';
+
+ saveData();
+ update();
+}
+
+function removeIncome(index){
+
+ incomes.splice(index,1);
+
+ saveData();
+ update();
+}
+
+function toggleTheme(){
+
+ const html =
+ document.documentElement;
+
+ html.dataset.theme =
+ html.dataset.theme === 'dark'
+ ? 'light'
+ : 'dark';
+}
+
+function update(){
+
+ let totalSaved = 0;
+
+ incomes.forEach(item=>{
+  totalSaved += item.amount;
+ });
+
+ const remain =
+ Math.max(
+  0,
+  (plan.target || 0) - totalSaved
+ );
+
+ const percent =
+ plan.target > 0
+ ? Math.min(
+   100,
+   (totalSaved / plan.target) * 100
+  )
+ : 0;
+
+ let daysLeft = 0;
+
+ if(plan.end){
+
+  const today =
+  new Date();
+
+  const end =
+  new Date(plan.end);
+
+  const diff =
+  end - today;
+
+  daysLeft =
+  Math.max(
+   0,
+   Math.ceil(
+    diff / 86400000
+   )
+  );
+ }
+
+ document.getElementById(
+ 'showPlan'
+ ).textContent =
+ plan.name || '-';
+
+ document.getElementById(
+ 'showTarget'
+ ).textContent =
+ money(plan.target || 0);
+
+ document.getElementById(
+ 'showSaved'
+ ).textContent =
+ money(totalSaved);
+
+ document.getElementById(
+ 'showRemain'
+ ).textContent =
+ money(remain);
+
+ document.getElementById(
+ 'showDays'
+ ).textContent =
+ daysLeft;
+
+ document.getElementById(
+ 'showPercent'
+ ).textContent =
+ percent.toFixed(1) + '%';
+
+ document.getElementById(
+ 'progressFill'
+ ).style.width =
+ percent + '%';
+
+ const table =
+ document.getElementById(
+ 'historyTable'
+ );
+
+ table.innerHTML='';
+
+ incomes.forEach(
+ (item,index)=>{
+
+ const row =
+ document.createElement('tr');
+
+ row.innerHTML = `
+ <td>${item.date}</td>
+ <td>${money(item.amount)}</td>
+ <td>
+ <button
+ class="delete-btn"
+ onclick="removeIncome(${index})">
+ 🗑
+ </button>
+ </td>
+ `;
+
+ table.appendChild(row);
+
+ });
+}
+
+function loadData(){
+
+ document.getElementById(
+ 'planName'
+ ).value =
+ plan.name || '';
+
+ document.getElementById(
+ 'startDate'
+ ).value =
+ plan.start || '';
+
+ document.getElementById(
+ 'endDate'
+ ).value =
+ plan.end || '';
+
+ document.getElementById(
+ 'targetAmount'
+ ).value =
+ plan.target || '';
+
+ const today =
+ new Date()
+ .toISOString()
+ .split('T')[0];
+
+ document.getElementById(
+ 'incomeDate'
+ ).value =
+ today;
+
+ update();
+}
+
+loadData();
+
+</script>
+
+</body>
+</html>

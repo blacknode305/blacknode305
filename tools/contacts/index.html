@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>blacknode305</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
+  --border:rgba(255,255,255,.08);
+  --good:#22c55e;
+  --bad:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding:14px;
+  font-size:13px;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+  z-index:-1;
+}
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.4;
+}
+.container{max-width:1000px;margin:auto}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+.logo{
+  font-family:"Space Grotesk";
+  font-size:20px;
+  font-weight:700;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.btn{
+  border:none;
+  padding:10px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+  color:white;
+}
+.primary{background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.danger{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.success{background:linear-gradient(135deg,#22c55e,#16a34a)}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px;
+  backdrop-filter:blur(20px);
+  margin-bottom:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+input,select{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:12px;
+}
+
+.controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+h2{
+  font-family:"Space Grotesk";
+  margin-bottom:10px;
+}
+
+.contact{
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+.actions{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+  flex-wrap:wrap;
+}
+
+.iconbtn{
+  font-size:11px;
+  padding:6px 8px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  color:white;
+}
+
+.call{background:#22c55e}
+.wa{background:#25D366}
+.tg{background:#229ED9}
+.edit{background:#8b5cf6}
+.del{background:#ef4444}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.modal-content{
+  width:95%;
+  max-width:420px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:14px;
+  border-radius:16px;
+}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+<div class="header">
+  <div class="logo">blacknode305</div>
+  <button class="btn primary" onclick="openModal()">+ Добавить</button>
+</div>
+
+<div class="card">
+  <div class="controls">
+    <input id="search" placeholder="Поиск..." oninput="render()">
+    <select id="filterGroup" onchange="render()"></select>
+  </div>
+
+  <div class="controls" style="margin-top:10px">
+    <button class="btn primary" onclick="exportJSON()">📤 Export</button>
+    <input type="file" onchange="importJSON(event)">
+  </div>
+</div>
+
+<div id="list"></div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2>Контакт</h2>
+
+    <input id="name" placeholder="Имя"><br><br>
+    <input id="phone" placeholder="Телефон +7..."><br><br>
+    <input id="city" placeholder="Город"><br><br>
+    <input id="job" placeholder="Работа"><br><br>
+    <input id="group" placeholder="Группа"><br><br>
+    <input id="wa" placeholder="WhatsApp (номер)"><br><br>
+    <input id="tg" placeholder="Telegram (username)"><br><br>
+
+    <div style="display:flex;gap:8px">
+      <button class="btn success" onclick="save()">Сохранить</button>
+      <button class="btn danger" onclick="closeModal()">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let data = JSON.parse(localStorage.getItem("contacts")) || [];
+let editId = null;
+
+function saveStorage(){
+  localStorage.setItem("contacts", JSON.stringify(data));
+}
+
+function openModal(c=null){
+  document.getElementById("modal").style.display="flex";
+  if(c){
+    editId = c.id;
+    name.value=c.name;
+    phone.value=c.phone;
+    city.value=c.city;
+    job.value=c.job;
+    group.value=c.group;
+    wa.value=c.whatsapp;
+    tg.value=c.telegram;
+  } else {
+    editId=null;
+    name.value=phone.value=city.value=job.value=group.value=wa.value=tg.value="";
+  }
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+function save(){
+  const obj={
+    id:editId || Date.now(),
+    name:name.value,
+    phone:phone.value,
+    city:city.value,
+    job:job.value,
+    group:group.value,
+    whatsapp:wa.value,
+    telegram:tg.value
+  };
+
+  if(editId){
+    data = data.map(d=>d.id===editId?obj:d);
+  } else {
+    data.unshift(obj);
+  }
+
+  saveStorage();
+  closeModal();
+  render();
+}
+
+function del(id){
+  data=data.filter(d=>d.id!==id);
+  saveStorage();
+  render();
+}
+
+function call(p){window.location.href=`tel:${p}`;}
+function wa(p){window.open(`https://wa.me/${p}`);}
+function tg(u){window.open(`https://t.me/${u}`);}
+
+function exportJSON(){
+  const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="contacts.json";
+  a.click();
+}
+
+function importJSON(e){
+  const file=e.target.files[0];
+  const r=new FileReader();
+  r.onload=()=>{
+    data=JSON.parse(r.result);
+    saveStorage();
+    render();
+  }
+  r.readAsText(file);
+}
+
+function render(){
+  const list=document.getElementById("list");
+  const q=document.getElementById("search").value.toLowerCase();
+  const g=document.getElementById("filterGroup").value;
+
+  let groups=[...new Set(data.map(d=>d.group||""))];
+
+  filterGroup.innerHTML=`<option value="">Все группы</option>`+
+    groups.map(g=>`<option>${g}</option>`).join("");
+
+  list.innerHTML="";
+
+  data
+  .filter(d=>!q || d.name.toLowerCase().includes(q))
+  .filter(d=>!g || d.group===g)
+  .forEach(c=>{
+
+    list.innerHTML+=`
+    <div class="card contact">
+      <b>${c.name}</b>
+      <div class="meta">${c.city||""} • ${c.job||""} • ${c.group||""}</div>
+
+      <div class="actions">
+        <button class="iconbtn call" onclick="call('${c.phone}')">📞</button>
+        <button class="iconbtn wa" onclick="wa('${c.whatsapp}')">💬</button>
+        <button class="iconbtn tg" onclick="tg('${c.telegram}')">✈️</button>
+        <button class="iconbtn edit" onclick='openModal(${JSON.stringify(c)})'>✏️</button>
+        <button class="iconbtn del" onclick="del(${c.id})">🗑</button>
+      </div>
+    </div>`;
+  });
+}
+
+render();
+
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+let p=[];
+for(let i=0;i<60;i++){
+  p.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+1,
+    dx:(Math.random()-.5)*0.4,
+    dy:(Math.random()-.5)*0.4
+  })
+}
+
+function anim(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  p.forEach(v=>{
+    v.x+=v.dx;
+    v.y+=v.dy;
+    if(v.x<0||v.x>canvas.width)v.dx*=-1;
+    if(v.y<0||v.y>canvas.height)v.dy*=-1;
+    ctx.beginPath();
+    ctx.arc(v.x,v.y,v.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(139,92,246,.5)";
+    ctx.fill();
+  });
+  requestAnimationFrame(anim);
+}
+anim();
+</script>
+
+</body>
+</html>
