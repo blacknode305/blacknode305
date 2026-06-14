@@ -38,12 +38,7 @@ body{
 
 .container{max-width:1000px;margin:auto;}
 
-.header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:20px;
-}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
 
 .logo{
  font-family:"Space Grotesk";
@@ -60,7 +55,6 @@ body{
  background:var(--card);
  color:var(--text);
  cursor:pointer;
- border:1px solid var(--border);
 }
 
 .card{
@@ -93,36 +87,24 @@ body{
 }
 
 .plan{
- padding:14px;
+ padding:12px;
  border:1px solid var(--border);
- border-radius:16px;
+ border-radius:14px;
  margin-bottom:10px;
 }
 
-.stats{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
- margin-top:10px;
+.small{
+ font-size:12px;
+ color:var(--muted);
+ margin-top:2px;
 }
-
-.stat{
- background:rgba(255,255,255,.03);
- padding:10px;
- border-radius:12px;
- text-align:center;
-}
-
-.label{font-size:12px;color:var(--muted);}
-.value{font-size:16px;font-weight:700;}
 
 .progress{
- width:100%;
- height:14px;
+ height:12px;
  background:rgba(255,255,255,.1);
  border-radius:999px;
  overflow:hidden;
- margin-top:10px;
+ margin-top:8px;
 }
 
 .progress-fill{
@@ -131,14 +113,12 @@ body{
  background:linear-gradient(135deg,#22c55e,#16a34a);
 }
 
-.priority{
- font-size:12px;
- color:var(--muted);
- margin-top:4px;
-}
-
-.status{
- margin-top:20px;
+.delete-btn{
+ background:none;
+ border:none;
+ color:#ef4444;
+ cursor:pointer;
+ margin-top:8px;
 }
 
 .status-box{
@@ -146,19 +126,7 @@ body{
  border-radius:14px;
  border:1px solid var(--border);
  background:var(--card);
-}
-
-/* 🔥 НОВОЕ */
-.del-btn{
- margin-top:10px;
- width:100%;
- padding:8px;
- border:none;
- border-radius:10px;
- background:#ef4444;
- color:white;
- cursor:pointer;
- font-weight:600;
+ margin-top:20px;
 }
 </style>
 </head>
@@ -175,13 +143,13 @@ body{
 <div class="card">
 <h3>Создать план</h3>
 
-<input id="name" class="input" placeholder="Название">
-<input id="priority" class="input" type="number" placeholder="Приоритет (1 = высокий)">
-<input id="target" class="input" type="number" placeholder="Цель ₸">
-<input id="start" class="input" type="date">
-<input id="end" class="input" type="date">
+<input id="pName" class="input" placeholder="Название">
+<input id="pPriority" class="input" type="number" placeholder="Приоритет (1 = высокий)">
+<input id="pTarget" class="input" type="number" placeholder="Цель ₸">
+<input id="pStart" class="input" type="date">
+<input id="pEnd" class="input" type="date">
 
-<button class="btn" onclick="addPlan()">Добавить</button>
+<button class="btn" onclick="addPlan()">Добавить план</button>
 </div>
 
 <div class="card">
@@ -198,9 +166,7 @@ body{
 <div id="plans"></div>
 </div>
 
-<div class="status">
-<div class="status-box" id="status"></div>
-</div>
+<div id="status" class="status-box"></div>
 
 </div>
 
@@ -216,12 +182,20 @@ function save(){
 
 function addPlan(){
 
+ const name = document.getElementById('pName').value;
+ const priority = Number(document.getElementById('pPriority').value)||999;
+ const target = Number(document.getElementById('pTarget').value)||0;
+ const start = document.getElementById('pStart').value;
+ const end = document.getElementById('pEnd').value;
+
+ if(!name || !target) return;
+
  plans.push({
-  name:name.value,
-  priority:Number(priority.value)||999,
-  target:Number(target.value)||0,
-  start:start.value,
-  end:end.value,
+  name,
+  priority,
+  target,
+  start,
+  end,
   saved:0
  });
 
@@ -231,10 +205,12 @@ function addPlan(){
 
 function addIncome(){
 
- let amount = Number(incAmount.value);
+ const amount = Number(document.getElementById('incAmount').value);
+ const date = document.getElementById('incDate').value;
+
  if(!amount) return;
 
- incomes.unshift({amount,date:incDate.value});
+ incomes.unshift({amount,date});
 
  distribute(amount);
 
@@ -243,8 +219,6 @@ function addIncome(){
 }
 
 function distribute(amount){
-
- plans.sort((a,b)=>a.priority-b.priority);
 
  for(let p of plans){
 
@@ -261,10 +235,14 @@ function distribute(amount){
  }
 }
 
-function deletePlan(index){
- plans.splice(index,1);
+function deletePlan(i){
+ plans.splice(i,1);
  save();
  render();
+}
+
+function sortPlans(){
+ plans.sort((a,b)=>a.priority-b.priority);
 }
 
 function daysLeft(end){
@@ -276,98 +254,50 @@ function daysLeft(end){
 
 function render(){
 
- plans.sort((a,b)=>a.priority-b.priority);
+ sortPlans();
 
- const el = document.getElementById('plans');
+ const plansDiv = document.getElementById('plans');
  const status = document.getElementById('status');
 
- el.innerHTML='';
-
- let totalSaved=0;
- let totalTarget=0;
+ let html='';
 
  plans.forEach((p,i)=>{
 
   let percent = p.target ? (p.saved/p.target)*100 : 0;
-  let remain = Math.max(0,p.target-p.saved);
 
-  totalSaved += p.saved;
-  totalTarget += p.target;
-
-  el.innerHTML += `
+  html += `
   <div class="plan">
-
    <b>${p.name}</b>
-
-   <div class="priority">Приоритет: ${p.priority}</div>
-
-   <div class="stats">
-
-    <div class="stat">
-     <div class="label">Цель</div>
-     <div class="value">${p.target} ₸</div>
-    </div>
-
-    <div class="stat">
-     <div class="label">Накоплено</div>
-     <div class="value">${p.saved} ₸</div>
-    </div>
-
-    <div class="stat">
-     <div class="label">Осталось</div>
-     <div class="value">${remain} ₸</div>
-    </div>
-
-    <div class="stat">
-     <div class="label">Дней</div>
-     <div class="value">${daysLeft(p.end)}</div>
-    </div>
-
-   </div>
-
-   <div class="stats">
-    <div class="stat">
-     <div class="label">Выполнено</div>
-     <div class="value">${percent.toFixed(1)}%</div>
-    </div>
-   </div>
+   <div class="small">Приоритет: ${p.priority}</div>
+   <div class="small">С ${p.start||'-'} по ${p.end||'-'}</div>
+   <div class="small">Осталось дней: ${daysLeft(p.end)}</div>
+   <div class="small">${p.saved} / ${p.target} ₸</div>
 
    <div class="progress">
     <div class="progress-fill" style="width:${percent}%"></div>
    </div>
 
-   <!-- 🔥 КНОПКА УДАЛЕНИЯ -->
-   <button class="del-btn" onclick="deletePlan(${i})">Удалить план</button>
-
+   <button class="delete-btn" onclick="deletePlan(${i})">Удалить</button>
   </div>
   `;
  });
 
- let global = totalTarget ? (totalSaved/totalTarget)*100 : 0;
+ plansDiv.innerHTML = html;
 
- status.innerHTML=`
- <h3>Общий статус</h3>
+ let totalSaved = plans.reduce((s,p)=>s+p.saved,0);
+ let totalTarget = plans.reduce((s,p)=>s+p.target,0);
+ let percent = totalTarget ? (totalSaved/totalTarget)*100 : 0;
 
- <div class="stats">
-  <div class="stat">
-   <div class="label">Накоплено</div>
-   <div class="value">${totalSaved} ₸</div>
-  </div>
-
-  <div class="stat">
-   <div class="label">Цель</div>
-   <div class="value">${totalTarget} ₸</div>
-  </div>
-
-  <div class="stat">
-   <div class="label">Выполнено</div>
-   <div class="value">${global.toFixed(1)}%</div>
-  </div>
- </div>
+ status.innerHTML = `
+ <h3>Общий прогресс</h3>
+ <div class="small">Накоплено: ${totalSaved} ₸</div>
+ <div class="small">Цель: ${totalTarget} ₸</div>
 
  <div class="progress">
-  <div class="progress-fill" style="width:${global}%"></div>
+  <div class="progress-fill" style="width:${percent}%"></div>
  </div>
+
+ <div class="small">Выполнено: ${percent.toFixed(1)}%</div>
  `;
 }
 

@@ -6,6 +6,8 @@
 
 <title>blacknode305 • Финансовый планировщик</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,6 +18,7 @@
  --muted:#9aa0b4;
  --accent:#8b5cf6;
  --accent2:#06b6d4;
+ --success:#22c55e;
  --border:rgba(255,255,255,.08);
 }
 
@@ -30,9 +33,10 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
- font-family:Inter;
+ font-family:'Inter',sans-serif;
  background:var(--bg);
  color:var(--text);
+ min-height:100vh;
  padding:14px;
 }
 
@@ -46,7 +50,7 @@ body{
 }
 
 .logo{
- font-family:"Space Grotesk";
+ font-family:'Space Grotesk',sans-serif;
  font-size:22px;
  font-weight:700;
  background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -55,30 +59,44 @@ body{
 }
 
 .theme-btn{
- width:42px;height:42px;
- border:none;border-radius:12px;
+ width:42px;
+ height:42px;
+ border:none;
+ border-radius:12px;
+ cursor:pointer;
  background:var(--card);
  color:var(--text);
- cursor:pointer;
  border:1px solid var(--border);
 }
 
 .card{
  background:var(--card);
  border:1px solid var(--border);
- padding:16px;
  border-radius:18px;
+ padding:16px;
+ margin-bottom:14px;
+}
+
+.section-title{
+ margin-bottom:12px;
+ font-family:'Space Grotesk',sans-serif;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:14px;
  margin-bottom:14px;
 }
 
 .input{
  width:100%;
  padding:12px;
- margin-bottom:10px;
  border-radius:12px;
  border:1px solid var(--border);
  background:rgba(255,255,255,.04);
  color:var(--text);
+ margin-bottom:10px;
 }
 
 .btn{
@@ -86,79 +104,50 @@ body{
  padding:12px;
  border:none;
  border-radius:12px;
- background:linear-gradient(135deg,var(--accent),var(--accent2));
- color:white;
  cursor:pointer;
  font-weight:600;
+ color:white;
+ background:linear-gradient(135deg,var(--accent),var(--accent2));
 }
-
-.plan{
- padding:14px;
- border:1px solid var(--border);
- border-radius:16px;
- margin-bottom:10px;
-}
-
-.stats{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
- margin-top:10px;
-}
-
-.stat{
- background:rgba(255,255,255,.03);
- padding:10px;
- border-radius:12px;
- text-align:center;
-}
-
-.label{font-size:12px;color:var(--muted);}
-.value{font-size:16px;font-weight:700;}
 
 .progress{
  width:100%;
- height:14px;
- background:rgba(255,255,255,.1);
+ height:18px;
+ background:rgba(255,255,255,.08);
  border-radius:999px;
  overflow:hidden;
- margin-top:10px;
 }
 
 .progress-fill{
  height:100%;
  width:0%;
  background:linear-gradient(135deg,#22c55e,#16a34a);
+ transition:.4s;
 }
 
-.priority{
- font-size:12px;
- color:var(--muted);
- margin-top:4px;
-}
-
-.status{
- margin-top:20px;
-}
-
-.status-box{
- padding:14px;
- border-radius:14px;
- border:1px solid var(--border);
- background:var(--card);
-}
-
-/* 🔥 НОВОЕ */
-.del-btn{
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
  margin-top:10px;
- width:100%;
- padding:8px;
- border:none;
- border-radius:10px;
- background:#ef4444;
- color:white;
- cursor:pointer;
- font-weight:600;
+}
+
+.stat{
+ background:rgba(255,255,255,.03);
+ border-radius:14px;
+ padding:12px;
+ text-align:center;
+}
+
+.label{
+ color:var(--muted);
+ font-size:12px;
+ margin-bottom:4px;
+}
+
+.value{
+ font-size:18px;
+ font-weight:700;
 }
 </style>
 </head>
@@ -175,54 +164,52 @@ body{
 <div class="card">
 <h3>Создать план</h3>
 
-<input id="name" class="input" placeholder="Название">
-<input id="priority" class="input" type="number" placeholder="Приоритет (1 = высокий)">
-<input id="target" class="input" type="number" placeholder="Цель ₸">
-<input id="start" class="input" type="date">
-<input id="end" class="input" type="date">
+<input id="planName" class="input" placeholder="Название плана">
+<input id="startDate" class="input" type="date">
+<input id="endDate" class="input" type="date">
+<input id="targetAmount" class="input" type="number" placeholder="Целевая сумма">
 
-<button class="btn" onclick="addPlan()">Добавить</button>
+<button class="btn" onclick="savePlan()">Сохранить план</button>
 </div>
 
 <div class="card">
 <h3>Пополнение</h3>
 
-<input id="incDate" class="input" type="date">
-<input id="incAmount" class="input" type="number" placeholder="Сумма">
+<input id="incomeDate" class="input" type="date">
+<input id="incomeAmount" class="input" type="number" placeholder="Сумма">
 
 <button class="btn" onclick="addIncome()">Добавить</button>
 </div>
 
+<!-- 🔥 ПЛАНЫ (ОБНОВЛЁННЫЙ БЛОК) -->
 <div class="card">
 <h3>Планы</h3>
-<div id="plans"></div>
-</div>
-
-<div class="status">
-<div class="status-box" id="status"></div>
+<div id="plansContainer"></div>
 </div>
 
 </div>
 
 <script>
 
-let plans = JSON.parse(localStorage.getItem('plans') || '[]');
-let incomes = JSON.parse(localStorage.getItem('incomes') || '[]');
+let plans =
+JSON.parse(localStorage.getItem('plans') || '[]');
+
+let incomes =
+JSON.parse(localStorage.getItem('incomes') || '[]');
 
 function save(){
  localStorage.setItem('plans',JSON.stringify(plans));
  localStorage.setItem('incomes',JSON.stringify(incomes));
 }
 
-function addPlan(){
+function savePlan(){
 
  plans.push({
-  name:name.value,
-  priority:Number(priority.value)||999,
-  target:Number(target.value)||0,
-  start:start.value,
-  end:end.value,
-  saved:0
+  name: planName.value,
+  start: startDate.value,
+  end: endDate.value,
+  target: Number(targetAmount.value)||0,
+  saved: 0
  });
 
  save();
@@ -231,10 +218,13 @@ function addPlan(){
 
 function addIncome(){
 
- let amount = Number(incAmount.value);
+ let amount = Number(incomeAmount.value);
  if(!amount) return;
 
- incomes.unshift({amount,date:incDate.value});
+ incomes.unshift({
+  amount,
+  date: incomeDate.value
+ });
 
  distribute(amount);
 
@@ -243,8 +233,6 @@ function addIncome(){
 }
 
 function distribute(amount){
-
- plans.sort((a,b)=>a.priority-b.priority);
 
  for(let p of plans){
 
@@ -261,12 +249,6 @@ function distribute(amount){
  }
 }
 
-function deletePlan(index){
- plans.splice(index,1);
- save();
- render();
-}
-
 function daysLeft(end){
  if(!end) return 0;
  return Math.max(0,
@@ -276,30 +258,23 @@ function daysLeft(end){
 
 function render(){
 
- plans.sort((a,b)=>a.priority-b.priority);
+ const container =
+ document.getElementById('plansContainer');
 
- const el = document.getElementById('plans');
- const status = document.getElementById('status');
-
- el.innerHTML='';
-
- let totalSaved=0;
- let totalTarget=0;
+ container.innerHTML = '';
 
  plans.forEach((p,i)=>{
 
-  let percent = p.target ? (p.saved/p.target)*100 : 0;
-  let remain = Math.max(0,p.target-p.saved);
+  let percent =
+  p.target ? (p.saved/p.target)*100 : 0;
 
-  totalSaved += p.saved;
-  totalTarget += p.target;
+  let remain =
+  Math.max(0,p.target-p.saved);
 
-  el.innerHTML += `
-  <div class="plan">
+  container.innerHTML += `
+  <div class="card">
 
-   <b>${p.name}</b>
-
-   <div class="priority">Приоритет: ${p.priority}</div>
+   <h3>${p.name}</h3>
 
    <div class="stats">
 
@@ -332,43 +307,13 @@ function render(){
     </div>
    </div>
 
-   <div class="progress">
+   <div class="progress" style="margin-top:10px">
     <div class="progress-fill" style="width:${percent}%"></div>
    </div>
-
-   <!-- 🔥 КНОПКА УДАЛЕНИЯ -->
-   <button class="del-btn" onclick="deletePlan(${i})">Удалить план</button>
 
   </div>
   `;
  });
-
- let global = totalTarget ? (totalSaved/totalTarget)*100 : 0;
-
- status.innerHTML=`
- <h3>Общий статус</h3>
-
- <div class="stats">
-  <div class="stat">
-   <div class="label">Накоплено</div>
-   <div class="value">${totalSaved} ₸</div>
-  </div>
-
-  <div class="stat">
-   <div class="label">Цель</div>
-   <div class="value">${totalTarget} ₸</div>
-  </div>
-
-  <div class="stat">
-   <div class="label">Выполнено</div>
-   <div class="value">${global.toFixed(1)}%</div>
-  </div>
- </div>
-
- <div class="progress">
-  <div class="progress-fill" style="width:${global}%"></div>
- </div>
- `;
 }
 
 function toggleTheme(){
