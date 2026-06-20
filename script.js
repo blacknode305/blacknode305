@@ -1,3 +1,6 @@
+const username = document.getElementById('username');
+username.innerHTML = 'Alexandr Astashov';
+
 const html = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
 const savedTheme = localStorage.getItem('theme') || 'dark';
