@@ -1,7 +1,6 @@
 // ====================
 // DATABASE
 // ====================
-
 const html = document.documentElement;
 const themeToggle = document.getElementById("themeToggle");
 

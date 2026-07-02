@@ -69,6 +69,9 @@ if (canvas) {
     animate();
 }
 
+// ====================
+// LOGIC
+// ====================
 function createDate() {
     const now = new Date();
     return {
