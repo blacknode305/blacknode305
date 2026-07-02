@@ -1,165 +1,162 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>blacknode305 • Crypto converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://blacknode305.github.io/blacknode305/tools/crypto_converter/style.css">
+  </head>
+  <body>
 
-<title>blacknode305 • Crypto converter</title>
+    <div class="container">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <header class="header">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://blacknode305.github.io/blacknode305/tools/crypto_converter/style.css">
-</head>
-<body>
+    <div class="logo">
+      <a href="https://blacknode305.github.io/blacknode305/" class="logo">blacknode305</a>
+    </div>
 
-<div class="container">
+    <button
+      class="theme-toggle"
+      id="themeToggle"
+    >
+    ☀️
+    </button>
 
-<header class="header">
+    </header>
 
-<div class="logo">
-  <a href="https://blacknode305.github.io/blacknode305/" class="logo">blacknode305</a>
-</div>
+    <section class="hero">
 
-<button
-  class="theme-toggle"
-  id="themeToggle"
->
-☀️
-</button>
+    <h1>
+    Binance Crypto Rates
+    </h1>
 
-</header>
+    <p>
+    Криптовалюты Binance в USDT
+    </p>
 
-<section class="hero">
+    </section>
 
-<h1>
-Binance Crypto Rates
-</h1>
+    <div
+      class="card"
+      style="margin-top:22px;"
+    >
 
-<p>
-Криптовалюты Binance в USDT
-</p>
+    <h2 class="section-title">
+    Crypto Converter
+    </h2>
 
-</section>
+    <div class="controls">
 
-<div
-  class="card"
-  style="margin-top:22px;"
->
+    <input
+      type="number"
+      id="amountInput"
+      class="select"
+      placeholder="Количество"
+      value="1"
+    />
 
-<h2 class="section-title">
-Crypto Converter
-</h2>
+    <select
+      id="fromCurrency"
+      class="select"
+    ></select>
 
-<div class="controls">
+    <select
+      id="toCurrency"
+      class="select"
+    ></select>
 
-<input
-  type="number"
-  id="amountInput"
-  class="select"
-  placeholder="Количество"
-  value="1"
-/>
+    <button
+      class="btn"
+      id="convertBtn"
+    >
+    Конвертировать
+    </button>
 
-<select
-  id="fromCurrency"
-  class="select"
-></select>
+    </div>
 
-<select
-  id="toCurrency"
-  class="select"
-></select>
+    <div
+      id="convertResult"
+      class="info"
+      style="font-size:18px;"
+    ></div>
 
-<button
-  class="btn"
-  id="convertBtn"
->
-Конвертировать
-</button>
+    </div>
 
-</div>
+    <div
+      class="card"
+      style="margin-top:22px;"
+    >
 
-<div
-  id="convertResult"
-  class="info"
-  style="font-size:18px;"
-></div>
+    <h2 class="section-title">
+    Pinned Pairs
+    </h2>
 
-</div>
+    <div class="controls">
 
-<div
-  class="card"
-  style="margin-top:22px;"
->
+    <select
+      id="pairFrom"
+      class="select"
+    ></select>
 
-<h2 class="section-title">
-Pinned Pairs
-</h2>
+    <select
+      id="pairTo"
+      class="select"
+    ></select>
 
-<div class="controls">
+    <button
+      class="btn"
+      id="savePairBtn"
+    >
+    Закрепить
+    </button>
 
-<select
-  id="pairFrom"
-  class="select"
-></select>
+    </div>
 
-<select
-  id="pairTo"
-  class="select"
-></select>
+    <div
+      class="rates-grid"
+      id="savedPairs"
+    ></div>
 
-<button
-  class="btn"
-  id="savePairBtn"
->
-Закрепить
-</button>
+    </div>
 
-</div>
+    <main class="card" style="margin-top:22px;">
 
-<div
-  class="rates-grid"
-  id="savedPairs"
-></div>
+    <div class="controls">
 
-</div>
+    <button
+      class="btn"
+      id="loadBtn"
+    >
+    Обновить
+    </button>
 
-<main class="card" style="margin-top:22px;">
+    </div>
 
-<div class="controls">
+    <div
+      class="info"
+      id="info"
+    >
+    Загрузка...
+    </div>
 
-<button
-  class="btn"
-  id="loadBtn"
->
-Обновить
-</button>
+    <div
+      class="rates-grid"
+      id="ratesGrid"
+    ></div>
 
-</div>
+    </main>
 
-<div
-  class="info"
-  id="info"
->
-Загрузка...
-</div>
+    <footer class="footer">
+    © 2026 blacknode305 • Binance API
+    </footer>
 
-<div
-  class="rates-grid"
-  id="ratesGrid"
-></div>
+    </div>
 
-</main>
+    <script src="https://blacknode305.github.io/blacknode305/tools/crypto_converter/script.js"></script>
 
-<footer class="footer">
-© 2026 blacknode305 • Binance API
-</footer>
-
-</div>
-
-<script src="https://blacknode305.github.io/blacknode305/tools/crypto_converter/script.js"></script>
-
-</body>
+  </body>
 </html>
