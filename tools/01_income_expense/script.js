@@ -4,13 +4,8 @@
 
 const html = document.documentElement;
 const themeToggle = document.getElementById("themeToggle");
-const username = document.getElementById("username");
 
-let db = JSON.parse(localStorage.getItem("db")) || { theme: html.dataset.theme || "dark" };
-db.finance ??= [];
-db.income ??= [];
-db.expense ??= [];
-
+let db = JSON.parse(localStorage.getItem("db"));
 function saveDB() { localStorage.setItem("db", JSON.stringify(db)) };
 saveDB();
 
