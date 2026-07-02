@@ -7,7 +7,7 @@ const themeToggle = document.getElementById("themeToggle");
 
 let db = JSON.parse(localStorage.getItem("db"));
 function saveDB() { localStorage.setItem("db", JSON.stringify(db)) };
-saveDB();
+//saveDB();
 
 // ====================
 // THEME
