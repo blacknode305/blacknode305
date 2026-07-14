@@ -110,46 +110,18 @@ function isValidHex(color) {
 }
 
 function generateCalendar() {
+    const month = parseInt(document.getElementById('month').value);
+    const year = parseInt(document.getElementById('year').value);
+    const calendar = document.getElementById('calendar');
 
-    const month =
-        parseInt(
-            document.getElementById('month').value
-        );
-
-    const year =
-        parseInt(
-            document.getElementById('year').value
-        );
-
-    const calendar =
-        document.getElementById('calendar');
-
-    calendar.innerHTML =
-        '';
-
-    const daysOfWeek = [
-        'Пн',
-        'Вт',
-        'Ср',
-        'Чт',
-        'Пт',
-        'Сб',
-        'Вс'
-    ];
+    calendar.innerHTML = '';
+    const daysOfWeek = [ 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс' ];
 
     daysOfWeek.forEach(day => {
-
-        const header =
-            document.createElement('div');
-
-        header.className =
-            'day-header';
-
-        header.textContent =
-            day;
-
+        const header = document.createElement('div');
+        header.className = 'day-header';
+        header.textContent = day;
         calendar.appendChild(header);
-
     });
 
     const firstDay =
@@ -213,6 +185,7 @@ function generateCalendar() {
     updateLegend();
 
 }
+generateCalendar();
 
 function toggleDay(day, element) {
 
