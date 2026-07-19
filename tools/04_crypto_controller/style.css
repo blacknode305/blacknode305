@@ -1,40 +1,26 @@
 :root {
     --bg: #0f0f13;
-    --card: rgba(20, 20, 28, .72);
+    --card: rgba(20,20,28,.72);
     --card-solid: #181820;
-
     --text: #e8e8f0;
     --muted: #9aa0b4;
-
     --accent: #8b5cf6;
     --accent2: #06b6d4;
-
+    --border: rgba(255,255,255,.08);
+    --shadow: 0 10px 30px rgba(0,0,0,.35);
+    --radius: 22px;
     --income: #22c55e;
     --expense: #ef4444;
-
-    --border: rgba(255,255,255,.08);
-
-    --shadow: 0 10px 30px rgba(0,0,0,.35);
-
-    --radius:22px;
 }
 
-[data-theme="light"]{
-
+[data-theme="light"] {
     --bg:#f8fafc;
-
     --card:rgba(255,255,255,.82);
-
-    --card-solid:#ffffff;
-
+    --card-solid:#fff;
     --text:#1e293b;
-
     --muted:#64748b;
-
     --border:rgba(0,0,0,.08);
-
     --shadow:0 10px 30px rgba(0,0,0,.08);
-
 }
 
 *{
@@ -48,985 +34,486 @@ html{
 }
 
 body{
-
     font-family:'Inter',sans-serif;
-
     background:var(--bg);
-
     color:var(--text);
-
     min-height:100vh;
-
-    overflow-x:hidden;
-
-    padding:14px 10px;
-
+    padding:16px;
     transition:.3s;
-
+    overflow-x:hidden;
     position:relative;
-
-    font-size:13px;
-
 }
 
 body::before{
-
     content:"";
-
     position:fixed;
-
     inset:0;
-
     background:
-        radial-gradient(circle at 20% 20%,rgba(139,92,246,.18),transparent 40%),
-        radial-gradient(circle at 80% 80%,rgba(6,182,212,.15),transparent 45%);
-
-    z-index:-2;
-
+        radial-gradient(circle at 20% 20%,rgba(139,92,246,.15),transparent 40%),
+        radial-gradient(circle at 80% 80%,rgba(6,182,212,.15),transparent 40%);
+    z-index:-1;
     animation:bgMove 14s ease infinite;
-
 }
 
 @keyframes bgMove{
 
-    0%,100%{
+0%,100%{
+    transform:scale(1) rotate(0deg);
+}
 
-        transform:scale(1);
-
-    }
-
-    50%{
-
-        transform:scale(1.06) rotate(3deg);
-
-    }
+50%{
+    transform:scale(1.08) rotate(4deg);
+}
 
 }
 
-#particles{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-1;
-
-    opacity:.45;
-
-}
-
-.container{
-
-    max-width:1200px;
-
-    margin:0 auto;
-
-}
-
-.header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
-
-}
-
-.logo{
-
-    text-decoration:none;
-
-    font-size:22px;
-
-    font-family:'Space Grotesk',sans-serif;
-
-    font-weight:700;
-
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-}
-
-.theme-toggle{
-
-    width:42px;
-
-    height:42px;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    background:var(--card);
-
-    color:var(--text);
-
-    border:1px solid var(--border);
-
-    transition:.25s;
-
-}
-
-.theme-toggle:hover{
-
-    border-color:var(--accent);
-
-    transform:translateY(-2px);
-
-}
-
-.hero{
-
-    margin-bottom:18px;
-
-}
-
-.hero h1{
-
-    font-size:28px;
-
-    font-family:'Space Grotesk',sans-serif;
-
-    margin-bottom:6px;
-
-}
-
-.hero p{
-
-    color:var(--muted);
-
-    line-height:1.6;
-
-}
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:16px;
-
-    margin-bottom:18px;
-
-}
-
-.card{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:18px;
-
-    backdrop-filter:blur(20px);
-
-    box-shadow:var(--shadow);
-
-}
-
-.section-title{
-
-    font-size:17px;
-
-    font-family:'Space Grotesk',sans-serif;
-
-    margin-bottom:14px;
-
-}
-
-.controls{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-}
-
-.select{
-
-    flex:1;
-
-    min-width:130px;
-
-    padding:12px;
-
-    border-radius:12px;
-
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.04);
-
-    color:var(--text);
-
-    outline:none;
-
-    transition:.25s;
-
-}
-
-.select:focus{
-
-    border-color:var(--accent);
-
-    box-shadow:0 0 0 3px rgba(139,92,246,.15);
-
-}
-
-.select::placeholder{
-
-    color:var(--muted);
-
-}
-
-.btn{
-
-    padding:12px 16px;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    color:#fff;
-
-    font-weight:600;
-
-    transition:.25s;
-
-}
-
-.btn:hover{
-
-    transform:translateY(-2px);
-
-}
-
-.income-btn{
-
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-
-}
-
-.expense-btn{
-
-    background:linear-gradient(135deg,#ef4444,#dc2626);
-
-}
-
-/* ==========================================
-   TABLE
-========================================== */
-
-.table-card{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:18px;
-
-    backdrop-filter:blur(20px);
-
-    box-shadow:var(--shadow);
-
-    margin-bottom:18px;
-
-}
-
-.table-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-bottom:16px;
-
-}
-
-.table-header h2{
-
-    font-family:'Space Grotesk',sans-serif;
-
-    font-size:18px;
-
-}
-
-.table-wrapper{
-
-    overflow-x:auto;
-
-    border-radius:14px;
-
-}
-
-
-/* ==========================================
-   TABLE
-========================================== */
-
-table{
-
-    width:100%;
-
-    min-width:1200px;
-
-    border-collapse:collapse;
-
-}
-
-thead{
-
-    background:rgba(255,255,255,.04);
-
-}
-
-thead th{
-
-    padding:14px 10px;
-
-    font-size:11px;
-
-    color:var(--muted);
-
-    font-weight:600;
-
-    white-space:nowrap;
-
-    border-bottom:1px solid var(--border);
-
-}
-
-tbody td{
-
-    padding:14px 10px;
-
+h1{
     text-align:center;
-
-    font-size:12px;
-
-    border-bottom:1px solid rgba(255,255,255,.05);
-
-    transition:.25s;
-
+    margin-bottom:20px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:28px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
-tbody tr{
-
-    transition:.25s;
-
+h2{
+    margin-bottom:12px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:18px;
 }
 
-tbody tr:hover{
-
-    background:rgba(255,255,255,.03);
-
-}
-
-
-/* ==========================================
-   PAIR
-========================================== */
-
-.pair{
-
-    font-weight:700;
-
-    color:var(--accent2);
-
-    letter-spacing:.5px;
-
-}
-
-
-/* ==========================================
-   PRICE
-========================================== */
-
-.buy-price{
-
-    color:#ffffff;
-
-    font-weight:600;
-
-}
-
-.current-price{
-
-    color:var(--accent2);
-
-    font-weight:700;
-
-}
-
-
-/* ==========================================
-   PROFIT
-========================================== */
-
-.profit{
-
-    color:var(--income);
-
-    font-weight:700;
-
-}
-
-.loss{
-
-    color:var(--expense);
-
-    font-weight:700;
-
-}
-
-.neutral{
-
-    color:var(--muted);
-
-}
-
-
-/* ==========================================
-   ROW COLORS
-========================================== */
-
-.position-positive{
-
-    border-left:4px solid var(--income);
-
-}
-
-.position-negative{
-
-    border-left:4px solid var(--expense);
-
-}
-
-.position-neutral{
-
-    border-left:4px solid var(--accent2);
-
-}
-
-
-/* ==========================================
-   BADGES
-========================================== */
-
-.badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:5px 10px;
-
-    border-radius:999px;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#fff;
-
-}
-
-.badge-buy{
-
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-
-}
-
-.badge-sell{
-
-    background:linear-gradient(135deg,#ef4444,#dc2626);
-
-}
-
-
-/* ==========================================
-   UPDATE
-========================================== */
-
-.updated{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-
-/* ==========================================
-   DELETE
-========================================== */
-
-.delete-btn{
-
-    width:34px;
-
-    height:34px;
-
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    color:var(--expense);
-
-    background:rgba(239,68,68,.12);
-
-    transition:.25s;
-
-}
-
-.delete-btn:hover{
-
-    background:var(--expense);
-
-    color:#fff;
-
-    transform:scale(1.08);
-
-}
-
-
-/* ==========================================
-   STATS
-========================================== */
-
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:14px;
-
+section{
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    padding:16px;
+    box-shadow:var(--shadow);
     margin-bottom:18px;
-
 }
 
-.stat-card{
+input{
+    width:100%;
+    padding:12px 14px;
+    margin-bottom:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:var(--text);
+    font-size:14px;
+    outline:none;
+    transition:.25s;
+}
+
+input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(139,92,246,.2);
+}
+
+input::placeholder{
+    color:var(--muted);
+}
+
+#addBuyBtn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:700;
+    color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    transition:.25s;
+}
+
+#addBuyBtn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(139,92,246,.35);
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:var(--border);
+    margin:20px 0;
+}
+
+/* ===========================
+   Общий результат
+=========================== */
+
+#portfolioSummary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+    margin:18px 0 24px;
+}
+
+#portfolioSummary p{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
 
     background:var(--card);
-
     border:1px solid var(--border);
-
     border-radius:18px;
+    backdrop-filter:blur(20px);
 
     padding:16px;
 
-    text-align:center;
+    box-shadow:var(--shadow);
 
-    backdrop-filter:blur(20px);
-
+    transition:.25s ease;
 }
 
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-bottom:8px;
-
+#portfolioSummary p:hover{
+    transform:translateY(-3px);
+    border-color:var(--accent);
 }
 
-.stat-value{
+#portfolioSummary p:first-child{
+    border-left:4px solid var(--accent2);
+}
 
+#portfolioSummary p:nth-child(2){
+    border-left:4px solid #3b82f6;
+}
+
+#portfolioSummary p:nth-child(3){
+    border-left:4px solid var(--income);
+}
+
+#portfolioSummary p:nth-child(4){
+    border-left:4px solid #f59e0b;
+}
+
+#portfolioSummary p:nth-child(5){
+    border-left:4px solid var(--accent);
+}
+
+#portfolioSummary span{
+    font-family:'Space Grotesk',sans-serif;
     font-size:22px;
-
     font-weight:700;
+    word-break:break-word;
+}
+
+#totalMargin{
+    color:var(--accent2);
+}
+
+#totalValue{
+    color:var(--text);
+}
+
+#totalProfit{
+    color:var(--income);
+}
+
+#totalPercent{
+    color:#f59e0b;
+}
+
+#totalCoins{
+    color:var(--accent);
+}
+
+.profit{
+    color:var(--income)!important;
+}
+
+.loss{
+    color:var(--expense)!important;
+}
+
+@media(max-width:800px){
+
+#portfolioSummary{
+    grid-template-columns:1fr;
+}
+
+#portfolioSummary p{
+    padding:14px;
+}
+
+#portfolioSummary span{
+    font-size:20px;
+}
 
 }
 
+/* ===========================
+   Таблица покупок
+=========================== */
 
-/* ==========================================
-   FOOTER
-========================================== */
+#buyTable{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:16px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    backdrop-filter:blur(20px);
+    box-shadow:var(--shadow);
+}
 
-.footer{
+#buyTable thead{
+    background:rgba(255,255,255,.04);
+}
 
-    margin-top:30px;
-
-    text-align:center;
-
+#buyTable th{
+    padding:12px 8px;
     color:var(--muted);
-
     font-size:12px;
+    font-weight:600;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+}
+
+#buyTable td{
+    padding:10px 8px;
+    text-align:center;
+    font-size:12px;
+    border-bottom:1px solid var(--border);
+    transition:.2s;
+}
+
+#buyTable tbody tr{
+    transition:.25s ease;
+}
+
+#buyTable tbody tr:hover{
+    background:rgba(139,92,246,.08);
+}
+
+#buyTable tbody tr:last-child td{
+    border-bottom:none;
+}
+
+#buyTable td:nth-child(1){
+    font-weight:700;
+    color:var(--accent2);
+}
+
+#buyTable td:nth-child(2){
+    color:#f59e0b;
+}
+
+#buyTable td:nth-child(3){
+    color:#60a5fa;
+}
+
+#buyTable td:nth-child(4){
+    color:var(--accent);
+}
+
+#buyTable td:nth-child(5){
+    color:var(--text);
+}
+
+#buyTable td:nth-child(6){
+    color:#a78bfa;
+}
+
+#buyTable td:nth-child(7){
+    font-weight:700;
+}
+
+#buyTable td:nth-child(8){
+    font-weight:700;
+}
+
+#buyTable td:nth-child(9){
+    color:var(--muted);
+    font-size:11px;
+}
+
+#buyTable button{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:10px;
+    background:rgba(239,68,68,.15);
+    color:var(--expense);
+    cursor:pointer;
+    transition:.25s;
+}
+
+#buyTable button:hover{
+    background:var(--expense);
+    color:#fff;
+    transform:scale(1.08);
+}
+
+@media(max-width:800px){
+
+#buyTable{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+#buyTable th,
+#buyTable td{
+    font-size:11px;
+    padding:8px 6px;
+}
 
 }
 
-/* ==========================================
-   ANIMATIONS
-========================================== */
+/* ===========================
+   Цвета прибыли / убытка
+=========================== */
 
-@keyframes fadeIn{
+.profit{
+    color:var(--income)!important;
+}
+
+.loss{
+    color:var(--expense)!important;
+}
+
+.positive{
+    color:var(--income)!important;
+}
+
+.negative{
+    color:var(--expense)!important;
+}
+
+/* ===========================
+   Анимации
+=========================== */
+
+@keyframes fadeUp{
 
     from{
-
         opacity:0;
-
-        transform:translateY(12px);
-
+        transform:translateY(20px);
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
 
 }
 
-@keyframes pulseGreen{
-
-    0%{
-
-        box-shadow:0 0 0 0 rgba(34,197,94,.45);
-
-    }
-
-    100%{
-
-        box-shadow:0 0 0 14px rgba(34,197,94,0);
-
-    }
-
+section,
+#portfolioSummary,
+#buyTable{
+    animation:fadeUp .45s ease;
 }
 
-@keyframes pulseRed{
-
-    0%{
-
-        box-shadow:0 0 0 0 rgba(239,68,68,.45);
-
-    }
-
-    100%{
-
-        box-shadow:0 0 0 14px rgba(239,68,68,0);
-
-    }
-
-}
-
-.fade-in{
-
-    animation:fadeIn .35s ease;
-
-}
-
-.flash-up{
-
-    animation:pulseGreen .8s ease;
-
-}
-
-.flash-down{
-
-    animation:pulseRed .8s ease;
-
-}
-
-
-/* ==========================================
-   STATUS COLORS
-========================================== */
-
-.text-income{
-
-    color:var(--income);
-
-}
-
-.text-expense{
-
-    color:var(--expense);
-
-}
-
-.text-muted{
-
-    color:var(--muted);
-
-}
-
-.text-accent{
-
-    color:var(--accent2);
-
-}
-
-
-/* ==========================================
-   SCROLLBAR
-========================================== */
+/* ===========================
+   Скроллбар
+=========================== */
 
 ::-webkit-scrollbar{
-
     width:10px;
-
     height:10px;
-
 }
 
 ::-webkit-scrollbar-track{
-
     background:transparent;
-
 }
 
 ::-webkit-scrollbar-thumb{
-
-    background:rgba(255,255,255,.12);
-
-    border-radius:999px;
-
+    background:linear-gradient(
+        180deg,
+        var(--accent),
+        var(--accent2)
+    );
+    border-radius:20px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-
-    background:rgba(255,255,255,.22);
-
+    opacity:.8;
 }
 
+/* ===========================
+   Выделение текста
+=========================== */
 
-/* ==========================================
-   INPUT NUMBER
-========================================== */
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button{
-
-    -webkit-appearance:none;
-
-    margin:0;
-
+::selection{
+    background:var(--accent);
+    color:#fff;
 }
 
-input[type=number]{
+/* ===========================
+   Плавные переходы
+=========================== */
 
-    appearance:textfield;
-
-}
-
-
-/* ==========================================
-   BUTTON STATES
-========================================== */
-
-.btn:active{
-
-    transform:scale(.97);
-
-}
-
-.delete-btn:active{
-
-    transform:scale(.92);
-
-}
-
-
-/* ==========================================
-   TABLE TRANSITIONS
-========================================== */
-
-tbody tr{
-
-    animation:fadeIn .25s ease;
-
-}
-
-tbody td{
-
+*{
     transition:
-
-        background .2s,
-
-        color .2s,
-
-        transform .2s;
-
+        background .25s,
+        color .25s,
+        border-color .25s,
+        transform .25s,
+        box-shadow .25s;
 }
 
+/* ===========================
+   Подсветка строк прибыли
+=========================== */
 
-/* ==========================================
-   EMPTY TABLE
-========================================== */
+tr:hover td{
+    color:var(--text);
+}
 
-.empty{
+/* ===========================
+   Footer
+=========================== */
 
+footer{
+    margin:32px 0 10px;
     text-align:center;
-
-    padding:30px;
-
     color:var(--muted);
-
-    font-size:14px;
-
+    font-size:13px;
 }
 
+/* ===========================
+   Мобильная версия
+=========================== */
 
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media(max-width:900px){
-
-    .grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .stats-grid{
-
-        grid-template-columns:1fr 1fr;
-
-    }
-
-    .hero h1{
-
-        font-size:22px;
-
-    }
-
-    .controls{
-
-        flex-direction:column;
-
-    }
-
-    .select{
-
-        width:100%;
-
-    }
-
-    .btn{
-
-        width:100%;
-
-    }
-
-}
-
-@media(max-width:600px){
+@media(max-width:800px){
 
     body{
-
         padding:10px;
-
     }
 
-    .header{
-
-        flex-direction:column;
-
-        gap:12px;
-
-        align-items:flex-start;
-
+    h1{
+        font-size:24px;
     }
 
-    .logo{
-
-        font-size:20px;
-
+    h2{
+        font-size:17px;
     }
 
-    .hero h1{
-
-        font-size:20px;
-
-    }
-
-    .hero p{
-
-        font-size:12px;
-
-    }
-
-    .card{
-
+    section{
         padding:14px;
-
     }
 
-    .table-card{
-
-        padding:14px;
-
+    input{
+        font-size:13px;
+        padding:11px;
     }
 
-    .stats-grid{
-
-        grid-template-columns:1fr;
-
+    #addBuyBtn{
+        font-size:13px;
+        padding:12px;
     }
 
-    table{
-
-        min-width:900px;
-
-    }
-
-    thead th{
-
-        font-size:10px;
-
-    }
-
-    tbody td{
-
-        font-size:11px;
-
-        padding:10px 8px;
-
+    #portfolioSummary span{
+        font-size:18px;
     }
 
 }
 
-@media(prefers-reduced-motion:reduce){
-
-    *{
-
-        animation:none !important;
-
-        transition:none !important;
-
-        scroll-behavior:auto !important;
-
-    }
-
-}
+/* ===========================
+   Конец файла
+=========================== */

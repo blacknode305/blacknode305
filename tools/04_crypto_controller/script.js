@@ -62,6 +62,44 @@ function saveBuys() {
 
 }
 
+function updatePortfolioSummary() {
+
+    let totalMargin = 0;
+    let totalValue = 0;
+    let totalCoins = 0;
+
+    buys.forEach((buy) => {
+
+        totalMargin += buy.margin;
+        totalValue += buy.quantity * buy.currentPrice;
+        totalCoins += buy.quantity;
+
+    });
+
+    const totalProfit = totalValue - totalMargin;
+
+    const totalPercent =
+        totalMargin > 0
+            ? (totalProfit / totalMargin) * 100
+            : 0;
+
+    document.getElementById("totalMargin").textContent =
+        "$" + totalMargin.toFixed(2);
+
+    document.getElementById("totalValue").textContent =
+        "$" + totalValue.toFixed(2);
+
+    document.getElementById("totalProfit").textContent =
+        "$" + totalProfit.toFixed(2);
+
+    document.getElementById("totalPercent").textContent =
+        totalPercent.toFixed(2) + "%";
+
+    document.getElementById("totalCoins").textContent =
+        totalCoins.toFixed(6);
+
+}
+
 function renderTable() {
 
     buyTableBody.innerHTML = "";
@@ -101,7 +139,8 @@ function renderTable() {
         `;
 
     });
-
+    
+    updatePortfolioSummary();
 }
 
 function removeBuy(id) {

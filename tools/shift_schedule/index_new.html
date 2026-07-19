@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift Calendar</title>
+<style>
+
+:root{
+  --bg:#0f0f13;
+  --card:rgba(20,20,28,.72);
+  --text:#e8e8f0;
+  --muted:#9aa0b4;
+
+  --accent:#8b5cf6;
+  --accent2:#06b6d4;
+
+  --border:rgba(255,255,255,.08);
+}
+
+[data-theme="light"]{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,.82);
+  --text:#1e293b;
+  --muted:#64748b;
+
+  --border:rgba(0,0,0,.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+
+  background:var(--bg);
+  color:var(--text);
+
+  min-height:100vh;
+
+  padding:24px 14px;
+
+  transition:.35s ease;
+
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139,92,246,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6,182,212,.15), transparent 40%);
+
+  z-index:-1;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:30px;
+}
+
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:26px;
+  font-weight:700;
+
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.theme-toggle{
+  width:46px;
+  height:46px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  background:var(--card);
+
+  color:var(--text);
+
+  font-size:18px;
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(20px);
+
+  transition:.25s ease;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.06);
+}
+
+.hero{
+  margin-bottom:24px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:34px;
+
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.card{
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  backdrop-filter:blur(24px);
+
+  padding:18px;
+
+  margin-bottom:22px;
+}
+
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+
+  margin-bottom:18px;
+}
+
+select,
+button,
+input{
+  border:none;
+  outline:none;
+}
+
+.select{
+  flex:1;
+
+  min-width:130px;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid var(--border);
+
+  color:var(--text);
+
+  padding:12px 14px;
+
+  border-radius:14px;
+
+  font-size:14px;
+}
+
+.btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+
+  color:white;
+
+  padding:12px 18px;
+
+  border-radius:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.calendar{
+  display:grid;
+
+  grid-template-columns:
+    repeat(7,1fr);
+
+  gap:8px;
+}
+
+.day-header{
+  background:rgba(255,255,255,.05);
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:14px;
+
+  text-align:center;
+
+  font-weight:700;
+
+  color:var(--muted);
+}
+
+.day{
+  min-height:88px;
+
+  border-radius:16px;
+
+  border:1px solid var(--border);
+
+  background:rgba(255,255,255,.03);
+
+  padding:10px;
+
+  cursor:pointer;
+
+  transition:.2s ease;
+
+  position:relative;
+
+  user-select:none;
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+
+  font-weight:700;
+}
+
+.day:hover{
+  transform:translateY(-2px);
+  border-color:var(--accent);
+}
+
+.day.selected{
+  outline:2px solid var(--accent2);
+}
+
+.day.empty{
+  background:transparent;
+  border:none;
+  cursor:default;
+}
+
+.split{
+  background:
+    linear-gradient(
+      135deg,
+      var(--color1) 50%,
+      var(--color2) 50%
+    );
+
+  color:white;
+}
+
+.legend{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+  gap:12px;
+}
+
+.legend-item{
+  background:rgba(255,255,255,.03);
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:12px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.color-box{
+  width:20px;
+  height:20px;
+
+  border-radius:6px;
+
+  border:1px solid rgba(255,255,255,.2);
+}
+
+.footer{
+  margin-top:34px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:900px){
+
+  .calendar{
+    grid-template-columns:
+      repeat(7,1fr);
+
+    gap:6px;
+  }
+
+  .day{
+    min-height:72px;
+    font-size:13px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .calendar{
+    gap:5px;
+  }
+
+  .day-header{
+    padding:10px;
+    font-size:12px;
+  }
+
+  .day{
+    min-height:58px;
+    font-size:12px;
+    padding:6px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Shift Calendar</h1>
+        <button class="theme-toggle" id="themeToggle">☀️</button>
+    </header>
+    <p>Календарь смен с сохранением и экспортом</p>
+
+    <!-- БЛОК: Добавление работы -->
+    <div class="card">
+        <h3>Добавление работы</h3>
+        <div class="grid-3">
+            <div class="form-group">
+                <label for="workName">Наименование</label>
+                <input type="text" id="workName" placeholder="Например, Дневная смена">
+            </div>
+            <div class="form-group">
+                <label for="workColor">Цвет</label>
+                <input type="color" id="workColor" value="#4a90e2">
+            </div>
+            <div class="form-group">
+                <label for="workRate">Стоимость одного дня (₽)</label>
+                <input type="number" id="workRate" placeholder="3000">
+            </div>
+        </div>
+        <button class="btn" onclick="addWorkType()">Добавить работу</button>
+        
+        <h4 style="margin-top: 15px;">Сохраненные типы работ:</h4>
+        <div id="workTypesList"></div>
+    </div>
+
+    <!-- БЛОК: Управление календарем -->
+    <div class="card">
+        <div class="grid-3">
+            <div class="form-group">
+                <label for="monthSelect">Месяц</label>
+                <select id="monthSelect" onchange="generateCalendar()">
+                    <option value="0">Январь</option>
+                    <option value="1">Февраль</option>
+                    <option value="2">Март</option>
+                    <option value="3">Апрель</option>
+                    <option value="4">Май</option>
+                    <option value="5">Июнь</option>
+                    <option value="6">Июль</option>
+                    <option value="7">Август</option>
+                    <option value="8">Сентябрь</option>
+                    <option value="9">Октябрь</option>
+                    <option value="10">Ноябрь</option>
+                    <option value="11">Декабрь</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="yearSelect">Год</label>
+                <input type="number" id="yearSelect" value="2026" onchange="generateCalendar()">
+            </div>
+        </div>
+        <button class="btn" onclick="generateCalendar()">Открыть</button>
+    </div>
+
+    <!-- БЛОК: Назначение работы на выбранный день -->
+    <div class="card">
+        <h3>Назначить работу на выбранный день</h3>
+        <p id="selectedDayText">День не выбран</p>
+        <div class="grid-3">
+            <div class="form-group">
+                <label for="shiftWorkSelect">Выберите работу</label>
+                <select id="shiftWorkSelect">
+                    <option value="">-- Выходной / Нет работы --</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn" onclick="assignShift()">Сохранить смену</button>
+        <button class="btn" onclick="exportData()">Экспорт</button>
+        <button class="btn" onclick="alert('Функция импорта реализуется в зависимости от структуры файла')">Импорт</button>
+    </div>
+
+    <!-- БЛОК: Сам календарь -->
+    <div class="card">
+        <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+
+    <!-- БЛОК: Расчет заработка и статистики -->
+    <div class="card">
+        <h3>Расчет заработка за выбранный месяц</h3>
+        <div id="salaryReport">
+            <!-- Сюда рендерится статистика -->
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 blacknode305 • Shift Calendar</p>
+    </footer>
+</div>
+
+<script>
+    // Инициализация данных из localStorage или пустые массивы/объекты
+    let workTypes = JSON.parse(localStorage.getItem('workTypes')) || [];
+    let assignedShifts = JSON.parse(localStorage.getItem('assignedShifts')) || {}; // Структура: {"YYYY-MM-DD": "workId"}
+    let selectedDateStr = null;
+
+    // Переключение темы
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+    });
+
+    // Управление типами работ
+    function updateWorkTypesUI() {
+        const listContainer = document.getElementById('workTypesList');
+        const shiftSelect = document.getElementById('shiftWorkSelect');
+        
+        listContainer.innerHTML = '';
+        shiftSelect.innerHTML = '<option value="">-- Выходной / Нет работы --</option>';
+
+        workTypes.forEach(work => {
+            // Элемент списка в блоке добавления
+            const item = document.createElement('div');
+            item.className = 'work-list-item';
+            item.innerHTML = `
+                <div>
+                    <span class="work-badge" style="background-color: ${work.color}"></span>
+                    <strong>${work.name}</strong> — ${work.rate} ₽/день
+                </div>
+                <button class="btn" style="background-color:#d9534f; padding: 2px 8px; font-size:12px;" onclick="deleteWorkType('${work.id}')">Удалить</button>
+            `;
+            listContainer.appendChild(item);
+
+            // Опция в выпадающем списке выбора работы
+            const option = document.createElement('option');
+            option.value = work.id;
+            option.textContent = `${work.name} (${work.rate} ₽)`;
+            shiftSelect.appendChild(option);
+        });
+    }
+
+    function addWorkType() {
+        const name = document.getElementById('workName').value.trim();
+        const color = document.getElementById('workColor').value;
+        const rate = parseFloat(document.getElementById('workRate').value) || 0;
+
+        if (!name) return alert('Введите наименование работы');
+
+        const newWork = { id: 'work_' + Date.now(), name, color, rate };
+        workTypes.push(newWork);
+        localStorage.setItem('workTypes', JSON.stringify(workTypes));
+        
+        document.getElementById('workName').value = '';
+        document.getElementById('workRate').value = '';
+        
+        updateWorkTypesUI();
+        generateCalendar(); // перерисовать, чтобы обновить расчеты
+    }
+
+    function deleteWorkType(id) {
+        workTypes = workTypes.filter(w => w.id !== id);
+        localStorage.setItem('workTypes', JSON.stringify(workTypes));
+        
+        // Удаляем привязки этой работы у дней
+        for (let date in assignedShifts) {
+            if (assignedShifts[date] === id) delete assignedShifts[date];
+        }
+        localStorage.setItem('assignedShifts', JSON.stringify(assignedShifts));
+
+        updateWorkTypesUI();
+        generateCalendar();
+    }
+
+    // Генерация календаря
+    function generateCalendar() {
+        const month = parseInt(document.getElementById('monthSelect').value);
+        const year = parseInt(document.getElementById('yearSelect').value);
+        const grid = document.getElementById('calendarGrid');
+        
+        grid.innerHTML = '';
+        selectedDateStr = null;
+        document.getElementById('selectedDayText').textContent = 'День не выбран';
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'calendar-day';
+            
+            // Форматируем дату в YYYY-MM-DD
+            const currentStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            dayDiv.dataset.date = currentStr;
+
+            dayDiv.innerHTML = `<div class="day-number">${d}</div>`;
+
+            // Если на этот день назначена работа
+            if (assignedShifts[currentStr]) {
+                const work = workTypes.find(w => w.id === assignedShifts[currentStr]);
+                if (work) {
+                    const workDiv = document.createElement('div');
+                    workDiv.className = 'day-work';
+                    workDiv.style.backgroundColor = work.color;
+                    workDiv.textContent = work.name;
+                    dayDiv.appendChild(workDiv);
+                }
+            }
+
+            // Клик по дню
+            dayDiv.addEventListener('click', () => {
+                document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('selected'));
+                dayDiv.classList.add('selected');
+                selectedDateStr = currentStr;
+                document.getElementById('selectedDayText').textContent = `Выбранный день: ${currentStr}`;
+                
+                // Устанавливаем текущее значение в селекте
+                document.getElementById('shiftWorkSelect').value = assignedShifts[currentStr] || "";
+            });
+
+            grid.appendChild(dayDiv);
+        }
+
+        calculateSalaryReport(year, month);
+    }
+
+    // Сохранение смены на выбранный день
+    function assignShift() {
+        if (!selectedDateStr) return alert('Сначала выберите день на календаре!');
+        const selectedWorkId = document.getElementById('shiftWorkSelect').value;
+
+        if (selectedWorkId) {
+            assignedShifts[selectedDateStr] = selectedWorkId;
+        } else {
+            delete assignedShifts[selectedDateStr];
+        }
+
+        localStorage.setItem('assignedShifts', JSON.stringify(assignedShifts));
+        generateCalendar();
+    }
+
+    // Расчет заработка за месяц
+    function calculateSalaryReport(year, month) {
+        const reportContainer = document.getElementById('salaryReport');
+        const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+        
+        // Считаем смены
+        const stats = {}; // { workId: count }
+        workTypes.forEach(w => stats[w.id] = 0);
+
+        Object.keys(assignedShifts).forEach(dateStr => {
+            if (dateStr.startsWith(monthPrefix)) {
+                const workId = assignedShifts[dateStr];
+                if (stats[workId] !== undefined) {
+                    stats[workId]++;
+                }
+            }
+        });
+
+        // Строим HTML отчета
+        let totalEarnings = 0;
+        let html = '<table style="width:100%; border-collapse: collapse; margin-top:10px;">';
+        html += `<tr style="border-bottom: 2px solid var(--border-color); text-align:left;">
+                    <th style="padding:8px;">Работа</th>
+                    <th style="padding:8px;">Смен</th>
+                    <th style="padding:8px;">Ставка</th>
+                    <th style="padding:8px;">Итого</th>
+                 </tr>`;
+
+        let hasData = false;
+        workTypes.forEach(work => {
+            const count = stats[work.id];
+            if (count > 0) {
+                hasData = true;
+                const sum = count * work.rate;
+                totalEarnings += sum;
+                html += `
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding:8px;"><span class="work-badge" style="background-color: ${work.color}"></span>${work.name}</td>
+                        <td style="padding:8px;">${count}</td>
+                        <td style="padding:8px;">${work.rate} ₽</td>
+                        <td style="padding:8px;"><strong>${sum} ₽</strong></td>
+                    </tr>
+                `;
+            }
+        });
+
+        html += '</table>';
+
+        if (!hasData) {
+            reportContainer.innerHTML = '<p>В этом месяце смены не запланированы.</p>';
+        } else {
+            reportContainer.innerHTML = html + `<h3 style="margin-top:15px; text-align:right;">Общий заработок за месяц: <span style="color:var(--primary-color)">${totalEarnings} ₽</span></h3>`;
+        }
+    }
+
+    // Экспорт данных в JSON
+    function exportData() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({workTypes, assignedShifts}));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `shift_calendar_export_${Date.now()}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+    }
+
+    // Первичная инициализация UI при загрузке
+    updateWorkTypesUI();
+    generateCalendar();
+</script>
+
+</body>
+</html>
