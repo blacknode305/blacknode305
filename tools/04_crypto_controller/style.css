@@ -66,7 +66,59 @@ body::before{
 }
 
 }
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: .45;
+}
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+}
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+
+/* .theme-toggle:hover {
+    transform: scale(1.06);
+} */
+
+.hero {
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
 h1{
     text-align:center;
     margin-bottom:20px;
