@@ -4,6 +4,15 @@
 if (Android) {
   Android.toast("HI");
 }
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+document.getElementById("fullscreenBtn").addEventListener("click", toggleFullscreen);
 const html = document.documentElement;
 const themeToggle = document.getElementById("themeToggle");
 
