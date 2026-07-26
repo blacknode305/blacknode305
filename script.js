@@ -2,8 +2,7 @@
 // DATABASE
 // ====================
 if (Android) {
-  alert(Android);
-  Android.Toast("HI");
+  Android.toast("HI");
 }
 const html = document.documentElement;
 const themeToggle = document.getElementById("themeToggle");
