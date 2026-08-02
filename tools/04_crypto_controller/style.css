@@ -246,6 +246,10 @@ hr{
     border-left:4px solid var(--accent);
 }
 
+#portfolioSummary p:nth-child(6){
+    border-left:4px solid #e12b2b;
+}
+
 #portfolioSummary span{
     font-family:'Space Grotesk',sans-serif;
     font-size:22px;
@@ -271,6 +275,10 @@ hr{
 
 #totalCoins{
     color:var(--accent);
+}
+
+#signal {
+  color:#e12b2b;
 }
 
 .profit{

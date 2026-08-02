@@ -4,6 +4,7 @@
 if (Android) {
   Android.toast("HI");
 }
+else {}
 function toggleFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();

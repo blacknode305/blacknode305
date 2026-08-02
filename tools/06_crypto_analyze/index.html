@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ETHUSDT Signal</title>
+</head>
+<body>
+
+<h1 id="price">Цена...</h1>
+<h2 id="signal">WAIT</h2>
+
+<script>
+
+const ws = new WebSocket(
+"wss://stream.binance.com:9443/ws/ethusdt@ticker"
+);
+
+ws.onmessage = (event) => {
+
+    const data = JSON.parse(event.data);
+
+    const price = parseFloat(data.c);
+
+    document.getElementById("price").innerHTML =
+        "ETHUSDT: " + price;
+
+    // Простейший пример
+    if(price > 1900){
+        document.getElementById("signal").innerHTML = "↑ LONG";
+    }else{
+        document.getElementById("signal").innerHTML = "↓ SHORT";
+    }
+
+};
+
+</script>
+
+</body>
+</html>

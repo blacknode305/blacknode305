@@ -215,3 +215,24 @@ setInterval(() => {
     updatePrices();
 
 }, 3000);
+
+const ws = new WebSocket(
+"wss://stream.binance.com:9443/ws/ethusdt@ticker"
+);
+
+ws.onmessage = (event) => {
+
+    const data = JSON.parse(event.data);
+
+    const price = parseFloat(data.c);
+
+    // document.getElementById("price").innerHTML = "ETHUSDT: " + price;
+
+    // Простейший пример
+    if(price > 1900){
+        document.getElementById("signal").innerHTML = "↑ LONG";
+    }else{
+        document.getElementById("signal").innerHTML = "↓ SHORT";
+    }
+
+};
