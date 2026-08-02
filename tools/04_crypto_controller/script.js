@@ -1,3 +1,4 @@
+/*
 const signal = document.getElementById("signal");
 
 const ws = new WebSocket("wss://stream.binance.com:9443/ws/ethusdt@ticker");
@@ -42,7 +43,7 @@ ws.onclose = (e) => {
     signal.textContent = "WS закрыт: " + e.code;
     console.log(e);
 };
-
+*/
 const buyMarginInput = document.getElementById("buyMarginInput");
 const buyPriceInput = document.getElementById("buyPriceInput");
 const buyPairInput = document.getElementById("buyPairInput");
