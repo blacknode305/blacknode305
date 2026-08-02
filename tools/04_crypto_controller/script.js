@@ -1,3 +1,48 @@
+const signal = document.getElementById("signal");
+
+const ws = new WebSocket("wss://stream.binance.com:9443/ws/ethusdt@ticker");
+
+ws.onopen = () => {
+    signal.textContent = "WS подключен";
+    console.log("OPEN");
+};
+
+ws.onmessage = (e) => {
+
+    const data = JSON.parse(e.data);
+    const price = Number(data.c);
+
+    console.log(price);
+
+    const signal = document.getElementById("signal");
+    const card = signal.parentElement; // карточка <p>
+
+    if (price > 1900) {
+
+        signal.textContent = `↑ LONG (${price})`;
+
+        signal.style.color = "#22c55e";
+        card.style.borderLeft = "4px solid #22c55e";
+    } 
+    else {
+        signal.textContent = `↓ SHORT (${price})`;
+
+        signal.style.color = "#ef4444";
+        card.style.borderLeft = "4px solid #ef4444";
+    }
+
+};
+
+ws.onerror = (e) => {
+    signal.textContent = "Ошибка WebSocket";
+    console.error(e);
+};
+
+ws.onclose = (e) => {
+    signal.textContent = "WS закрыт: " + e.code;
+    console.log(e);
+};
+
 const buyMarginInput = document.getElementById("buyMarginInput");
 const buyPriceInput = document.getElementById("buyPriceInput");
 const buyPairInput = document.getElementById("buyPairInput");
@@ -215,24 +260,3 @@ setInterval(() => {
     updatePrices();
 
 }, 3000);
-
-const ws = new WebSocket(
-"wss://stream.binance.com:9443/ws/ethusdt@ticker"
-);
-
-ws.onmessage = (event) => {
-
-    const data = JSON.parse(event.data);
-
-    const price = parseFloat(data.c);
-
-    // document.getElementById("price").innerHTML = "ETHUSDT: " + price;
-
-    // Простейший пример
-    if(price > 1900){
-        document.getElementById("signal").innerHTML = "↑ LONG";
-    }else{
-        document.getElementById("signal").innerHTML = "↓ SHORT";
-    }
-
-};
