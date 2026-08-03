@@ -2,9 +2,12 @@
 // DATABASE
 // ====================
 if (Android) {
-  Android.toast("HI");
+  Android.toast('Android');
 }
-else {}
+else {
+  alert('Browser');
+}
+/*
 function toggleFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
@@ -12,8 +15,8 @@ function toggleFullscreen() {
         document.exitFullscreen();
     }
 }
-
-document.getElementById("fullscreenBtn").addEventListener("click", toggleFullscreen);
+*/
+// document.getElementById("fullscreenBtn").addEventListener("click", toggleFullscreen);
 const html = document.documentElement;
 const themeToggle = document.getElementById("themeToggle");
 
