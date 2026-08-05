@@ -6,6 +6,7 @@ if (Android) {
 }
 else {
   alert('Browser');
+  
 }
 /*
 function toggleFullscreen() {

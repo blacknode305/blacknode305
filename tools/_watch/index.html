@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<style>
+html,body{
+
+margin:0;
+padding:0;
+
+width:100%;
+height:100%;
+
+background:#000;
+
+color:white;
+
+font-family:Arial;
+
+overflow:hidden;
+
+}
+
+.watch{
+
+width:100vw;
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.pair{
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+.price{
+
+font-size:32px;
+
+margin:15px;
+
+color:#FFD54F;
+
+}
+
+.signal{
+
+font-size:22px;
+
+font-weight:bold;
+
+}
+
+.long{
+
+color:#00ff00;
+
+}
+
+.short{
+
+color:#ff3030;
+
+}
+
+button{
+
+margin-top:10px;
+
+padding:10px;
+
+border:none;
+
+border-radius:20px;
+
+}
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="watch">
+
+    <div class="pair">ETH/USDT</div>
+
+    <div id="price" class="price">$1880.00</div>
+
+    <div id="signal" class="signal long">
+        🟢 LONG ↑
+    </div>
+
+    <button onclick="vibrate()">
+        Вибрация
+    </button>
+
+    <button onclick="toast()">
+        Toast
+    </button>
+
+    <button onclick="savePrice()">
+        Сохранить
+    </button>
+
+</div>
+
+<script>
+  function vibrate(){
+
+    if(window.Android){
+
+        Android.vibrate();
+
+    }
+
+}
+
+function toast(){
+
+    if(window.Android){
+
+        Android.toast("LONG");
+
+    }
+
+}
+
+function savePrice(){
+
+    if(window.Android){
+
+        Android.savePrice(1880);
+
+    }
+
+}
+
+function updatePrice(price){
+
+    document.getElementById("price").innerHTML="$"+price;
+
+}
+
+function setLong(){
+
+    let s=document.getElementById("signal");
+
+    s.className="signal long";
+
+    s.innerHTML="🟢 LONG ↑";
+
+}
+
+function setShort(){
+
+    let s=document.getElementById("signal");
+
+    s.className="signal short";
+
+    s.innerHTML="🔴 SHORT ↓";
+
+}
+</script>
+
+</body>
+</html>
