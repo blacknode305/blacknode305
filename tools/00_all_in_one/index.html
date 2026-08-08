@@ -8,18 +8,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <!-- <link rel="icon" type="image/png" href="https://github.com/blacknode305.png"> -->
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    <link rel="stylesheet" href="https://blacknode305.github.io/blacknode305/tools/00_all_in_one/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="https://blacknode305.github.io/blacknode305/tools/00_all_in_one/style.css"> -->
   </head>
   <body>
     <canvas id="particles"></canvas>
+    <!-- <div id="navigation">
+        <button>HM</button>
+        <button>SCD</button>
+        <button>CCV</button>
+        <button>CCT</button>
+        <button>OTH</button>
+        <button>OTH</button>
+    </div> -->
     <div class="container">
       <div class="header">
-        <div class="logo">blacknode305</div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☀️</button>
+        <div class="logo">SPA Lite</div>
+        <div class="toggle-btn">
+          <button class="theme-toggle" id="reloadToggle">🔄</button>
+          <button class="theme-toggle" id="navigationToggle">↗️</button>
+          <button class="theme-toggle" id="fullscreenToggle">🔲</button>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☀️</button>
+        </div>
       </div>
-      
-      <!-- <button id="fullscreenBtn">FS</button> -->
 
       <!-- PROFILE -->
       <!-- <section class="profile-card">
@@ -51,33 +62,13 @@
         </div>
       </section> -->
       <!-- TOOLS -->
-      <section class="card">
-        <h2 class="section-title">Инструменты</h2>
-        <div class="tools">
-          <a class="tool" href="tools/00_all_in_one/" target="_blank">
-            <div class="tool-title">00 Переход на SPA</div>
-            <div class="tool-desc">Всё в одном приложении SPA.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/01_income_expense" target="_blank">
-            <div class="tool-title">01 Финансовый трекер</div>
-            <div class="tool-desc">Контроль доходов и расходов.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/02_shift_schedule" target="_blank">
-            <div class="tool-title">02 Календарь смен</div>
-            <div class="tool-desc">Календарь смен с сохранением.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/03_fiat_converter" target="_blank">
-            <div class="tool-title">03 Фиатный конвертер</div>
-            <div class="tool-desc">Курсы валют и конвертер.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/04_crypto_controller" target="_blank">
-            <div class="tool-title">04 Крипто контроллер</div>
-            <div class="tool-desc">Контроллер для криптовалют.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/10_watch" target="_blank">
-            <div class="tool-title">_Watch</div>
-            <div class="tool-desc">Тест ПО для часов.<br> (Не завершен!)</div>
-          </a>
+      <section id="navigation" style="display: none;">
+            <button class="navBtn"></button>
+            <button class="navBtn"></button>
+            <button class="navBtn"></button>
+            <button class="navBtn"></button>
+            <button class="navBtn"></button>
+            <button class="navBtn"></button>
           <!-- <a class="tool" href="tools/finance_planner" target="_blank">
             <div class="tool-title">Финансовый планировщик</div>
             <div class="tool-desc">Создавай цели, добавляй накопления и отслеживай прогресс.<br> (Не завершен!)</div>
@@ -118,7 +109,6 @@
             <div class="tool-title">Аудио бот</div>
             <div class="tool-desc">Ссылка на аудиобота TG/VK.<br></div>
           </a> -->
-        </div>
       </section>
       <!-- <div class="grid"> -->
         <!-- REPOSITORY -->
