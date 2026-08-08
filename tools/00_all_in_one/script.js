@@ -257,4 +257,3 @@ const stations = {
 const audio = document.getElementById('audio');
 
 audio.src = stations["Европа Плюс"];
-audio.play();
