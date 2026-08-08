@@ -14,10 +14,15 @@ function saveDB() { localStorage.setItem("db", JSON.stringify(db)) };
 // ====================
 const fullscreenToggle = document.getElementById('fullscreenToggle');
 fullscreenToggle.addEventListener("click", async () => {
-    if (!document.fullscreenElement) {
-        await document.documentElement.requestFullscreen();
-    } else {
-        await document.exitFullscreen();
+    try {
+        if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+        } else {
+            await document.exitFullscreen();
+        }
+    } catch (error) {
+        console.error("Fullscreen error:", error);
+        alert(error.name + ": " + error.message);
     }
 });
 
