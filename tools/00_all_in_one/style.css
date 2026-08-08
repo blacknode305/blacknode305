@@ -1,25 +1,25 @@
 :root {
   --bg: #0f0f13;
-  --card: rgba(20, 20, 28, .72);
+  --card: #14141c;
   --card-solid: #181820;
   --text: #e8e8f0;
   --muted: #9aa0b4;
   --accent: #8b5cf6;
   --accent-2: #06b6d4;
-  --border: rgba(255, 255, 255, .08);
-  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --border: #ffffff14;
+  --shadow: 0 10px 30px #00000059;
   --radius: 22px;
   --income: #22c55e;
   --expense: #ef4444;
 }
 [data-theme="light"] {
   --bg: #f8fafc;
-  --card: rgba(255, 255, 255, .72);
+  --card: #ffffffb8;
   --card-solid: #ffffff;
   --text: #1e293b;
   --muted: #64748b;
-  --border: rgba(0, 0, 0, .08);
-  --shadow: 0 10px 30px rgba(0, 0, 0, .08);
+  --border: #00000014;
+  --shadow: 0 10px 30px #00000014;
 }
 * {
   margin: 0;
@@ -70,6 +70,7 @@ body::before {
   animation: fadeDown .7s ease;
   background-color: var(--card);
   border-bottom: 1px solid var(--border);
+  pointer-events: none;
 }
 .logo {
   font-family: 'Space Grotesk', sans-serif;
@@ -80,9 +81,12 @@ body::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
+  pointer-events: none;
+  cursor: default;
 }
 .toggle-btn {
   margin: 0px 10px 0px 10px;
+  pointer-events: none;
 }
 .theme-toggle {
   width: 30px;
@@ -96,6 +100,8 @@ body::before {
   font-size: 13px;
   transition: .25s ease;
   margin: 5px 5px 5px 5px;
+  cursor: pointer;
+  pointer-events:fill;
 }
 #navigation {
   position:fixed;
@@ -176,7 +182,30 @@ body::before {
   gap: 8px;
   flex-wrap: wrap;
 }
-
+.frames {
+  display: flex;
+  flex-direction: row;
+}
+#frame01 {
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+#frame02 {
+  position: absolute;
+  top: 460px;
+  left: 0;
+}
+#frame03 {
+  position: absolute;
+  top: 920px;
+  left: 0;
+}
+#frame04 {
+  position: absolute;
+  top: 1380px;
+  left: 0;
+}
 /*
 .profile-card {
     background: var(--card);
