@@ -253,7 +253,5 @@ const stations = {
     'Европа Плюс': 'https://broadcast.osetiafm.ru/europa.mp3',
     'Монте-Карло': 'https://broadcast.osetiafm.ru/mc.mp3'
 };
-
 const audio = document.getElementById('audio');
-
 audio.src = stations["Европа Плюс"];
