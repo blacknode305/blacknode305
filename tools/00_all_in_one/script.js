@@ -132,19 +132,48 @@ if (canvas) {
 let ws;
 const connectLocalBtn = document.getElementById('connectLocalBtn');
 connectLocalBtn.addEventListener('click', (event) => {
+  const messageWs = document.getElementById('messageWS');
   const temp = document.getElementById('connectWSURL').value;
   ws = new WebSocket(temp);
   ws.onopen = () => {
+    messageWs.innerHTML += '<span>🟢 Local server connected</span><br>';
     console.log('🟢 Local server connected');
   };
   ws.onmessage = (event) => {
+    messageWs += `<span>📨 ${event.data}</span><br>`;
     console.log('📨', event.data);
   };
   ws.onerror = () => {
+    messageWs.innerHTML += '<span>🔴 Local server unavailable</span><br>';
     console.log('🔴 Local server unavailable');
   };
   ws.onclose = () => {
+    messageWs.innerHTML += '<span>⚪ Local server disconnected</span><br>';
     console.log('⚪ Local server disconnected');
   };
   return ws;
+});
+
+// ====================
+// FETCH CONNECTION
+// ====================
+const connectFetchBtn = document.getElementById('connectFetchBtn');
+connectFetchBtn.addEventListener('click', (event) => {
+  const temp = document.getElementById('connectFETCHURL').value;
+  async function getCurrentPrice(symbol) {
+    try {
+      // const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`);
+      // const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`);
+      const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT`);
+      if (!response.ok) {
+        throw new Error("Ошибка Binance API");
+      }
+      const data = await response.json();
+      console.log(Number(data.price));
+    } 
+    catch (error) {
+      console.error(symbol, error);
+      return null;
+    }
+  }
 });
