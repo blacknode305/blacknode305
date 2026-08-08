@@ -12,6 +12,14 @@ function saveDB() { localStorage.setItem("db", JSON.stringify(db)) };
 // ====================
 // THEME
 // ====================
+const fullscreenToggle = document.getElementById('fullscreenToggle');
+fullscreenToggle.addEventListener("click", async () => {
+    if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+    } else {
+        await document.exitFullscreen();
+    }
+});
 
 function setTheme(theme) {
     db.theme = theme;
