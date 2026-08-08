@@ -64,6 +64,21 @@ navigationToggle.addEventListener('click', async () => {
     navigation.style.display = 'none';
   }
 });
+const navBtns = document.querySelectorAll('.navBtn');
+for (btn of navBtns) {
+  btn.addEventListener('click', (event) => {
+    console.log(event.target.id.split('Nav')[0]);
+    const pages = document.querySelectorAll('.pages');
+    for (p of pages) {
+      if (p.id.split('Page')[0] == event.target.id.split('Nav')[0]) {
+        p.style.display = 'flex';
+      }
+      else {
+        p.style.display = 'none'
+      }
+    }
+  });
+}
 // ====================
 // THEME
 // ====================

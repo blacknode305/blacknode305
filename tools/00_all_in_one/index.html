@@ -8,19 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <!-- <link rel="icon" type="image/png" href="https://github.com/blacknode305.png"> -->
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    <link rel="stylesheet" href="https://blacknode305.github.io/blacknode305/tools/00_all_in_one/style.css">
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="https://blacknode305.github.io/blacknode305/tools/00_all_in_one/style.css"> -->
   </head>
   <body>
     <canvas id="particles"></canvas>
-    <!-- <div id="navigation">
-        <button>HM</button>
-        <button>SCD</button>
-        <button>CCV</button>
-        <button>CCT</button>
-        <button>OTH</button>
-        <button>OTH</button>
-    </div> -->
     <div class="container">
       <div class="header">
         <div class="logo">SPA Lite</div>
@@ -28,7 +20,7 @@
           <button class="theme-toggle" id="reloadToggle">🔄</button>
           <button class="theme-toggle" id="navigationToggle">↗️</button>
           <button class="theme-toggle" id="fullscreenToggle">🔲</button>
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">☀️</button>
+          <button class="theme-toggle" id="themeToggle">☀️</button>
         </div>
       </div>
 
@@ -63,76 +55,46 @@
       </section> -->
       <!-- TOOLS -->
       <section id="navigation" style="display: none;">
-            <button class="navBtn"></button>
-            <button class="navBtn"></button>
-            <button class="navBtn"></button>
-            <button class="navBtn"></button>
-            <button class="navBtn"></button>
-            <button class="navBtn"></button>
-          <!-- <a class="tool" href="tools/finance_planner" target="_blank">
-            <div class="tool-title">Финансовый планировщик</div>
-            <div class="tool-desc">Создавай цели, добавляй накопления и отслеживай прогресс.<br> (Не завершен!)</div>
-          </a> -->
-          <!-- <a class="tool" href="tools/smart_calculator" target="_blank">
-            <div class="tool-title">Умный калькулятор</div>
-            <div class="tool-desc">Калькулятор, формулы, значения с API и конвертаторы.<br> (Не завершен!)</div>
-          </a> -->
-          <!-- <a class="tool" href="tools/crypto_converter" target="_blank">
-            <div class="tool-title">Криптовалютный конвертер</div>
-            <div class="tool-desc">Курсы криптовалют и конвертер.<br> (Не завершен!)</div>
-          </a> -->
-          <!-- <a class="tool" href="tools/nes_emulator" target="_blank">
-            <div class="tool-title">Эмулятор Dendy/NES</div>
-            <div class="tool-desc">Эмулятор Dendy/NES в браузере.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/background_matrix" target="_blank">
-            <div class="tool-title">Заставка матрица</div>
-            <div class="tool-desc">Анимированная заставка.</div>
-          </a>
-          <a class="tool" href="tools/voice_over" target="_blank">
-            <div class="tool-title">Синтезатор речи</div>
-            <div class="tool-desc">Синтезатор речи и voice API.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/audio_player" target="_blank">
-            <div class="tool-title">Аудио плеер</div>
-            <div class="tool-desc">Мой проигрыватель и плейлист.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/settings" target="_blank">
-            <div class="tool-title">Настройки</div>
-            <div class="tool-desc">Виджет с настройками.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="tools/contacts" target="_blank">
-            <div class="tool-title">Контакты</div>
-            <div class="tool-desc">Виджет с контактами.<br> (Не завершен!)</div>
-          </a>
-          <a class="tool" href="http://audiobot.site" target="_blank">
-            <div class="tool-title">Аудио бот</div>
-            <div class="tool-desc">Ссылка на аудиобота TG/VK.<br></div>
-          </a> -->
+        <button id="homeNav" class="navBtn">HN</button>
+        <button id="calendarNav" class="navBtn">CAL</button>
+        <button id="financeNav" class="navBtn">FIN</button>
+        <button id="converterNav" class="navBtn">CON</button>
+        <button id="cryptoNav" class="navBtn">CRY</button>
+        <button id="settingNav" class="navBtn">SET</button>
       </section>
 
-      <div>
-        <br>
-        <br>
-        <br>
-        <div>WS Connection</div>
-        <input type="text" name="" id="connectWSURL">
-        <button id="connectLocalBtn">Connect</button>
-        <p id="messageWS"></p>
+      <div id="page">
+        <div id="homePage" class="pages" style="display: flex;"></div>
+        <div id="calendarPage" class="pages" style="display: none;"></div>
+        <div id="financePage" class="pages" style="display: none;"></div>
+        <div id="converterPage" class="pages" style="display: none;"></div>
+        <div id="cryptoPage" class="pages" style="display: none;"></div>
+        <div id="settingPage" class="pages" style="display: none;">
+          <div>
+            <br>
+            <br>
+            <br>
+            <div>WS Connection</div>
+            <input type="text" name="" id="connectWSURL">
+            <button id="connectLocalBtn">Connect</button>
+            <p id="messageWS"></p>
+          </div>
+          <div>
+            <br>
+            <br>
+            <br>
+            <div>FETCH Connection</div>
+            <input type="text" name="" id="connectFETCHURL">
+            <button id="connectFetchBtn">Connect</button>
+          </div>
+          <br>
+          <br>
+          <audio id="audio" controls>
+            <source type="audio/mpeg">
+          </audio>
+        </div>
       </div>
-      <div>
-        <br>
-        <br>
-        <br>
-        <div>FETCH Connection</div>
-        <input type="text" name="" id="connectFETCHURL">
-        <button id="connectFetchBtn">Connect</button>
-      </div>
-      <br>
-      <br>
-      <audio id="audio" controls>
-        <source type="audio/mpeg">
-      </audio>
+      
       <!-- <div class="frames">
         <iframe id="frame01" src="https://blacknode305.github.io/blacknode305/tools/01_income_expense" height="1080px" width="460px" frameborder="0"></iframe>
         <iframe id="frame02" src="https://blacknode305.github.io/blacknode305/tools/02_shift_schedule" height="1080px" width="460px" frameborder="0"></iframe>
