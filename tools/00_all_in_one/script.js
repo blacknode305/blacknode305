@@ -132,7 +132,7 @@ if (canvas) {
 let ws;
 const connectLocalBtn = document.getElementById('connectLocalBtn');
 connectLocalBtn.addEventListener('click', (event) => {
-  const messageWs = document.getElementById('messageWS');
+  let messageWs = document.getElementById('messageWS');
   const temp = document.getElementById('connectWSURL').value;
   ws = new WebSocket(temp);
   ws.onopen = () => {
@@ -140,7 +140,8 @@ connectLocalBtn.addEventListener('click', (event) => {
     console.log('🟢 Local server connected');
   };
   ws.onmessage = (event) => {
-    messageWs += `<span>📨 ${event.data}</span><br>`;
+    messageWs.innerHTML += `<span>📨 ${event.data}</span><br>`;
+    // messageWs.innerHTML += '<span>📨 </span><br>';
     console.log('📨', event.data);
   };
   ws.onerror = () => {
@@ -153,6 +154,63 @@ connectLocalBtn.addEventListener('click', (event) => {
   };
   return ws;
 });
+
+/*
+
+'wss://stream.binance.com:9443/ws/ethusdt@ticker' 
+{
+  "e":"24hrTicker",         // Тип события — 24-часовой тикер
+  "E":1786174981016,        // Время события, Unix timestamp в мс
+  "s":"ETHUSDT",            // Торговая пара
+  "p":"11.43000000",        // Изменение цены за 24ч: +11.43 USDT
+  "P":"0.601",              // Изменение за 24ч: +0.601%
+  "w":"1918.45128854",      // Средневзвешенная цена за 24ч
+  "x":"1903.07000000",      // Цена в начале 24-часового периода
+  "c":"1914.51000000",      // Текущая последняя цена
+  "Q":"0.01460000",         // Объём последней сделки в ETH
+  "b":"1914.51000000",      // Лучшая цена покупки (best bid)
+  "B":"19.74600000",        // Объём на лучшем bid в ETH
+  "a":"1914.52000000",      // Лучшая цена продажи (best ask)
+  "A":"65.77490000",        // Объём на лучшем ask в ETH
+  "o":"1903.08000000",      // Цена первой сделки за 24ч
+  "h":"1943.02000000",      // Максимальная цена за 24ч
+  "l":"1901.91000000",      // Минимальная цена за 24ч
+  "v":"187328.63800000",    // Объём торгов за 24ч в ETH
+  "q":"359380866.95123300", // Объём торгов за 24ч в USDT
+  "O":1786088581006,        // Начало 24-часового периода
+  "C":1786174981006,        // Конец 24-часового периода
+  "F":4259091320,           // ID первой сделки
+  "L":4260364753,           // ID последней сделки
+  "n":1273434               // Количество сделок за 24ч
+}
+
+wss://stream.binance.com:9443/ws/ethusdt@kline_1m
+@kline_1m @kline_5m @kline_15m @kline_1h @kline_4h
+{
+  "e":"kline",
+  "E":1786175420018,
+  "s":"ETHUSDT",
+  "k": {
+    "t":1786175400000,
+    "T":1786175459999,
+    "s":"ETHUSDT",
+    "i":"1m",
+    "f":4260365350,
+    "L":4260365412,
+    "o":"1914.53000000",
+    "c":"1914.52000000",
+    "h":"1914.53000000",
+    "l":"1914.52000000",
+    "v":"17.90700000",
+    "n":63,
+    "x":false,
+    "q":"34283.48789500",
+    "V":"17.82550000",
+    "Q":"34127.45451500",
+    "B":"0"
+  }
+}
+*/
 
 // ====================
 // FETCH CONNECTION
@@ -177,3 +235,26 @@ connectFetchBtn.addEventListener('click', (event) => {
     }
   }
 });
+
+// ====================
+// RADIO STREAM
+// ====================
+const stations = {
+    soma: 'https://ice5.somafm.com/live-128-mp3',
+    chillits: 'https://ice5.somafm.com/chillits-128-mp3',
+    digitalis: 'https://ice5.somafm.com/digitalis-128-mp3',
+    sf1033: 'https://ice5.somafm.com/sf1033-128-mp3',
+    doomed: 'https://ice5.somafm.com/doomed-128-mp3',
+    paradise: 'http://stream-tx1.radioparadise.com/mp3-128',
+    // http://stream-tx1.radioparadise.com/mp3-128,
+    'Русское Радио': 'https://broadcast.osetiafm.ru/rr.mp3',
+    'Авторадио': 'https://broadcast.osetiafm.ru/avto.mp3',
+    'Ретро FM': 'https://broadcast.osetiafm.ru/retro.mp3',
+    'Европа Плюс': 'https://broadcast.osetiafm.ru/europa.mp3',
+    'Монте-Карло': 'https://broadcast.osetiafm.ru/mc.mp3'
+};
+
+const audio = document.getElementById('audio');
+
+audio.src = stations["Европа Плюс"];
+audio.play();
