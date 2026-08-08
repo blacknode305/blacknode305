@@ -125,3 +125,26 @@ if (canvas) {
     }
     animate();
 }
+
+// ====================
+// LOCAL WEBSOCKET
+// ====================
+let ws;
+const connectLocalBtn = document.getElementById('connectLocalBtn');
+connectLocalBtn.addEventListener('click', (event) => {
+  const temp = document.getElementById('connectWSURL').value;
+  ws = new WebSocket(temp);
+  ws.onopen = () => {
+    console.log('🟢 Local server connected');
+  };
+  ws.onmessage = (event) => {
+    console.log('📨', event.data);
+  };
+  ws.onerror = () => {
+    console.log('🔴 Local server unavailable');
+  };
+  ws.onclose = () => {
+    console.log('⚪ Local server disconnected');
+  };
+  return ws;
+});
