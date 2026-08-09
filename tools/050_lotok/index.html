@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:start;
+    min-height:100vh;
+    padding: 60px 0;
+    background:linear-gradient(135deg,#2b0651,#4b0d8f);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.card{
+    width:340px;
+    background:#ffffff10;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+h1{
+    color:#fff;
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    height:60px;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    background:#ffffff20;
+    color:#fff;
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    transition:.25s;
+}
+
+input::placeholder{
+    color:#ddd;
+}
+
+input:focus{
+    background:#ffffff30;
+    box-shadow:0 0 0 3px #9d5cff;
+}
+
+.result{
+    margin-top:25px;
+}
+
+.result p{
+    color:#ddd;
+    font-size:18px;
+    /* margin-bottom:10px; */
+}
+
+#result{
+    display:block;
+    font-size:56px;
+    font-weight:bold;
+    color:#7dff8f;
+    text-shadow:0 0 15px rgba(125,255,143,.4);
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+    <!-- <h1></h1> -->
+
+    <input
+        type="number"
+        id="value"
+        placeholder=""
+        inputmode="numeric">
+
+    <div class="result">
+        <!-- <p></p> -->
+        <span id="result">0,0</span>
+    </div>
+</div>
+
+<script>
+const input = document.getElementById("value");
+const result = document.getElementById("result");
+
+input.addEventListener("input", (e) => {
+    if (e.inputType === "deleteContentBackward") {
+        input.value = '';
+    }
+    const value = parseInt(input.value) || 0;
+    const whole = Math.floor(value / 15);
+    const remainder = value % 15;
+
+    result.textContent = `${whole},${remainder}`;
+});
+</script>
+
+</body>
+</html>
