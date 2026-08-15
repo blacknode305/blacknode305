@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKX ETH/USDT</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: #1b1b1b;
+            padding: 40px;
+            border-radius: 20px;
+            min-width: 300px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+        }
+
+        .symbol {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        #price {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #status {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .connected {
+            color: #00d084 !important;
+        }
+
+        .disconnected {
+            color: #ff4d4d !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Ethereum</h1>
+
+    <div class="symbol">
+        OKX · ETH-USDT-SWAP
+    </div>
+
+    <div id="price">
+        Подключение...
+    </div>
+
+    <div id="status">
+        Соединение с OKX...
+    </div>
+
+</div>
+
+<script>
+
+const WS_URL = "wss://ws.okx.com:8443/ws/v5/public";
+const INSTRUMENT = "ETH-USDT-SWAP";
+
+let ws;
+let reconnectTimer;
+
+const priceElement = document.getElementById("price");
+const statusElement = document.getElementById("status");
+
+
+function connect() {
+
+    clearTimeout(reconnectTimer);
+
+    statusElement.textContent = "Подключение к OKX...";
+    statusElement.className = "";
+
+    ws = new WebSocket(WS_URL);
+
+
+    ws.onopen = function () {
+
+        console.log("OKX WebSocket connected");
+
+        statusElement.textContent = "● Подключено к OKX";
+        statusElement.className = "connected";
+
+        ws.send(JSON.stringify({
+            op: "subscribe",
+            args: [
+                {
+                    channel: "tickers",
+                    instId: INSTRUMENT
+                }
+            ]
+        }));
+    };
+
+
+    ws.onmessage = function (event) {
+
+        const message = JSON.parse(event.data);
+
+        console.log(message);
+
+
+        // Ответ на подписку
+        if (message.event === "subscribe") {
+            console.log("Subscribed:", message.arg);
+            return;
+        }
+
+
+        // Ошибка OKX
+        if (message.event === "error") {
+
+            console.error("OKX error:", message);
+
+            statusElement.textContent =
+                "Ошибка OKX: " + message.msg;
+
+            statusElement.className = "disconnected";
+
+            return;
+        }
+
+
+        // Рыночные данные
+        if (
+            message.arg &&
+            message.arg.channel === "tickers" &&
+            message.data &&
+            message.data.length > 0
+        ) {
+
+            const ticker = message.data[0];
+
+            // Последняя цена
+            const price = Number(ticker.last);
+
+            if (!isNaN(price)) {
+
+                priceElement.textContent =
+                    price.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+            }
+        }
+    };
+
+
+    ws.onerror = function (error) {
+
+        console.error("WebSocket error:", error);
+
+        statusElement.textContent =
+            "Ошибка соединения";
+
+        statusElement.className = "disconnected";
+    };
+
+
+    ws.onclose = function () {
+
+        console.log("OKX WebSocket disconnected");
+
+        statusElement.textContent =
+            "Соединение потеряно. Переподключение...";
+
+        statusElement.className = "disconnected";
+
+        reconnectTimer = setTimeout(connect, 3000);
+    };
+}
+
+
+// Запуск
+connect();
+
+</script>
+
+</body>
+</html>

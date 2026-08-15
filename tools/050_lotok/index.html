@@ -13,6 +13,7 @@
 
 body{
     display:flex;
+    flex-direction: column;
     justify-content:center;
     align-items:start;
     min-height:100vh;
@@ -28,6 +29,7 @@ body{
     border:1px solid rgba(255,255,255,.15);
     border-radius:20px;
     padding:15px;
+    margin: 15px;
     text-align:center;
     box-shadow:0 15px 35px rgba(0,0,0,.35);
 }
@@ -71,7 +73,7 @@ input:focus{
     /* margin-bottom:10px; */
 }
 
-#result{
+span{
     display:block;
     font-size:56px;
     font-weight:bold;
@@ -84,7 +86,7 @@ input:focus{
 <body>
 
 <div class="card">
-    <!-- <h1></h1> -->
+    <h1>ЛОТКИ И ШТУКИ</h1>
 
     <input
         type="number"
@@ -95,6 +97,20 @@ input:focus{
     <div class="result">
         <!-- <p></p> -->
         <span id="result">0,0</span>
+    </div>
+</div>
+<div class="card">
+    <h1>ВАГОНКИ И ЛОТКИ</h1>
+
+    <input
+        type="number"
+        id="valueV"
+        placeholder=""
+        inputmode="numeric">
+
+    <div class="result">
+        <!-- <p></p> -->
+        <span id="resultV">0,0</span>
     </div>
 </div>
 
@@ -112,6 +128,22 @@ input.addEventListener("input", (e) => {
 
     result.textContent = `${whole},${remainder}`;
 });
+
+
+const inputV = document.getElementById("valueV");
+const resultV = document.getElementById("resultV");
+
+inputV.addEventListener("input", (e) => {
+    if (e.inputType === "deleteContentBackward") {
+        inputV.value = '';
+    }
+    const value = parseInt(inputV.value) || 0;
+    const whole = Math.floor(value / 28);
+    const remainder = value % 28 /15;
+
+    resultV.textContent = `${whole},${remainder}`;
+});
+
 </script>
 
 </body>
