@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OKX ETH Position</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #111;
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 390px;
+    max-width: 95%;
+
+    background: #1b1b1b;
+
+    padding: 25px;
+
+    border-radius: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+.symbol {
+    text-align: center;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+
+    margin-top: 14px;
+    margin-bottom: 6px;
+
+    color: #aaa;
+}
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #292929;
+    color: white;
+
+    font-size: 16px;
+}
+
+button {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #444;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #555;
+}
+
+
+/* PRICE */
+
+.price {
+
+    text-align: center;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    margin: 25px 0 8px;
+}
+
+.status {
+
+    text-align: center;
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+.green {
+    color: #00d084 !important;
+}
+
+.red {
+    color: #ff4d4d !important;
+}
+
+.gray {
+    color: #aaa;
+}
+
+
+/* INFO */
+
+.info {
+
+    margin-top: 20px;
+
+    background: #242424;
+
+    border-radius: 15px;
+
+    padding: 15px;
+}
+
+.row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 10px 0;
+}
+
+.value {
+    font-weight: bold;
+}
+
+
+/* PROFIT */
+
+.profit {
+
+    font-size: 28px;
+
+    text-align: center;
+
+    margin: 20px 0;
+
+    font-weight: bold;
+}
+
+
+/* DISTANCE */
+
+.close-distance {
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-size: 16px;
+}
+
+
+/* PROGRESS */
+
+.progress {
+
+    margin-top: 15px;
+
+    height: 8px;
+
+    background: #333;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #00d084;
+
+    transition: width 0.2s;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>ETH Position</h1>
+
+
+<div class="symbol">
+    OKX · ETH-USDT-SWAP
+</div>
+
+
+<!-- DIRECTION -->
+
+<label>Направление</label>
+
+<select id="side">
+
+    <option value="long">
+        LONG
+    </option>
+
+    <option value="short">
+        SHORT
+    </option>
+
+</select>
+
+
+<!-- ENTRY -->
+
+<label>Цена входа</label>
+
+<input
+    id="entry"
+    type="number"
+    step="0.01"
+    placeholder="Например 1880"
+>
+
+
+<!-- MARGIN -->
+
+<label>Маржа (USDT)</label>
+
+<input
+    id="margin"
+    type="number"
+    step="0.01"
+    placeholder="Например 100"
+>
+
+
+<!-- LEVERAGE -->
+
+<label>Плечо</label>
+
+<input
+    id="leverage"
+    type="number"
+    step="1"
+    min="1"
+    placeholder="Например 5"
+>
+
+
+<!-- CLOSE -->
+
+<label>Цена закрытия</label>
+
+<input
+    id="closePrice"
+    type="number"
+    step="0.01"
+    placeholder="Например 1920"
+>
+
+
+<button onclick="savePosition()">
+    Открыть / обновить позицию
+</button>
+
+
+<!-- CURRENT PRICE -->
+
+<div
+    class="price"
+    id="price"
+>
+    ---
+</div>
+
+
+<div
+    class="status"
+    id="status"
+>
+    Подключение к OKX...
+</div>
+
+
+<!-- POSITION INFORMATION -->
+
+<div class="info">
+
+
+<div class="row">
+
+    <span>
+        Позиция
+    </span>
+
+    <span
+        class="value"
+        id="positionSide"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<div class="row">
+
+    <span>
+        Вход
+    </span>
+
+    <span
+        class="value"
+        id="entryDisplay"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<div class="row">
+
+    <span>
+        Маржа
+    </span>
+
+    <span
+        class="value"
+        id="marginDisplay"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<div class="row">
+
+    <span>
+        Плечо
+    </span>
+
+    <span
+        class="value"
+        id="leverageDisplay"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<div class="row">
+
+    <span>
+        Размер позиции
+    </span>
+
+    <span
+        class="value"
+        id="positionSizeDisplay"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<div class="row">
+
+    <span>
+        Количество ETH
+    </span>
+
+    <span
+        class="value"
+        id="quantityDisplay"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<div class="row">
+
+    <span>
+        Закрытие
+    </span>
+
+    <span
+        class="value"
+        id="closeDisplay"
+    >
+        ---
+    </span>
+
+</div>
+
+
+</div>
+
+
+<!-- PROFIT -->
+
+<div
+    id="profit"
+    class="profit gray"
+>
+    Прибыль: ---
+</div>
+
+
+<!-- PERCENT -->
+
+<div class="row">
+
+    <span>
+        Доходность на маржу
+    </span>
+
+    <span
+        id="percent"
+        class="value"
+    >
+        ---
+    </span>
+
+</div>
+
+
+<!-- DISTANCE -->
+
+<div class="close-distance">
+
+    <div id="distance">
+
+        До закрытия: ---
+
+    </div>
+
+
+    <div class="progress">
+
+        <div
+            id="progressBar"
+            class="progress-bar"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   OKX WEBSOCKET
+===================================================== */
+
+
+const WS_URL =
+    "wss://ws.okx.com:8443/ws/v5/public";
+
+
+const INSTRUMENT =
+    "ETH-USDT-SWAP";
+
+
+let ws;
+
+let currentPrice = null;
+
+let position = null;
+
+
+/* =====================================================
+   CONNECT
+===================================================== */
+
+
+function connect() {
+
+
+    ws =
+        new WebSocket(WS_URL);
+
+
+    ws.onopen =
+        function() {
+
+
+            document
+                .getElementById("status")
+                .textContent =
+                "● OKX подключён";
+
+
+            document
+                .getElementById("status")
+                .className =
+                "status green";
+
+
+            ws.send(
+                JSON.stringify({
+
+                    op: "subscribe",
+
+                    args: [
+
+                        {
+                            channel: "tickers",
+
+                            instId:
+                                INSTRUMENT
+                        }
+
+                    ]
+
+                })
+            );
+
+        };
+
+
+    ws.onmessage =
+        function(event) {
+
+
+            const message =
+                JSON.parse(event.data);
+
+
+            if (
+
+                message.arg &&
+
+                message.arg.channel ===
+                    "tickers" &&
+
+                message.data &&
+
+                message.data.length > 0
+
+            ) {
+
+
+                currentPrice =
+                    Number(
+                        message.data[0].last
+                    );
+
+
+                document
+                    .getElementById("price")
+                    .textContent =
+                    currentPrice.toLocaleString(
+                        "en-US",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+
+                calculatePosition();
+
+            }
+
+        };
+
+
+    ws.onerror =
+        function() {
+
+
+            document
+                .getElementById("status")
+                .textContent =
+                "Ошибка соединения";
+
+
+            document
+                .getElementById("status")
+                .className =
+                "status red";
+
+        };
+
+
+    ws.onclose =
+        function() {
+
+
+            document
+                .getElementById("status")
+                .textContent =
+                "Соединение потеряно. Переподключение...";
+
+
+            setTimeout(
+                connect,
+                3000
+            );
+
+        };
+
+}
+
+
+connect();
+
+
+/* =====================================================
+   SAVE POSITION
+===================================================== */
+
+
+function savePosition() {
+
+
+    const side =
+        document
+            .getElementById("side")
+            .value;
+
+
+    const entry =
+        Number(
+            document
+                .getElementById("entry")
+                .value
+        );
+
+
+    const margin =
+        Number(
+            document
+                .getElementById("margin")
+                .value
+        );
+
+
+    const leverage =
+        Number(
+            document
+                .getElementById("leverage")
+                .value
+        );
+
+
+    const closePrice =
+        Number(
+            document
+                .getElementById("closePrice")
+                .value
+        );
+
+
+    if (
+
+        !entry ||
+        !margin ||
+        !leverage ||
+        !closePrice
+
+    ) {
+
+
+        alert(
+            "Заполни все поля позиции"
+        );
+
+
+        return;
+
+    }
+
+
+    if (leverage < 1) {
+
+
+        alert(
+            "Плечо должно быть не меньше 1"
+        );
+
+
+        return;
+
+    }
+
+
+    /* Размер позиции */
+
+    const positionSize =
+        margin * leverage;
+
+
+    /* Количество ETH */
+
+    const quantity =
+        positionSize / entry;
+
+
+    position = {
+
+        side:
+            side,
+
+        entry:
+            entry,
+
+        margin:
+            margin,
+
+        leverage:
+            leverage,
+
+        positionSize:
+            positionSize,
+
+        quantity:
+            quantity,
+
+        closePrice:
+            closePrice
+
+    };
+
+
+    /* DISPLAY */
+
+
+    document
+        .getElementById("positionSide")
+        .textContent =
+        side.toUpperCase();
+
+
+    document
+        .getElementById("entryDisplay")
+        .textContent =
+        entry.toFixed(2);
+
+
+    document
+        .getElementById("marginDisplay")
+        .textContent =
+        margin.toFixed(2) +
+        " USDT";
+
+
+    document
+        .getElementById("leverageDisplay")
+        .textContent =
+        "x" +
+        leverage;
+
+
+    document
+        .getElementById("positionSizeDisplay")
+        .textContent =
+        positionSize.toFixed(2) +
+        " USDT";
+
+
+    document
+        .getElementById("quantityDisplay")
+        .textContent =
+        quantity.toFixed(6) +
+        " ETH";
+
+
+    document
+        .getElementById("closeDisplay")
+        .textContent =
+        closePrice.toFixed(2);
+
+
+    calculatePosition();
+
+}
+
+
+/* =====================================================
+   CALCULATE POSITION
+===================================================== */
+
+
+function calculatePosition() {
+
+
+    if (
+        !position ||
+        currentPrice === null
+    ) {
+
+        return;
+
+    }
+
+
+    const entry =
+        position.entry;
+
+
+    const quantity =
+        position.quantity;
+
+
+    const margin =
+        position.margin;
+
+
+    const close =
+        position.closePrice;
+
+
+    const side =
+        position.side;
+
+
+    let profit;
+
+    let percent;
+
+    let distance;
+
+    let progress;
+
+
+    /* =================================================
+       LONG
+    ================================================= */
+
+
+    if (side === "long") {
+
+
+        profit =
+            (
+                currentPrice -
+                entry
+            ) * quantity;
+
+
+        percent =
+            (
+                profit /
+                margin
+            ) * 100;
+
+
+        distance =
+            close -
+            currentPrice;
+
+
+        const totalDistance =
+            close -
+            entry;
+
+
+        progress =
+            (
+                (currentPrice - entry) /
+                totalDistance
+            ) * 100;
+
+    }
+
+
+    /* =================================================
+       SHORT
+    ================================================= */
+
+
+    else {
+
+
+        profit =
+            (
+                entry -
+                currentPrice
+            ) * quantity;
+
+
+        percent =
+            (
+                profit /
+                margin
+            ) * 100;
+
+
+        distance =
+            currentPrice -
+            close;
+
+
+        const totalDistance =
+            entry -
+            close;
+
+
+        progress =
+            (
+                (entry - currentPrice) /
+                totalDistance
+            ) * 100;
+
+    }
+
+
+    /* =================================================
+       PROFIT
+    ================================================= */
+
+
+    const profitElement =
+        document
+            .getElementById("profit");
+
+
+    if (profit > 0) {
+
+
+        profitElement
+            .className =
+            "profit green";
+
+
+        profitElement
+            .textContent =
+            "Прибыль: +$" +
+            profit.toFixed(2);
+
+    }
+
+
+    else if (profit < 0) {
+
+
+        profitElement
+            .className =
+            "profit red";
+
+
+        profitElement
+            .textContent =
+            "Убыток: $" +
+            profit.toFixed(2);
+
+    }
+
+
+    else {
+
+
+        profitElement
+            .className =
+            "profit gray";
+
+
+        profitElement
+            .textContent =
+            "Прибыль: $0.00";
+
+    }
+
+
+    /* =================================================
+       PERCENT
+    ================================================= */
+
+
+    const percentElement =
+        document
+            .getElementById("percent");
+
+
+    percentElement
+        .textContent =
+        (
+            percent >= 0
+                ? "+"
+                : ""
+        ) +
+        percent.toFixed(2) +
+        "%";
+
+
+    percentElement
+        .className =
+        "value " +
+        (
+            percent >= 0
+                ? "green"
+                : "red"
+        );
+
+
+    /* =================================================
+       DISTANCE
+    ================================================= */
+
+
+    const distanceElement =
+        document
+            .getElementById("distance");
+
+
+    const targetReached =
+
+        (
+            side === "long" &&
+            currentPrice >= close
+        )
+
+        ||
+
+        (
+            side === "short" &&
+            currentPrice <= close
+        );
+
+
+    if (targetReached) {
+
+
+        distanceElement
+            .textContent =
+            "✓ ЦЕНА ЗАКРЫТИЯ ДОСТИГНУТА";
+
+
+        distanceElement
+            .className =
+            "green";
+
+
+    }
+
+    else {
+
+
+        distanceElement
+            .textContent =
+            "До закрытия: $" +
+            Math.abs(distance)
+                .toFixed(2);
+
+
+        distanceElement
+            .className =
+            distance > 0
+                ? "green"
+                : "red";
+
+    }
+
+
+    /* =================================================
+       PROGRESS
+    ================================================= */
+
+
+    progress =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                progress
+            )
+        );
+
+
+    document
+        .getElementById("progressBar")
+        .style.width =
+        progress + "%";
+
+}
+
+
+</script>
+
+
+</body>
+</html>
