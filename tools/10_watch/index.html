@@ -1104,45 +1104,44 @@ function checkSignal(pnl) {
 
 /* ================= VIBRATION ================= */
 
+let vibrationInterval = null;
+
 function vibrateWatch(level) {
 
-    /*
-       Несколько виброимпульсов.
-       Положительная прибыль:
-       короткая-пауза-короткая.
+    stopVibration();
 
-       Убыток:
-       длинная вибрация.
-    */
+    if (!("vibrate" in navigator)) {
+        return;
+    }
+
+    const pattern =
+        level > 0
+            ? [120, 80, 120]
+            : [300, 100, 300];
+
+    navigator.vibrate(pattern);
+
+    vibrationInterval = setInterval(() => {
+
+        try {
+            navigator.vibrate(pattern);
+        } catch (e) {}
+
+    }, level > 0 ? 700 : 900);
+}
+
+function stopVibration() {
+
+    if (vibrationInterval) {
+        clearInterval(vibrationInterval);
+        vibrationInterval = null;
+    }
 
     try {
-
-        if (
-            "vibrate" in navigator
-        ) {
-
-            if (level > 0) {
-
-                navigator.vibrate([
-                    120,
-                    80,
-                    120
-                ]);
-
-            } else {
-
-                navigator.vibrate([
-                    300,
-                    100,
-                    300
-                ]);
-
-            }
-
+        if ("vibrate" in navigator) {
+            navigator.vibrate(0);
         }
-
     } catch (e) {}
-
 }
 
 
@@ -1193,8 +1192,8 @@ function showSignal(level) {
     // Вибрация
     vibrateWatch(level);
 
-    // Звук
-    playBeep(level);
+    // Звук до закрытия уведомления
+    startBeep(level);
 }
 
 
@@ -1204,12 +1203,25 @@ function closeSignal() {
 
     document.getElementById("signal")
         .style.display = "none";
+
+    // Остановить звук
+    stopBeep();
+
+    // Остановить вибрацию
+    stopVibration();
 }
 
 
 /* ================= SOUND ================= */
 
-function playBeep(level) {
+let beepContext = null;
+let beepOscillator = null;
+let beepGain = null;
+let beepInterval = null;
+
+function startBeep(level) {
+
+    stopBeep();
 
     try {
 
@@ -1221,50 +1233,94 @@ function playBeep(level) {
             return;
         }
 
-        const ctx =
-            new AudioContext();
+        beepContext = new AudioContext();
 
-        const oscillator =
-            ctx.createOscillator();
-
-        const gain =
-            ctx.createGain();
-
-
-        oscillator.connect(gain);
-        gain.connect(ctx.destination);
-
-
-        oscillator.type = "sine";
-
-        oscillator.frequency.value =
+        const frequency =
             level > 0 ? 880 : 440;
 
+        function beep() {
 
-        gain.gain.setValueAtTime(
-            0.001,
-            ctx.currentTime
-        );
+            if (!beepContext) {
+                return;
+            }
 
-        gain.gain.exponentialRampToValueAtTime(
-            0.20,
-            ctx.currentTime + 0.02
-        );
+            const oscillator =
+                beepContext.createOscillator();
 
-        gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            ctx.currentTime + 0.35
-        );
+            const gain =
+                beepContext.createGain();
 
+            oscillator.connect(gain);
+            gain.connect(beepContext.destination);
 
-        oscillator.start();
+            oscillator.type = "sine";
 
-        oscillator.stop(
-            ctx.currentTime + 0.4
-        );
+            oscillator.frequency.value =
+                frequency;
+
+            const now =
+                beepContext.currentTime;
+
+            gain.gain.setValueAtTime(
+                0.001,
+                now
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.20,
+                now + 0.02
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.001,
+                now + 0.25
+            );
+
+            oscillator.start(now);
+
+            oscillator.stop(now + 0.27);
+        }
+
+        // Первый бип сразу
+        beep();
+
+        // Повторять
+        beepInterval =
+            setInterval(
+                beep,
+                level > 0 ? 500 : 700
+            );
 
     } catch (e) {}
 
+}
+
+
+function stopBeep() {
+
+    if (beepInterval) {
+        clearInterval(beepInterval);
+        beepInterval = null;
+    }
+
+    try {
+
+        if (beepOscillator) {
+            beepOscillator.stop();
+        }
+
+    } catch (e) {}
+
+    beepOscillator = null;
+
+    if (beepContext) {
+
+        try {
+            beepContext.close();
+        } catch (e) {}
+
+        beepContext = null;
+    }
 }
 
 
