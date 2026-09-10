@@ -2,8 +2,12 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=450,height=450,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Crypto Watch Terminal</title>
+
+<meta name="viewport"
+      content="width=450,height=450,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>Crypto Watch</title>
+
 <style>
 * {
     box-sizing: border-box;
@@ -12,10 +16,9 @@
 
 html, body {
     margin: 0;
-    padding: 0;
     width: 100%;
     height: 100%;
-    background: #050505;
+    background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
     overflow: hidden;
@@ -28,20 +31,20 @@ body {
 }
 
 #app {
+    position: relative;
     width: 450px;
     height: 450px;
     max-width: 100vw;
     max-height: 100vh;
-    padding: 18px;
-    position: relative;
     overflow: hidden;
 }
 
-/* ---------- SETUP ---------- */
+/* ================= SETUP ================= */
 
 #setup {
     width: 100%;
     height: 100%;
+    padding: 12px 28px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,10 +52,10 @@ body {
 
 .logo {
     text-align: center;
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 17px;
+    font-weight: 900;
     letter-spacing: 2px;
-    margin-bottom: 25px;
+    margin-bottom: 14px;
 }
 
 .step {
@@ -65,22 +68,22 @@ body {
 
 .step-title {
     text-align: center;
-    font-size: 15px;
-    color: #888;
-    margin-bottom: 12px;
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 7px;
 }
 
 input {
     width: 100%;
-    height: 58px;
-    border: 1px solid #333;
-    border-radius: 16px;
+    height: 45px;
+    border: 1px solid #292929;
+    border-radius: 12px;
     outline: none;
-    background: #111;
+    background: #101010;
     color: white;
     text-align: center;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 19px;
+    font-weight: 800;
 }
 
 input:focus {
@@ -89,23 +92,23 @@ input:focus {
 
 button {
     width: 100%;
-    height: 52px;
-    margin-top: 12px;
+    height: 40px;
+    margin-top: 7px;
     border: 0;
-    border-radius: 15px;
+    border-radius: 11px;
     background: #fff;
     color: #000;
-    font-size: 17px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 900;
 }
 
 button:active {
-    transform: scale(.97);
+    transform: scale(.96);
 }
 
 .direction {
     display: flex;
-    gap: 10px;
+    gap: 7px;
 }
 
 .direction button {
@@ -113,160 +116,172 @@ button:active {
 }
 
 .long-btn {
-    background: #19c37d;
-    color: #000;
+    background: #16c784;
 }
 
 .short-btn {
-    background: #ff4d4d;
-    color: #000;
+    background: #ea3943;
 }
 
 .progress {
     position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: 15px;
-    height: 4px;
-    background: #222;
-    border-radius: 5px;
+    left: 25px;
+    right: 25px;
+    bottom: 8px;
+    height: 2px;
+    background: #202020;
 }
 
 .progress-bar {
-    height: 100%;
     width: 20%;
+    height: 100%;
     background: #fff;
-    border-radius: 5px;
     transition: width .2s;
 }
 
-/* ---------- TERMINAL ---------- */
+
+/* ================= TERMINAL ================= */
 
 #terminal {
     display: none;
     width: 100%;
     height: 100%;
+    padding: 10px 24px;
 }
 
 .header {
-    height: 45px;
+    height: 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .pair {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 900;
 }
 
 .status {
-    font-size: 11px;
-    color: #777;
+    font-size: 9px;
+    color: #555;
 }
+
+
+/* PRICE */
 
 .price-box {
     text-align: center;
-    margin-top: 12px;
+    margin-top: 5px;
 }
 
 .current-price {
-    font-size: 38px;
+    font-size: 31px;
     line-height: 1;
     font-weight: 900;
     letter-spacing: -1px;
 }
 
 .price-label {
-    margin-top: 7px;
-    font-size: 11px;
-    color: #777;
+    color: #555;
+    font-size: 8px;
+    margin-top: 3px;
 }
 
+
+/* PNL */
+
 .pnl-box {
-    margin-top: 20px;
-    padding: 16px 10px;
-    border-radius: 22px;
-    background: #101010;
+    margin-top: 9px;
+    padding: 9px 5px;
+    border-radius: 16px;
+    background: #0c0c0c;
     text-align: center;
 }
 
 .pnl {
-    font-size: 45px;
+    font-size: 37px;
     line-height: 1;
     font-weight: 900;
 }
 
 .pnl-percent {
-    margin-top: 7px;
-    font-size: 18px;
-    font-weight: 700;
+    margin-top: 3px;
+    font-size: 14px;
+    font-weight: 800;
 }
 
 .green {
-    color: #19c37d;
+    color: #16c784;
 }
 
 .red {
-    color: #ff4d4d;
+    color: #ea3943;
 }
 
 .neutral {
     color: #fff;
 }
 
+
+/* INFO */
+
 .info {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
-    margin-top: 13px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-top: 7px;
 }
 
 .info-item {
-    background: #101010;
-    border-radius: 12px;
-    padding: 8px;
+    background: #0c0c0c;
+    border-radius: 9px;
+    padding: 5px 2px;
     text-align: center;
 }
 
 .info-label {
-    font-size: 9px;
-    color: #666;
-    margin-bottom: 3px;
+    color: #555;
+    font-size: 7px;
+    margin-bottom: 2px;
 }
 
 .info-value {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 800;
+    white-space: nowrap;
 }
+
+
+/* FOOTER */
 
 .footer {
     position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: 12px;
+    left: 24px;
+    right: 24px;
+    bottom: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .direction-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 900;
 }
 
 .reset {
     width: auto;
-    height: 30px;
-    padding: 0 12px;
+    height: 25px;
     margin: 0;
-    border-radius: 10px;
-    background: #222;
-    color: #aaa;
-    font-size: 11px;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: #181818;
+    color: #777;
+    font-size: 9px;
 }
 
-/* ---------- SIGNAL ---------- */
+
+/* ================= SIGNAL ================= */
 
 #signal {
     position: absolute;
@@ -274,8 +289,8 @@ button:active {
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,.93);
-    z-index: 20;
+    background: rgba(0,0,0,.96);
+    z-index: 100;
 }
 
 .signal-inner {
@@ -283,334 +298,374 @@ button:active {
 }
 
 .signal-title {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 10px;
+    color: #555;
+    font-size: 10px;
+    margin-bottom: 4px;
 }
 
 .signal-value {
-    font-size: 65px;
+    font-size: 57px;
     font-weight: 900;
+    line-height: 1;
 }
 
 .signal-text {
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 11px;
+    margin-top: 5px;
+    font-weight: 800;
 }
 
 .signal-close {
-    width: 150px;
-    height: 45px;
-    margin-top: 20px;
-    font-size: 14px;
+    width: 90px;
+    height: 34px;
+    margin-top: 12px;
+    font-size: 11px;
 }
 
-/* ---------- SMALL SCREEN ---------- */
 
-@media (max-width: 380px) {
+/* ================= SMALL SCREEN ================= */
 
-    #app {
-        padding: 14px;
+@media (max-width: 350px) {
+
+    #setup {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #terminal {
+        padding-left: 17px;
+        padding-right: 17px;
     }
 
     .current-price {
-        font-size: 31px;
+        font-size: 27px;
     }
 
     .pnl {
-        font-size: 38px;
+        font-size: 32px;
     }
 
     .info-value {
-        font-size: 12px;
+        font-size: 9px;
+    }
+
+    .footer {
+        left: 17px;
+        right: 17px;
     }
 }
 </style>
 </head>
 
+
 <body>
 
 <div id="app">
 
-    <!-- ================= SETUP ================= -->
+<!-- ================= SETUP ================= -->
 
-    <div id="setup">
+<div id="setup">
 
-        <div class="logo">
-            CRYPTO TERMINAL
+    <div class="logo">
+        CRYPTO WATCH
+    </div>
+
+
+    <!-- 1 -->
+
+    <div class="step active" id="step1">
+
+        <div class="step-title">
+            ПАРА
         </div>
 
-        <!-- STEP 1 -->
-        <div class="step active" id="step1">
+        <input
+            id="pairInput"
+            type="text"
+            placeholder="BTCUSDT"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false">
 
-            <div class="step-title">
-                1 / 5 — Торговая пара
-            </div>
+        <button onclick="nextPair()">
+            ВВОД
+        </button>
 
-            <input
-                id="pairInput"
-                type="text"
-                placeholder="BTCUSDT"
-                autocomplete="off"
-                autocapitalize="characters"
-                spellcheck="false">
+    </div>
 
-            <button onclick="nextPair()">
-                ВВОД
+
+    <!-- 2 -->
+
+    <div class="step" id="step2">
+
+        <div class="step-title">
+            МАРЖА USDT
+        </div>
+
+        <input
+            id="marginInput"
+            type="number"
+            inputmode="decimal"
+            placeholder="100">
+
+        <button onclick="nextMargin()">
+            ВВОД
+        </button>
+
+    </div>
+
+
+    <!-- 3 -->
+
+    <div class="step" id="step3">
+
+        <div class="step-title">
+            ПЛЕЧО
+        </div>
+
+        <input
+            id="leverageInput"
+            type="number"
+            inputmode="decimal"
+            placeholder="10">
+
+        <button onclick="nextLeverage()">
+            ВВОД
+        </button>
+
+    </div>
+
+
+    <!-- 4 -->
+
+    <div class="step" id="step4">
+
+        <div class="step-title">
+            ЦЕНА ВХОДА
+        </div>
+
+        <input
+            id="entryInput"
+            type="number"
+            inputmode="decimal"
+            placeholder="100000">
+
+        <button onclick="nextEntry()">
+            ВВОД
+        </button>
+
+    </div>
+
+
+    <!-- 5 -->
+
+    <div class="step" id="step5">
+
+        <div class="step-title">
+            НАПРАВЛЕНИЕ
+        </div>
+
+        <div class="direction">
+
+            <button
+                class="long-btn"
+                onclick="startTerminal('LONG')">
+                LONG
             </button>
 
-        </div>
-
-        <!-- STEP 2 -->
-        <div class="step" id="step2">
-
-            <div class="step-title">
-                2 / 5 — Маржа USDT
-            </div>
-
-            <input
-                id="marginInput"
-                type="number"
-                inputmode="decimal"
-                placeholder="100">
-
-            <button onclick="nextMargin()">
-                ВВОД
+            <button
+                class="short-btn"
+                onclick="startTerminal('SHORT')">
+                SHORT
             </button>
 
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="step" id="step3">
-
-            <div class="step-title">
-                3 / 5 — Плечо
-            </div>
-
-            <input
-                id="leverageInput"
-                type="number"
-                inputmode="decimal"
-                placeholder="10">
-
-            <button onclick="nextLeverage()">
-                ВВОД
-            </button>
-
-        </div>
-
-        <!-- STEP 4 -->
-        <div class="step" id="step4">
-
-            <div class="step-title">
-                4 / 5 — Цена входа
-            </div>
-
-            <input
-                id="entryInput"
-                type="number"
-                inputmode="decimal"
-                placeholder="100000">
-
-            <button onclick="nextEntry()">
-                ВВОД
-            </button>
-
-        </div>
-
-        <!-- STEP 5 -->
-        <div class="step" id="step5">
-
-            <div class="step-title">
-                5 / 5 — Направление
-            </div>
-
-            <div class="direction">
-
-                <button
-                    class="long-btn"
-                    onclick="startTerminal('LONG')">
-                    LONG
-                </button>
-
-                <button
-                    class="short-btn"
-                    onclick="startTerminal('SHORT')">
-                    SHORT
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="progress">
-            <div class="progress-bar" id="progressBar"></div>
         </div>
 
     </div>
 
 
-    <!-- ================= TERMINAL ================= -->
+    <div class="progress">
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+    </div>
 
-    <div id="terminal">
+</div>
 
-        <div class="header">
 
-            <div class="pair" id="pairDisplay">
-                BTC-USDT-SWAP
-            </div>
+<!-- ================= TERMINAL ================= -->
 
-            <div class="status" id="status">
-                CONNECTING
-            </div>
+<div id="terminal">
 
+    <div class="header">
+
+        <div
+            class="pair"
+            id="pairDisplay">
+            BTC-USDT-SWAP
         </div>
 
-        <div class="price-box">
+        <div
+            class="status"
+            id="status">
+            CONNECTING
+        </div>
+
+    </div>
+
+
+    <div class="price-box">
+
+        <div
+            class="current-price"
+            id="currentPrice">
+            ---
+        </div>
+
+        <div class="price-label">
+            OKX PRICE
+        </div>
+
+    </div>
+
+
+    <div class="pnl-box">
+
+        <div
+            class="pnl neutral"
+            id="pnl">
+            0.00
+        </div>
+
+        <div
+            class="pnl-percent neutral"
+            id="pnlPercent">
+            0.00%
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        <div class="info-item">
+
+            <div class="info-label">
+                MARGIN
+            </div>
 
             <div
-                class="current-price"
-                id="currentPrice">
+                class="info-value"
+                id="marginDisplay">
                 ---
             </div>
 
-            <div class="price-label">
-                CURRENT PRICE
+        </div>
+
+
+        <div class="info-item">
+
+            <div class="info-label">
+                LEV
+            </div>
+
+            <div
+                class="info-value"
+                id="leverageDisplay">
+                ---
             </div>
 
         </div>
 
-        <div class="pnl-box">
 
-            <div
-                class="pnl neutral"
-                id="pnl">
-                0.00
+        <div class="info-item">
+
+            <div class="info-label">
+                ENTRY
             </div>
 
             <div
-                class="pnl-percent neutral"
-                id="pnlPercent">
-                0.00%
+                class="info-value"
+                id="entryDisplay">
+                ---
             </div>
 
         </div>
 
-        <div class="info">
 
-            <div class="info-item">
-                <div class="info-label">
-                    MARGIN
-                </div>
+        <div class="info-item">
 
-                <div
-                    class="info-value"
-                    id="marginDisplay">
-                    ---
-                </div>
+            <div class="info-label">
+                POS
             </div>
-
-            <div class="info-item">
-                <div class="info-label">
-                    LEVERAGE
-                </div>
-
-                <div
-                    class="info-value"
-                    id="leverageDisplay">
-                    ---
-                </div>
-            </div>
-
-            <div class="info-item">
-                <div class="info-label">
-                    ENTRY
-                </div>
-
-                <div
-                    class="info-value"
-                    id="entryDisplay">
-                    ---
-                </div>
-            </div>
-
-            <div class="info-item">
-                <div class="info-label">
-                    POSITION
-                </div>
-
-                <div
-                    class="info-value"
-                    id="positionDisplay">
-                    ---
-                </div>
-            </div>
-
-        </div>
-
-        <div class="footer">
 
             <div
-                class="direction-label"
-                id="directionDisplay">
-                LONG
+                class="info-value"
+                id="positionDisplay">
+                ---
             </div>
-
-            <button
-                class="reset"
-                onclick="resetTerminal()">
-                RESET
-            </button>
 
         </div>
 
     </div>
 
 
-    <!-- ================= SIGNAL ================= -->
+    <div class="footer">
 
-    <div id="signal">
-
-        <div class="signal-inner">
-
-            <div class="signal-title">
-                PNL SIGNAL
-            </div>
-
-            <div
-                class="signal-value"
-                id="signalValue">
-                +5%
-            </div>
-
-            <div
-                class="signal-text"
-                id="signalText">
-                PROFIT LEVEL
-            </div>
-
-            <button
-                class="signal-close"
-                onclick="closeSignal()">
-                OK
-            </button>
-
+        <div
+            id="directionDisplay"
+            class="direction-label">
+            LONG
         </div>
+
+        <button
+            class="reset"
+            onclick="resetTerminal()">
+            RESET
+        </button>
 
     </div>
 
 </div>
 
 
-<script>
+<!-- ================= SIGNAL ================= -->
 
-/*
-==========================================================
-CRYPTO WATCH TERMINAL
-OKX PUBLIC API
-==========================================================
-*/
+<div id="signal">
+
+    <div class="signal-inner">
+
+        <div class="signal-title">
+            SIGNAL
+        </div>
+
+        <div
+            id="signalValue"
+            class="signal-value">
+            +5%
+        </div>
+
+        <div
+            id="signalText"
+            class="signal-text">
+            PROFIT
+        </div>
+
+        <button
+            class="signal-close"
+            onclick="closeSignal()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
 
 let pair = "";
 let margin = 0;
@@ -623,14 +678,14 @@ let ws = null;
 let lastSignalLevel = null;
 
 
-/* ======================================================
-   HELPERS
-====================================================== */
+/* ================= HELPERS ================= */
 
 function showStep(number) {
 
     document.querySelectorAll(".step")
-        .forEach(el => el.classList.remove("active"));
+        .forEach(el => {
+            el.classList.remove("active");
+        });
 
     document
         .getElementById("step" + number)
@@ -638,7 +693,8 @@ function showStep(number) {
 
     document
         .getElementById("progressBar")
-        .style.width = ((number / 5) * 100) + "%";
+        .style.width =
+        ((number / 5) * 100) + "%";
 }
 
 
@@ -649,11 +705,8 @@ function normalizePair(value) {
         .replace(/[^A-Z0-9]/g, "");
 
     if (value.endsWith("USDT")) {
-        return value.replace("USDT", "") + "-USDT-SWAP";
-    }
-
-    if (value.endsWith("USD")) {
-        return value.replace("USD", "") + "-USDT-SWAP";
+        return value.replace("USDT", "") +
+               "-USDT-SWAP";
     }
 
     return value + "-USDT-SWAP";
@@ -690,9 +743,22 @@ function formatNumber(number) {
 }
 
 
-/* ======================================================
-   SETUP
-====================================================== */
+function focusInput(id) {
+
+    setTimeout(() => {
+
+        const input =
+            document.getElementById(id);
+
+        if (input) {
+            input.focus();
+        }
+
+    }, 100);
+}
+
+
+/* ================= SETUP ================= */
 
 function nextPair() {
 
@@ -701,14 +767,9 @@ function nextPair() {
         .value
         .trim();
 
-    if (!value) {
-        return;
-    }
+    if (!value) return;
 
     pair = normalizePair(value);
-
-    document.getElementById("pairInput").value =
-        pair.replace("-USDT-SWAP", "USDT");
 
     showStep(2);
 
@@ -724,7 +785,6 @@ function nextMargin() {
         );
 
     if (!Number.isFinite(value) || value <= 0) {
-        alert("Введите корректную маржу");
         return;
     }
 
@@ -744,7 +804,6 @@ function nextLeverage() {
         );
 
     if (!Number.isFinite(value) || value <= 0) {
-        alert("Введите корректное плечо");
         return;
     }
 
@@ -764,7 +823,6 @@ function nextEntry() {
         );
 
     if (!Number.isFinite(value) || value <= 0) {
-        alert("Введите корректную цену");
         return;
     }
 
@@ -774,64 +832,54 @@ function nextEntry() {
 }
 
 
-function focusInput(id) {
-
-    setTimeout(() => {
-
-        const input =
-            document.getElementById(id);
-
-        if (input) {
-            input.focus();
-        }
-
-    }, 100);
-}
-
-
-/* ======================================================
-   START TERMINAL
-====================================================== */
+/* ================= TERMINAL ================= */
 
 function startTerminal(side) {
 
     direction = side;
 
-    document.getElementById("setup").style.display =
-        "none";
+    document.getElementById("setup")
+        .style.display = "none";
 
-    document.getElementById("terminal").style.display =
-        "block";
+    document.getElementById("terminal")
+        .style.display = "block";
 
-    document.getElementById("pairDisplay").textContent =
-        pair;
+    document.getElementById("pairDisplay")
+        .textContent = pair;
 
-    document.getElementById("marginDisplay").textContent =
+    document.getElementById("marginDisplay")
+        .textContent =
         "$" + formatNumber(margin);
 
-    document.getElementById("leverageDisplay").textContent =
+    document.getElementById("leverageDisplay")
+        .textContent =
         leverage + "x";
 
-    document.getElementById("entryDisplay").textContent =
+    document.getElementById("entryDisplay")
+        .textContent =
         formatPrice(entryPrice);
 
-    document.getElementById("positionDisplay").textContent =
+    document.getElementById("positionDisplay")
+        .textContent =
         "$" + formatNumber(margin * leverage);
 
-    document.getElementById("directionDisplay").textContent =
+    const directionElement =
+        document.getElementById("directionDisplay");
+
+    directionElement.textContent =
         direction;
 
-    document.getElementById("directionDisplay").className =
+    directionElement.className =
         "direction-label " +
-        (direction === "LONG" ? "green" : "red");
+        (direction === "LONG"
+            ? "green"
+            : "red");
 
     connectOKX();
 }
 
 
-/* ======================================================
-   OKX WEBSOCKET
-====================================================== */
+/* ================= OKX ================= */
 
 function connectOKX() {
 
@@ -843,8 +891,8 @@ function connectOKX() {
 
     }
 
-    document.getElementById("status").textContent =
-        "CONNECTING";
+    document.getElementById("status")
+        .textContent = "CONNECT";
 
     ws = new WebSocket(
         "wss://ws.okx.com:8443/ws/v5/public"
@@ -853,18 +901,16 @@ function connectOKX() {
 
     ws.onopen = function() {
 
-        document.getElementById("status").textContent =
-            "LIVE";
+        document.getElementById("status")
+            .textContent = "LIVE";
 
         ws.send(
             JSON.stringify({
                 op: "subscribe",
-                args: [
-                    {
-                        channel: "tickers",
-                        instId: pair
-                    }
-                ]
+                args: [{
+                    channel: "tickers",
+                    instId: pair
+                }]
             })
         );
 
@@ -875,43 +921,44 @@ function connectOKX() {
 
         try {
 
-            const message =
+            const data =
                 JSON.parse(event.data);
 
             if (
-                message.arg &&
-                message.arg.channel === "tickers" &&
-                message.data &&
-                message.data[0]
+                data.arg &&
+                data.arg.channel === "tickers" &&
+                data.data &&
+                data.data[0]
             ) {
 
                 const price =
-                    parseFloat(message.data[0].last);
+                    parseFloat(
+                        data.data[0].last
+                    );
 
-                updatePrice(price);
+                if (Number.isFinite(price)) {
+                    updatePrice(price);
+                }
+
             }
 
-        } catch (error) {
-
-            console.log(error);
-
-        }
+        } catch (e) {}
 
     };
 
 
     ws.onerror = function() {
 
-        document.getElementById("status").textContent =
-            "ERROR";
+        document.getElementById("status")
+            .textContent = "ERROR";
 
     };
 
 
     ws.onclose = function() {
 
-        document.getElementById("status").textContent =
-            "RECONNECT";
+        document.getElementById("status")
+            .textContent = "RECONNECT";
 
         setTimeout(() => {
 
@@ -925,13 +972,10 @@ function connectOKX() {
         }, 3000);
 
     };
-
 }
 
 
-/* ======================================================
-   PNL CALCULATION
-====================================================== */
+/* ================= PNL ================= */
 
 function updatePrice(currentPrice) {
 
@@ -940,17 +984,9 @@ function updatePrice(currentPrice) {
         formatPrice(currentPrice);
 
 
-    /*
-       Position value
-    */
-
     const positionSize =
         margin * leverage;
 
-
-    /*
-       Price movement
-    */
 
     let priceChange;
 
@@ -965,36 +1001,27 @@ function updatePrice(currentPrice) {
         priceChange =
             (entryPrice - currentPrice)
             / entryPrice;
-
     }
 
-
-    /*
-       PNL
-    */
 
     const pnl =
         positionSize * priceChange;
 
 
-    /*
-       PNL percentage relative
-       to margin
-    */
-
     const pnlPercent =
         (pnl / margin) * 100;
 
 
-    renderPNL(pnl, pnlPercent);
+    renderPNL(
+        pnl,
+        pnlPercent
+    );
 
-    checkSignal(pnlPercent);
+    checkSignal(pnl);
 }
 
 
-/* ======================================================
-   RENDER PNL
-====================================================== */
+/* ================= DISPLAY PNL ================= */
 
 function renderPNL(pnl, percent) {
 
@@ -1005,36 +1032,20 @@ function renderPNL(pnl, percent) {
         document.getElementById("pnlPercent");
 
 
-    const pnlSign =
-        pnl > 0 ? "+" : "";
-
-    const percentSign =
-        percent > 0 ? "+" : "";
-
-
     pnlElement.textContent =
-        pnlSign +
+        (pnl > 0 ? "+" : "") +
         formatNumber(pnl) +
         " USDT";
 
 
     percentElement.textContent =
-        percentSign +
+        (percent > 0 ? "+" : "") +
         percent.toFixed(2) +
         "%";
 
 
-    pnlElement.classList.remove(
-        "green",
-        "red",
-        "neutral"
-    );
-
-    percentElement.classList.remove(
-        "green",
-        "red",
-        "neutral"
-    );
+    pnlElement.className = "pnl";
+    percentElement.className = "pnl-percent";
 
 
     if (pnl > 0) {
@@ -1051,86 +1062,91 @@ function renderPNL(pnl, percent) {
 
         pnlElement.classList.add("neutral");
         percentElement.classList.add("neutral");
-
     }
-
 }
 
 
-/* ======================================================
-   SIGNAL SYSTEM
-====================================================== */
+/* ================= SIGNAL LEVEL ================= */
 
-/*
-   Signals:
+function getSignalLevel(pnl) {
 
-   +5
-   +10
-   +15
-   +20
-   ...
+    // Сигнал каждые 5 USDT
+    // +5, +10, +15...
+    // -5, -10, -15...
 
-   -5
-   -10
-   -15
-   -20
-   ...
-
-   Every 5%.
-*/
-
-
-function getSignalLevel(percent) {
-
-    if (percent === 0) {
-        return 0;
-    }
-
-    const level =
-        Math.floor(
-            Math.abs(percent) / 5
-        ) * 5;
-
-    if (level < 5) {
+    if (Math.abs(pnl) < 5) {
         return null;
     }
 
-    return percent > 0
-        ? level
-        : -level;
+    const level =
+        Math.floor(Math.abs(pnl) / 5) * 5;
+
+    return pnl > 0 ? level : -level;
 }
 
 
-function checkSignal(percent) {
+function checkSignal(pnl) {
 
-    const level =
-        getSignalLevel(percent);
-
+    const level = getSignalLevel(pnl);
 
     if (level === null) {
         return;
     }
-
-
-    /*
-       Trigger only when crossing
-       a new 5% level.
-    */
 
     if (level !== lastSignalLevel) {
 
         lastSignalLevel = level;
 
         showSignal(level);
-
     }
+}
+
+
+/* ================= VIBRATION ================= */
+
+function vibrateWatch(level) {
+
+    /*
+       Несколько виброимпульсов.
+       Положительная прибыль:
+       короткая-пауза-короткая.
+
+       Убыток:
+       длинная вибрация.
+    */
+
+    try {
+
+        if (
+            "vibrate" in navigator
+        ) {
+
+            if (level > 0) {
+
+                navigator.vibrate([
+                    120,
+                    80,
+                    120
+                ]);
+
+            } else {
+
+                navigator.vibrate([
+                    300,
+                    100,
+                    300
+                ]);
+
+            }
+
+        }
+
+    } catch (e) {}
 
 }
 
 
-/* ======================================================
-   SIGNAL DISPLAY
-====================================================== */
+/* ================= SIGNAL ================= */
 
 function showSignal(level) {
 
@@ -1144,10 +1160,13 @@ function showSignal(level) {
         document.getElementById("signalText");
 
 
+    // ВАЖНО:
+    // Теперь показываем USDT, а не %
+
     value.textContent =
         (level > 0 ? "+" : "") +
         level +
-        "%";
+        " USDT";
 
 
     if (level > 0) {
@@ -1156,7 +1175,7 @@ function showSignal(level) {
             "signal-value green";
 
         text.textContent =
-            "PROFIT LEVEL";
+            "PROFIT";
 
     } else {
 
@@ -1164,35 +1183,31 @@ function showSignal(level) {
             "signal-value red";
 
         text.textContent =
-            "LOSS LEVEL";
-
+            "LOSS";
     }
 
 
-    signal.style.display =
-        "flex";
+    signal.style.display = "flex";
 
 
+    // Вибрация
+    vibrateWatch(level);
+
+    // Звук
     playBeep(level);
 }
 
 
-/* ======================================================
-   CLOSE SIGNAL
-====================================================== */
+/* ================= CLOSE ================= */
 
 function closeSignal() {
 
     document.getElementById("signal")
-        .style.display =
-        "none";
-
+        .style.display = "none";
 }
 
 
-/* ======================================================
-   SOUND
-====================================================== */
+/* ================= SOUND ================= */
 
 function playBeep(level) {
 
@@ -1220,11 +1235,10 @@ function playBeep(level) {
         gain.connect(ctx.destination);
 
 
+        oscillator.type = "sine";
+
         oscillator.frequency.value =
             level > 0 ? 880 : 440;
-
-        oscillator.type =
-            "sine";
 
 
         gain.gain.setValueAtTime(
@@ -1233,7 +1247,7 @@ function playBeep(level) {
         );
 
         gain.gain.exponentialRampToValueAtTime(
-            0.25,
+            0.20,
             ctx.currentTime + 0.02
         );
 
@@ -1249,21 +1263,12 @@ function playBeep(level) {
             ctx.currentTime + 0.4
         );
 
-
-    } catch (e) {
-
-        console.log(
-            "Audio unavailable"
-        );
-
-    }
+    } catch (e) {}
 
 }
 
 
-/* ======================================================
-   RESET
-====================================================== */
+/* ================= RESET ================= */
 
 function resetTerminal() {
 
@@ -1287,25 +1292,23 @@ function resetTerminal() {
 
 
     document.getElementById("terminal")
-        .style.display =
-        "none";
+        .style.display = "none";
 
     document.getElementById("setup")
-        .style.display =
-        "flex";
+        .style.display = "flex";
 
 
-    document.getElementById("pairInput").value =
-        "";
+    document.getElementById("pairInput")
+        .value = "";
 
-    document.getElementById("marginInput").value =
-        "";
+    document.getElementById("marginInput")
+        .value = "";
 
-    document.getElementById("leverageInput").value =
-        "";
+    document.getElementById("leverageInput")
+        .value = "";
 
-    document.getElementById("entryInput").value =
-        "";
+    document.getElementById("entryInput")
+        .value = "";
 
 
     showStep(1);
@@ -1314,73 +1317,58 @@ function resetTerminal() {
 }
 
 
-/* ======================================================
-   ENTER KEY SUPPORT
-====================================================== */
+/* ================= ENTER ================= */
 
 document
     .getElementById("pairInput")
     .addEventListener(
         "keydown",
-        function(e) {
-
+        e => {
             if (e.key === "Enter") {
                 nextPair();
             }
-
         }
     );
-
 
 document
     .getElementById("marginInput")
     .addEventListener(
         "keydown",
-        function(e) {
-
+        e => {
             if (e.key === "Enter") {
                 nextMargin();
             }
-
         }
     );
-
 
 document
     .getElementById("leverageInput")
     .addEventListener(
         "keydown",
-        function(e) {
-
+        e => {
             if (e.key === "Enter") {
                 nextLeverage();
             }
-
         }
     );
-
 
 document
     .getElementById("entryInput")
     .addEventListener(
         "keydown",
-        function(e) {
-
+        e => {
             if (e.key === "Enter") {
                 nextEntry();
             }
-
         }
     );
 
 
-/* ======================================================
-   INITIAL FOCUS
-====================================================== */
+/* ================= START ================= */
 
 window.addEventListener(
     "load",
-    function() {
+    () => {
         focusInput("pairInput");
     }
 );
