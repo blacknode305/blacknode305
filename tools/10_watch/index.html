@@ -258,7 +258,7 @@ button:active {
     position: absolute;
     left: 24px;
     right: 24px;
-    bottom: 10px;
+    bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -376,7 +376,7 @@ button:active {
     <div class="step active" id="step1">
 
         <div class="step-title">
-            ПАРА
+            PAIR
         </div>
 
         <input
@@ -385,10 +385,10 @@ button:active {
             placeholder="BTCUSDT"
             autocomplete="off"
             autocapitalize="characters"
-            spellcheck="false">
-
+            spellcheck="false"
+            value="BTCUSDT">
         <button onclick="nextPair()">
-            ВВОД
+            ENTER
         </button>
 
     </div>
@@ -399,7 +399,7 @@ button:active {
     <div class="step" id="step2">
 
         <div class="step-title">
-            МАРЖА USDT
+            MARGIN
         </div>
 
         <input
@@ -409,7 +409,7 @@ button:active {
             placeholder="100">
 
         <button onclick="nextMargin()">
-            ВВОД
+            ENTER
         </button>
 
     </div>
@@ -420,17 +420,18 @@ button:active {
     <div class="step" id="step3">
 
         <div class="step-title">
-            ПЛЕЧО
+            LEVERAGE
         </div>
 
         <input
             id="leverageInput"
             type="number"
             inputmode="decimal"
-            placeholder="10">
+            placeholder="10"
+            value="7.5">
 
         <button onclick="nextLeverage()">
-            ВВОД
+            ENTER
         </button>
 
     </div>
@@ -441,7 +442,7 @@ button:active {
     <div class="step" id="step4">
 
         <div class="step-title">
-            ЦЕНА ВХОДА
+            ENTRY
         </div>
 
         <input
@@ -451,7 +452,7 @@ button:active {
             placeholder="100000">
 
         <button onclick="nextEntry()">
-            ВВОД
+            ENTER
         </button>
 
     </div>
@@ -462,7 +463,7 @@ button:active {
     <div class="step" id="step5">
 
         <div class="step-title">
-            НАПРАВЛЕНИЕ
+            DIRECTION
         </div>
 
         <div class="direction">
