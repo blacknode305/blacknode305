@@ -109,13 +109,69 @@ h2{font-size:clamp(37px,7.3vw,70px);font-weight:870;letter-spacing:-.067em;line-
 @media(max-width:350px){.panel{padding-left:17px;padding-right:17px}.topbar{padding-left:16px;padding-right:16px}.nav-dots{right:8px}.project p{font-size:10px}.project strong{font-size:18px}.skill-item{padding:10px}.contact-list a{min-width:140px}}
 @media(prefers-reduced-motion:reduce){.shell{scroll-behavior:auto}.panel-bg,.panel-content,.gallery-image,.hero-image,.btn,.scroll-cue span{transition:none!important;animation:none!important;transform:none!important}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* Revision: full-screen desktop & mobile slides. Never crop portrait around the waist. */
+:root{--gold:#ffbb76;--paper:#fff9ef;--muted:#e9dacb;--line:rgba(253,203,140,.24)}
+html,body{overscroll-behavior:none}
+.shell{height:100vh;height:100dvh;scroll-snap-type:y mandatory;background:#0e0d0c}
+.panel{height:100vh;height:100dvh;background:radial-gradient(ellipse at 74% 47%,#483028 0%,#201a18 40%,#0e0e0e 84%)}
+.panel::before{opacity:.6;background:radial-gradient(circle at 79% 70%,rgba(255,132,61,.17),transparent 53%)}
+.panel::after{background:linear-gradient(90deg,rgba(5,5,5,.92) 0%,rgba(10,9,8,.84) 26%,rgba(15,12,10,.62) 47%,rgba(12,10,10,.08) 73%),linear-gradient(180deg,rgba(0,0,0,.5),transparent 25%,transparent 70%,rgba(0,0,0,.48))}
+/* Fit the entire portrait in the right part of a landscape desktop viewport. */
+@media(min-width:850px){
+ .panel>.hero-image,.panel>.panel-bg,.panel .gallery-image{left:auto;right:0;width:57%;height:100%;object-fit:contain;object-position:center center;transform:none!important;filter:saturate(.88) contrast(1.06) brightness(.92)}
+ .panel .gallery-photo-wrap{inset:0;z-index:-3}
+ .panel .gallery-image{position:absolute}
+ .panel-content{width:min(47vw,620px);margin-left:clamp(6px,1.7vw,24px)}
+ .gallery-footer{right:clamp(90px,6vw,120px)}
+ .panel-intro::after{background:linear-gradient(90deg,#090909 0%,rgba(9,8,8,.90) 26%,rgba(9,8,8,.62) 46%,rgba(9,8,8,.05) 77%)}
+ .panel-gallery::after{background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.4) 50%,transparent 80%),linear-gradient(180deg,transparent 44%,#080808dc 100%)}
+}
+/* In portrait phones artwork fills the viewport, with content in a dark readable lower band. */
+@media(max-width:849px){
+ .panel>.hero-image,.panel>.panel-bg,.panel .gallery-image{left:0;right:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:saturate(.9) contrast(1.07)}
+ .panel::after{background:linear-gradient(180deg,rgba(4,4,4,.58),rgba(4,4,4,.08) 22%,rgba(6,5,5,.04) 43%,rgba(6,5,5,.75) 66%,rgba(4,4,4,.95) 98%)}
+ .panel-content{width:100%;max-width:560px}
+ .panel-about .panel-content,.panel-projects .panel-content,.panel-skills .panel-content,.panel-principles .panel-content,.panel-contacts .panel-content{margin-bottom:24px}
+ .panel-gallery::after{background:linear-gradient(180deg,rgba(0,0,0,.64),transparent 25%,rgba(0,0,0,.08) 48%,rgba(0,0,0,.9) 97%)}
+}
+.btn{background:linear-gradient(120deg,#f8b76e,#f7d2a0);border:1px solid #ffca8b;color:#1c110a;box-shadow:0 0 18px #ff9b3a45,0 6px 27px #0008;transition:transform .2s,box-shadow .2s}
+.btn:hover{box-shadow:0 0 26px #ff9b3a8a,0 6px 32px #000a}
+.project{box-shadow:inset 0 0 38px #0909095e}
+.project:first-child{border-color:#41bfa9a8;box-shadow:inset 0 0 30px #1fbd9c26,0 0 16px #29c8ae22}
+.project:nth-child(2){border-color:#bf78ed9a;box-shadow:inset 0 0 30px #b255e620,0 0 16px #bb55db22}
+.contact-list a:first-child{border-color:#52c0a2;box-shadow:0 0 18px #0fc4a422}
+.contact-list a:last-child{border-color:#f7b26d;box-shadow:0 0 18px #f4a45526}
+.kicker{color:#ffca8e}
+.top-nav{display:flex;align-items:center;gap:18px;pointer-events:auto}
+.top-nav button{color:#e8e1d8;background:transparent;border:0;padding:9px 4px;font-size:12px;font-weight:680}
+.top-nav button.selected,.top-nav button:hover{color:#ffca88;text-shadow:0 0 15px #f4aa5cbb}
+.menu-toggle{display:none;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid #a8845b99;background:#1b1816aa;border-radius:8px;color:#ffca85;font-size:20px;backdrop-filter:blur(12px)}
+.mobile-menu{display:none;position:fixed;top:calc(72px + env(safe-area-inset-top));right:14px;z-index:60;min-width:180px;padding:10px;background:#171514ed;border:1px solid #ad834e88;border-radius:12px;box-shadow:0 20px 70px #000b;backdrop-filter:blur(18px)}
+.mobile-menu.open{display:grid;gap:2px}
+.mobile-menu button{background:transparent;color:#fff2e6;border:0;text-align:left;padding:10px;border-radius:7px}
+.mobile-menu button:hover{background:#d5934c30}
+.authentic{display:flex;gap:12px;align-items:center;margin-top:16px;border:1px solid #f4c28d50;background:#0a090990;backdrop-filter:blur(12px);border-radius:12px;padding:10px;width:fit-content;max-width:100%}
+.authentic img{width:60px;height:60px;object-fit:cover;border-radius:9px;flex:none;border:1px solid #f5bb8a90}
+.authentic b{display:block;font-size:13px;color:#fff4e9}.authentic small{font-size:10px;color:#d9c8ba;display:block;margin-top:4px}
+@media(max-width:849px){.top-nav{display:none}.menu-toggle{display:flex}.top-actions a{display:none}.authentic{margin-top:11px;padding:7px}.authentic img{height:44px;width:44px}.authentic b{font-size:11px}.authentic small{font-size:9px}.panel-content{padding-right:10px}.panel-intro .panel-content{margin-bottom:53px}}
+@media(max-height:760px) and (max-width:849px){.panel-about .panel-content,.panel-projects .panel-content,.panel-skills .panel-content,.panel-principles .panel-content,.panel-contacts .panel-content{margin-bottom:3px}.authentic{margin-top:7px}}
+
+/* Images must layer ABOVE the painted section background, BELOW the overlays. */
+.panel>.hero-image,.panel>.panel-bg,.panel .gallery-image{z-index:0!important}
+.panel .gallery-photo-wrap{z-index:0!important}
+.panel::after{z-index:1!important}
+.panel::before{z-index:2!important;pointer-events:none}
+.panel-content,.gallery-header,.gallery-footer{z-index:3!important}
 </style>
 </head>
 <body>
 <header class="topbar">
   <a href="#intro" data-jump="0" class="brand" aria-label="К началу"><span class="brand-logo">bn.</span> BLACKNODE305</a>
-  <div class="top-actions"><a href="https://github.com/blacknode305" target="_blank" rel="noopener noreferrer" aria-label="Мой GitHub">GitHub ↗</a></div>
+  <nav class="top-nav" aria-label="Разделы визитки"><button data-jump="0" type="button">Главная</button><button data-jump="1" type="button">Обо мне</button><button data-jump="2" type="button">Проекты</button><button data-jump="3" type="button">Навыки</button><button data-jump="6" type="button">Контакты</button></nav>
+  <div class="top-actions"><a href="https://github.com/blacknode305" target="_blank" rel="noopener noreferrer" aria-label="Мой GitHub">GitHub ↗</a><button class="menu-toggle" type="button" id="mobileMenuBtn" aria-label="Открыть меню" aria-expanded="false">☰</button></div>
 </header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Меню на телефоне"><button type="button" data-jump="0">Главная</button><button type="button" data-jump="1">Обо мне</button><button type="button" data-jump="2">Проекты</button><button type="button" data-jump="3">Навыки</button><button type="button" data-jump="4">Галерея</button><button type="button" data-jump="6">Контакты</button></nav>
 <nav class="nav-dots" id="navigationDots" aria-label="Навигация по экранам"></nav>
 <div class="page-index"><em id="pageNow">01</em> / 07</div>
 <main class="shell" id="scroller" aria-label="Портфолио BLACKNODE305">
@@ -124,8 +180,8 @@ h2{font-size:clamp(37px,7.3vw,70px);font-weight:870;letter-spacing:-.067em;line-
   <div class="panel-content">
     <div class="kicker">Developer · Systems · Automation</div>
     <h1><span>BLACK</span><span>NODE305.</span></h1>
-    <p class="intro-line">Создаю цифровые инструменты, которые делают сложные процессы понятными и удобными.</p>
-    <button class="btn" type="button" data-jump="1">Узнать больше <span class="arrow">↗</span></button>
+    <p class="intro-line">Разработка · Автоматизация · Аналитика · Системы<br>Создаю рабочие решения для реальных задач.</p>
+    <button class="btn" type="button" data-jump="2">Смотреть проекты <span class="arrow">↗</span></button>
   </div>
   <button class="scroll-cue" type="button" data-jump="1">Листай вниз <span>↓</span></button>
 </section>
@@ -136,6 +192,7 @@ h2{font-size:clamp(37px,7.3vw,70px);font-weight:870;letter-spacing:-.067em;line-
     <h2>Работаю<br>с системами,<br>не с шаблонами.</h2>
     <p class="description">Я — <b>blacknode305</b>. Создаю веб-интерфейсы, автоматизирую рабочие процессы и соединяю идеи с практической реализацией.</p>
     <div class="pill-row"><span>WEB DEVELOPMENT</span><span>UI / UX</span><span>АВТОМАТИЗАЦИЯ</span></div>
+    <div class="authentic"><img src="data:image/webp;base64,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" alt="Александр Асташов — реальное портретное фото"><div><b>Александр Асташов</b><small>Разработка • системы • автоматизация</small></div></div>
   </div>
   <button class="scroll-cue" type="button" data-jump="2">Следующий экран <span>↓</span></button>
 </section>
@@ -193,6 +250,7 @@ h2{font-size:clamp(37px,7.3vw,70px);font-weight:870;letter-spacing:-.067em;line-
       <a href="https://github.com/blacknode305" target="_blank" rel="noopener noreferrer"><span>GitHub · blacknode305</span><span>↗</span></a>
       <a href="https://github.com/blacknode305/pro-optima" target="_blank" rel="noopener noreferrer"><span>PRO OPTIMA</span><span>↗</span></a>
       <a href="https://github.com/blacknode305/dashboardx" target="_blank" rel="noopener noreferrer"><span>DashboardX</span><span>↗</span></a>
+      <a href="https://t.me/blacknode305" target="_blank" rel="noopener noreferrer"><span>Telegram · blacknode305</span><span>↗</span></a>
     </div>
   </div>
   <button class="scroll-cue" type="button" data-jump="0">В начало <span>↑</span></button>
@@ -203,6 +261,10 @@ h2{font-size:clamp(37px,7.3vw,70px);font-weight:870;letter-spacing:-.067em;line-
 (()=>{
 const photos=JSON.parse(document.getElementById('photoData').textContent);
 const shell=document.getElementById('scroller');
+const menuBtn=document.getElementById('mobileMenuBtn');
+const menu=document.getElementById('mobileMenu');
+function closeMenu(){menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}
+menuBtn.addEventListener('click',()=>{const isOpen=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(isOpen))});
 const panels=[...shell.querySelectorAll('.panel')];
 const dots=document.getElementById('navigationDots');
 const pageNow=document.getElementById('pageNow');
@@ -211,11 +273,11 @@ let active=0,heroIndex=0,galleryIndex=4,heroTimer=null;
 const fmt=i=>String(i+1).padStart(2,'0');
 const jump=i=>panels[(i+panels.length)%panels.length].scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
 // Each panel is exactly one viewport tall; native CSS scroll snap handles touch/wheel.
-document.querySelectorAll('[data-jump]').forEach(el=>el.addEventListener('click',event=>{event.preventDefault();jump(Number(el.dataset.jump))}));
+document.querySelectorAll('[data-jump]').forEach(el=>el.addEventListener('click',event=>{event.preventDefault();closeMenu();jump(Number(el.dataset.jump))}));
 photos.forEach(p=>{const im=new Image();im.src=p.src});
 document.querySelectorAll('[data-photo]').forEach(el=>{const p=photos[Number(el.dataset.photo)];if(p)el.src=p.src});
 panels.forEach((panel,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Экран '+(i+1)+': '+panel.getAttribute('aria-label'));b.addEventListener('click',()=>jump(i));dots.appendChild(b)});
-function focusPanel(i){active=i;pageNow.textContent=fmt(i);panels.forEach((p,j)=>p.classList.toggle('is-current',i===j));[...dots.children].forEach((b,j)=>{b.classList.toggle('active',i===j);b.setAttribute('aria-current',String(i===j))})}
+function focusPanel(i){active=i;pageNow.textContent=fmt(i);document.querySelectorAll('.top-nav [data-jump]').forEach(x=>x.classList.toggle('selected',Number(x.dataset.jump)===i));panels.forEach((p,j)=>p.classList.toggle('is-current',i===j));[...dots.children].forEach((b,j)=>{b.classList.toggle('active',i===j);b.setAttribute('aria-current',String(i===j))})}
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.58)focusPanel(panels.indexOf(e.target))})},{root:shell,threshold:[.3,.58,.85]});panels.forEach(p=>observer.observe(p));
 function setHero(i){const index=((i%photos.length)+photos.length)%photos.length;heroIndex=index;document.getElementById('heroImage').src=photos[index].src}
 function cycleHero(){if(document.hidden||reduced)return;setHero([0,8,7,5,2][[0,8,7,5,2].indexOf(heroIndex)<0?0:([0,8,7,5,2].indexOf(heroIndex)+1)%5])}
