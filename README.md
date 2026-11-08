@@ -40,6 +40,14 @@
   <!-- TODO: After GitHub indexing is complete, replace "type=repository" with "type=code" in language search links -->
 ---
 
+  <h4>🤖 AI and Deployment (links to projects)</h4>
+  <p>
+    <a href="https://github.com/blacknode305/dashboardx"><img alt="ChatGPT" src="https://img.shields.io/badge/ChatGPT-412991.svg?logo=openai&logoColor=white"></a>
+    <a href="https://github.com/blacknode305/dashboardx"><img alt="Railway" src="https://img.shields.io/badge/Railway-0B0D0E.svg?logo=railway&logoColor=white"></a>
+  </p>
+
+---
+
 ## 🛠 Favorite tools and technologies
 
   <div style="display: flex; align-items: flex-start; align: center">
@@ -88,6 +96,7 @@
       <td align="center" width="96">
             <img src="https://techstack-generator.vercel.app/django-icon.svg" alt="icon" width="65" height="65" />
           <br>Django
+        </td>
         <td align="center" width="96">
             <img src="https://techstack-generator.vercel.app/github-icon.svg" alt="icon" width="65" height="65" />
           <br>Github
@@ -129,8 +138,7 @@
             <td align="center" width="96">
             <img src="https://skillicons.dev/icons?i=nodejs" width="48" height="48" alt="Nodejs" />
           <br>Nodejs
-          </td>
-          </td>
+        </td>
         <td align="center" width="96">
             <img src="https://skillicons.dev/icons?i=php" width="48" height="48" alt="PHP" />
           <br>PHP
@@ -160,12 +168,28 @@
           <br>PostgreSQL
         </td>
     </tr>
+      <tr>
+        <td align="center" width="96">
+          <img src="https://cdn.simpleicons.org/openai/FFFFFF" alt="ChatGPT" width="48" height="48" />
+          <br>ChatGPT
+        </td>
+        <td align="center" width="96">
+          <img src="https://cdn.simpleicons.org/railway/FFFFFF" alt="Railway" width="48" height="48" />
+          <br>Railway
+        </td>
+      </tr>
     </table>
   </div>
 
 ---
 
 ## 📚 Learning technologies (links to documents or introductions)
+
+  <h4>🤖 AI Tools and Deployment</h4>
+  <p>
+    <a href="https://help.openai.com/en/collections/3742473-chatgpt"><img alt="ChatGPT" src="https://img.shields.io/badge/ChatGPT-412991.svg?logo=openai&logoColor=white"></a>
+    <a href="https://docs.railway.com"><img alt="Railway" src="https://img.shields.io/badge/Railway-0B0D0E.svg?logo=railway&logoColor=white"></a>
+  </p>
 
 
   <h4>👨‍💻 Programming and Markup Languages</h4>
