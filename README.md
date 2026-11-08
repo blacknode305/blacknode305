@@ -38,7 +38,6 @@
   </p>
   
   <!-- TODO: After GitHub indexing is complete, replace "type=repository" with "type=code" in language search links -->
----
 
   <h4>🤖 AI and Deployment (links to projects)</h4>
   <p>
