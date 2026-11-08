@@ -170,7 +170,7 @@
     </tr>
       <tr>
         <td align="center" width="96">
-          <img src="https://cdn.simpleicons.org/openai/FFFFFF" alt="ChatGPT" width="48" height="48" />
+          <img src="https://raw.githubusercontent.com/blacknode305/blacknode305/main/assets/icons/chatgpt.svg" alt="ChatGPT" width="48" height="48" />
           <br>ChatGPT
         </td>
         <td align="center" width="96">
